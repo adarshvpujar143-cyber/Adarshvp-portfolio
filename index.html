@@ -18,7 +18,7 @@
     <meta property="og:image" content="https://adarshvpujar143-cyber.github.io/Adarshvp-portfolio/social-cover.png">
     <meta property="og:locale" content="en_US">
 
-    <link rel="canonical" href="https://adarshvpujar143-cyber.github.io/">
+    <link rel="canonical" href="https://adarshvpujar143-cyber.github.io/Adarshvp-portfolio/">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
@@ -26,42 +26,199 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-    <link rel="preload" href="neo-styles.css" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" as="style">
-
     <link rel="stylesheet" href="neo-styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <style>
+        /* Define theme variable systems */
+        :root {
+            --bg-main: #ffffff;
+            --bg-accent: #f9f9f9;
+            --text-main: #000000;
+            --text-muted: #444444;
+            --accent-primary: #ff3366;
+            --accent-secondary: #ffe600;
+            --accent-tertiary: #66d9ef;
+            --card-bg: #ffffff;
+            --border-color: #000000;
+            --shadow-color: #000000;
+        }
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        /* Deadly Combination 1: Cyber Cyberpunk */
+        body.theme-cyberpunk {
+            --bg-main: #0b0c10;
+            --bg-accent: #1f2833;
+            --text-main: #ffffff;
+            --text-muted: #c5a1ff;
+            --accent-primary: #ff0055;
+            --accent-secondary: #00ffcc;
+            --accent-tertiary: #ccff00;
+            --card-bg: #151b26;
+            --border-color: #00ffcc;
+            --shadow-color: #ff0055;
+        }
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Adarsh V Pujar",
-      "jobTitle": "Frontend Developer",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Mysore",
-        "addressRegion": "Karnataka",
-        "addressCountry": "India"
-      },
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "NIE Institute of Technology"
-      },
-      "knowsAbout": ["C programming", "Java", "Python", "Full stack", "HTML", "CSS", "JavaScript", "Bootstrap", "Angular", "SQL"],
-      "sameAs": [
-        "https://github.com/adarshvpujar143-cyber"
-      ]
-    }
-    </script>
+        /* Deadly Combination 2: Neo Tangerine */
+        body.theme-tangerine {
+            --bg-main: #fdf6ec;
+            --bg-accent: #fff0db;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-primary: #ff5a1f;
+            --accent-secondary: #2563eb;
+            --accent-tertiary: #10b981;
+            --card-bg: #ffffff;
+            --border-color: #0f172a;
+            --shadow-color: #ff5a1f;
+        }
+
+        /* Deadly Combination 3: Toxic Orchid */
+        body.theme-orchid {
+            --bg-main: #1a102f;
+            --bg-accent: #2d1b4e;
+            --text-main: #f3f0ff;
+            --text-muted: #bda6ff;
+            --accent-primary: #b500ff;
+            --accent-secondary: #00ff87;
+            --accent-tertiary: #00e1ff;
+            --card-bg: #241442;
+            --border-color: #00ff87;
+            --shadow-color: #00e1ff;
+        }
+
+        /* Dynamic Engine Mappings */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--bg-main) !important;
+            color: var(--text-main) !important;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        section, #about, #projects, #experience, #contact {
+            background-color: var(--bg-main) !important;
+            color: var(--text-main) !important;
+            transition: all 0.4s ease;
+        }
+        p, ul, li, div, h1, h2, h3, h4, span {
+            color: var(--text-main) !important;
+            transition: color 0.3s ease;
+        }
+        .hero-description, .project-card p, .style-muted {
+            color: var(--text-muted) !important;
+        }
+
+        /* Neo-brutalist Global Overrides mapped to Theme Variables */
+        .project-card {
+            border: 3px solid var(--border-color) !important; 
+            box-shadow: 5px 5px 0px var(--shadow-color) !important; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            background: var(--card-bg) !important;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .project-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 9px 9px 0px var(--shadow-color) !important;
+        }
+        .contact-card-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 20px;
+            border: 3px solid var(--border-color) !important;
+            box-shadow: 5px 5px 0px var(--shadow-color) !important;
+            background-color: var(--card-bg) !important;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .contact-card-btn i {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: var(--accent-primary) !important;
+        }
+        .contact-card-btn:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0px var(--shadow-color) !important;
+            background-color: var(--accent-secondary) !important;
+        }
+        .contact-card-btn:hover * {
+            color: #000000 !important; /* Forces black contrast readable text on hover block */
+        }
+
+        /* Creative Theme Selector Dropdown Box */
+        .theme-selector-container {
+            position: relative;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .theme-select-trigger {
+            background: var(--accent-secondary);
+            color: #000000 !important;
+            border: 2px solid #000000;
+            padding: 6px 12px;
+            font-family: 'Space Mono', monospace;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 3px 3px 0px #000000;
+            transition: all 0.1s ease;
+        }
+        .theme-select-trigger:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #000000;
+        }
+        .theme-dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background: #ffffff;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            border-radius: 6px;
+            z-index: 1000;
+            width: 170px;
+            overflow: hidden;
+        }
+        .theme-dropdown-menu button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: none;
+            font-family: 'Space Mono', monospace;
+            text-align: left;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: bold;
+            color: #000000 !important;
+        }
+        .theme-dropdown-menu button:hover {
+            background: #ffe600;
+        }
+        .theme-dropdown-menu button.active-theme-item {
+            background: #ff3366;
+            color: #ffffff !important;
+        }
+
+        /* Badges updates based on variable colors */
+        .tech-badge {
+            border: 2px solid var(--border-color) !important;
+            background-color: var(--card-bg) !important;
+            box-shadow: 3px 3px 0px var(--shadow-color) !important;
+        }
+    </style>
 </head>
 <body>
-    <div class="loader-overlay">
+
+    <div class="loader-overlay" style="transition: opacity 0.4s ease;">
         <div class="loader-shapes">
             <div class="loader-shape-svg loader-shape-1">
                 <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,45 +242,28 @@
     <div class="page-wrapper">
     <div class="progress-bar-container">
         <div class="progress-bar-fill"></div>
-        <div class="progress-checkpoints">
-            <div class="checkpoint" data-section="hero">
-                <div class="checkpoint-dot"></div>
-                <span class="checkpoint-label">Home</span>
-            </div>
-            <div class="checkpoint" data-section="about">
-                <div class="checkpoint-dot"></div>
-                <span class="checkpoint-label">About</span>
-            </div>
-            <div class="checkpoint" data-section="experience">
-                <div class="checkpoint-dot"></div>
-                <span class="checkpoint-label">Journey</span>
-            </div>
-            <div class="checkpoint" data-section="skills">
-                <div class="checkpoint-dot"></div>
-                <span class="checkpoint-label">Skills</span>
-            </div>
-            <div class="checkpoint" data-section="projects">
-                <div class="checkpoint-dot"></div>
-                <span class="checkpoint-label">Projects</span>
-            </div>
-            <div class="checkpoint" data-section="contact">
-                <div class="checkpoint-dot"></div>
-                <span class="checkpoint-label">Contact</span>
-            </div>
-        </div>
     </div>
+    
     <nav class="navbar">
         <div class="nav-content">
-            <a href="#" class="nav-brand">AP</a>
+            <a href="#hero" class="nav-brand">AP</a>
             <div class="nav-right">
                 <a href="#hero" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#experience" class="nav-link">Journey</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#contact" class="nav-cta">Get in Touch!</a>
-                <button id="theme-toggle" class="theme-toggle-nav" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
+                
+                <div class="theme-selector-container">
+                    <button class="theme-select-trigger" id="themeDropdownBtn"><i class="fas fa-palette"></i> Themes</button>
+                    <div class="theme-dropdown-menu" id="themeMenu">
+                        <button onclick="setGlobalTheme('classic')" id="btn-theme-classic" class="active-theme-item">⚡ Classic Retro</button>
+                        <button onclick="setGlobalTheme('cyberpunk')" id="btn-theme-cyberpunk">💀 Cyber Cyberpunk</button>
+                        <button onclick="setGlobalTheme('tangerine')" id="btn-theme-tangerine">🍊 Neo Tangerine</button>
+                        <button onclick="setGlobalTheme('orchid')" id="btn-theme-orchid">🍇 Toxic Orchid</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </nav>
@@ -131,16 +271,22 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-left">
-                <p class="hero-greeting" id="hero-greeting">Hi there! 👋</p>
+                <p class="hero-greeting">Hi there! 👋</p>
                 <h1 class="hero-name">I'm Adarsh V Pujar.</h1>
                 <p class="hero-description">
                     Based in Mysore, India, I am a Frontend Developer and an Information Science & Engineering graduate. I love building clean, responsive user interfaces, creating impactful applications, and solving real-world design problems.
                 </p>
                 <div class="hero-social">
-                    <a href="https://github.com/adarshvpujar143-cyber" target="_blank" class="social-btn">
+                    <a href="https://github.com/adarshvpujar143-cyber" target="_blank" class="social-btn" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="mailto:adarshvpujar143@gmail.com" class="social-btn">
+                    <a href="https://www.linkedin.com/in/adarsh-v-pujar-8947b0400?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="social-btn" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_.rose__boyy._?igsh=d3M0bXB4OWNzaWdr" target="_blank" class="social-btn" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:adarshvpujar143@gmail.com" class="social-btn" aria-label="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
@@ -177,16 +323,10 @@
         </div>
     </section>
 
-    <div class="paper-tear paper-tear-top">
-        <svg width="100%" height="30" viewBox="0 0 1440 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 L0,15 Q10,5 20,15 T40,15 Q50,5 60,15 T80,15 Q90,20 100,15 T120,15 Q130,10 140,15 T160,15 Q170,5 180,15 T200,15 Q210,20 220,15 T240,15 Q250,8 260,15 T280,15 Q290,18 300,15 T320,15 Q330,5 340,15" fill="#ffffff"/>
-        </svg>
-    </div>
-
-    <section class="about" id="about" style="background: #ffffff; padding: 60px 20px;">
+    <section class="about" id="about" style="padding: 60px 20px;">
         <div style="max-width: 900px; margin: 0 auto;">
             <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 20px; border-bottom: 3px solid #000; display: inline-block;">About Me</h2>
-            <p style="font-size: 1.2rem; line-height: 1.8; color: #333;">
+            <p style="font-size: 1.2rem; line-height: 1.8;">
                 Motivated and detail-oriented Information Science and Engineering graduate with a strong foundation in programming and web development. Passionate about developing user-friendly and impactful applications. Eager to begin a professional career where I can apply my technical skills, learn continuously, and contribute to innovative projects.
             </p>
             
@@ -212,16 +352,16 @@
         </div>
     </section>
 
-    <section class="experience" id="experience" style="padding: 60px 20px; background: #f9f9f9;">
+    <section class="experience" id="experience" style="padding: 60px 20px;">
         <div style="max-width: 900px; margin: 0 auto;">
             <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 40px; border-bottom: 3px solid #000; display: inline-block;">My Journey</h2>
             
             <div style="margin-bottom: 40px;">
-                <h3 style="font-family: 'Space Grotesk', sans-serif; color: #555;"><i class="fas fa-briefcase"></i> Experience</h3>
+                <h3 style="font-family: 'Space Grotesk', sans-serif;"><i class="fas fa-briefcase"></i> Experience</h3>
                 <hr style="border: 1px solid #ddd; margin-bottom: 20px;">
                 <div style="margin-bottom: 25px;">
                     <h4 style="font-size: 1.3rem; margin-bottom: 5px;">Frontend Developer Intern</h4>
-                    <p style="margin: 0; color: #666; font-weight: 600;">HP Pavilion, Bangalore</p>
+                    <p style="margin: 0; font-weight: 600;">HP Pavilion, Bangalore</p>
                     <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.6;">
                         <li>Developed responsive web pages using HTML, CSS, JavaScript, and Bootstrap.</li>
                         <li>Collaborated with team members on real-time projects and bug fixing.</li>
@@ -229,7 +369,7 @@
                 </div>
                 <div>
                     <h4 style="font-size: 1.3rem; margin-bottom: 5px;">Marketing Executive</h4>
-                    <p style="margin: 0; color: #666; font-weight: 600;">S & S Co Inc (Phonemax)</p>
+                    <p style="margin: 0; font-weight: 600;">S & S Co Inc (Phonemax)</p>
                     <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.6;">
                         <li>Increased regional sales for PhoneMax by 25% through targeted promotional campaigns and strategic partnerships with local retail distributors.</li>
                     </ul>
@@ -237,90 +377,160 @@
             </div>
 
             <div>
-                <h3 style="font-family: 'Space Grotesk', sans-serif; color: #555;"><i class="fas fa-graduation-cap"></i> Education</h3>
+                <h3 style="font-family: 'Space Grotesk', sans-serif;"><i class="fas fa-graduation-cap"></i> Education</h3>
                 <hr style="border: 1px solid #ddd; margin-bottom: 20px;">
                 <div style="margin-bottom: 20px;">
-                    <h4 style="margin-bottom: 5px;">B.E (Information Science and Engineering) <span style="font-weight: normal; color: #777;">| 2021 - 2025</span></h4>
-                    <p style="margin: 0; color: #333;">NIE Institute of Technology — <strong>CGPA: 7.8%</strong></p>
+                    <h4 style="margin-bottom: 5px;">B.E (Information Science and Engineering) <span style="font-weight: normal;">| 2021 - 2025</span></h4>
+                    <p style="margin: 0;">NIE Institute of Technology — <strong>CGPA: 7.8%</strong></p>
                 </div>
                 <div style="margin-bottom: 20px;">
-                    <h4 style="margin-bottom: 5px;">Pre-University (PU - PCMB) <span style="font-weight: normal; color: #777;">| 2019 - 2021</span></h4>
-                    <p style="margin: 0; color: #333;">VVS Golden Jubilee PU College — <strong>Percentage: 87.28%</strong></p>
+                    <h4 style="margin-bottom: 5px;">Pre-University (PU - PCMB) <span style="font-weight: normal;">| 2019 - 2021</span></h4>
+                    <p style="margin: 0;">VVS Golden Jubilee PU College — <strong>Percentage: 87.28%</strong></p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 5px;">SSLC <span style="font-weight: normal; color: #777;">| 2018 - 2019</span></h4>
-                    <p style="margin: 0; color: #333;">Vidya Vardhaka Pandit Nehru High School — <strong>Percentage: 89.38%</strong></p>
+                    <h4 style="margin-bottom: 5px;">SSLC <span style="font-weight: normal;">| 2018 - 2019</span></h4>
+                    <p style="margin: 0;">Vidya Vardhaka Pandit Nehru High School — <strong>Percentage: 89.38%</strong></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" style="padding: 60px 20px; background: #ffffff;">
+    <section id="projects" style="padding: 60px 20px;">
         <div style="max-width: 900px; margin: 0 auto;">
             <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 40px; border-bottom: 3px solid #000; display: inline-block;">Projects</h2>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div style="border: 3px solid #000; box-shadow: 5px 5px 0px #000; border-radius: 8px; overflow: hidden; background: #fff;">
-                    <img src="image/communication-system.png" alt="Two-Way Communication System" style="width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid #000;" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500'">
-                    <div style="padding: 20px;">
-                        <h3 style="font-family: 'Space Grotesk', sans-serif; margin-top: 0;">Two-Way Communication System for Deaf People</h3>
-                        <p style="font-size: 0.95rem; line-height: 1.5; color: #444;">
-                            Enables voice or text input to be converted into a readable format for deaf users. Focused on improving accessibility and real-time communication.
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px;">
+                
+                <div class="project-card">
+                    <img src="32147.png" alt="Two-Way Communication System" style="width: 100%; height: 210px; object-fit: cover; border-bottom: 3px solid var(--border-color);">
+                    <div style="padding:
+                        <h3 style="font-family: 'Space Grotesk', sans-serif; margin-top: 0; font-size: 1.35rem;">Two-Way Communication System for Deaf People</h3>
+                        <p class="hero-description" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 10px;">
+                            An assistive translation ecosystem constructed to bridge communication barriers between deaf individuals and non-sign language users. The application evaluates inputs in real-time, instantly shifting audio feeds into readable text formats.
                         </p>
-                        <div style="margin-top: 15px;">
-                            <span style="background: #ffd93d; padding: 4px 8px; border: 2px solid #000; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-right: 5px;">Python</span>
-                            <span style="background: #66d9ef; padding: 4px 8px; border: 2px solid #000; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">Accessibility</span>
+                        
+                        <h4 style="margin: 10px 0 5px 0; font-family: 'Space Grotesk', sans-serif; font-size: 1rem;"><i class="fas fa-star"></i> Core Engineering Outcomes:</h4>
+                        <ul style="padding-left: 20px; font-size: 0.95rem; line-height: 1.5;">
+                            <li>Implemented low-latency audio capture pipelines parsing raw waves into structural text formats.</li>
+                            <li>Engineered contrast structural display windows ensuring seamless mobile layout reading speeds.</li>
+                            <li>Optimized execution logic turnaround rates for real-time natural interaction loops.</li>
+                        </ul>
+
+                        <div style="margin-top: auto; padding-top: 15px;">
+                            <span style="background: #ffd93d; color:#000!important; padding: 4px 10px; border: 2px solid #000; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-right: 5px; display: inline-block;">Python</span>
+                            <span style="background: #66d9ef; color:#000!important; padding: 4px 10px; border: 2px solid #000; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-right: 5px; display: inline-block;">Speech-to-Text</span>
                         </div>
                     </div>
                 </div>
 
-                <div style="border: 3px solid #000; box-shadow: 5px 5px 0px #000; border-radius: 8px; overflow: hidden; background: #fff;">
-                    <img src="image/car-rental.png" alt="Car Rental Management System" style="width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid #000;" onerror="this.src='https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500'">
-                    <div style="padding: 20px;">
-                        <h3 style="font-family: 'Space Grotesk', sans-serif; margin-top: 0;">Car Rental Management System</h3>
-                        <p style="font-size: 0.95rem; line-height: 1.5; color: #444;">
-                            A full-stack application engineered to handle operations such as vehicle tracking, user booking management, dynamic billing, and database records.
+                <div class="project-card">
+                    <img src="32148.png" alt="Car Rental Management System" style="width: 100%; height: 210px; object-fit: cover; border-bottom: 3px solid var(--border-color);">
+                    <div style="padding: 22px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3 style="font-family: 'Space Grotesk', sans-serif; margin-top: 0; font-size: 1.35rem;">Car Rental Management System</h3>
+                        <p class="hero-description" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 10px;">
+                            An enterprise automation portal engineered to optimize global vehicle booking management, client log validations, tracking records, and payment distributions.
                         </p>
-                        <div style="margin-top: 15px;">
-                            <span style="background: #a8e6cf; padding: 4px 8px; border: 2px solid #000; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-right: 5px;">HTML/CSS</span>
-                            <span style="background: #ffd93d; padding: 4px 8px; border: 2px solid #000; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-right: 5px;">JavaScript</span>
-                            <span style="background: #ff8b94; padding: 4px 8px; border: 2px solid #000; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">SQL</span>
+                        
+                        <h4 style="margin: 10px 0 5px 0; font-family: 'Space Grotesk', sans-serif; font-size: 1rem;"><i class="fas fa-star"></i> Core Engineering Outcomes:</h4>
+                        <ul style="padding-left: 20px; font-size: 0.95rem; line-height: 1.5;">
+                            <li>Structured grid configurations minimizing responsive layout breakage across smartphone screens.</li>
+                            <li>Engineered structural backend query components speeding up entity check routines.</li>
+                            <li>Implemented dynamic verification workflows evaluating customer parameters cleanly.</li>
+                        </ul>
+
+                        <div style="margin-top: auto; padding-top: 15px;">
+                            <span style="background: #ff8b94; color:#000!important; padding: 4px 10px; border: 2px solid #000; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-right: 5px; display: inline-block;">HTML5 / CSS3</span>
+                            <span style="background: #ffd93d; color:#000!important; padding: 4px 10px; border: 2px solid #000; border-radius: 4px; font-size: 0.8rem; font-weight: bold; display: inline-block;">SQL</span>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <section class="contact" id="contact" style="padding: 60px 20px; background: #f9f9f9;">
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 20px; border-bottom: 3px solid #000; display: inline-block;">Contact Me</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 30px;">Let's collaborate! Feel free to reach out to me through any of the channels below.</p>
+    <section class="contact" id="contact" style="padding: 60px 20px;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; border-bottom: 3px solid #000; display: inline-block; padding-bottom: 5px;">Contact Me</h2>
+                <p style="font-size: 1.2rem; margin-top: 15px;">Let's collaborate! Feel free to reach out to me directly through any channel below.</p>
+            </div>
             
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; font-size: 1.1rem;">
-                <div><i class="fas fa-phone"></i> <strong>Phone:</strong> 9886103154</div>
-                <div><i class="fas fa-envelope"></i> <strong>Email:</strong> adarshvpujar143@gmail.com</div>
-                <div><i class="fas fa-map-marker-alt"></i> #365, 2nd A Main, 2nd Cross, Kuvempunagar M Block, Mysore - 570023</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; padding: 0 10px;">
+                <a href="tel:9886103154" class="contact-card-btn">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>Call Me</h4>
+                    <p style="font-family: 'Space Mono', monospace;">+91 9886103154</p>
+                </a>
+
+                <a href="mailto:adarshvpujar143@gmail.com?subject=Portfolio%20Inquiry" class="contact-card-btn">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email Me</h4>
+                    <p style="font-family: 'Space Mono', monospace;">adarshvpujar143@gmail.com</p>
+                </a>
+
+                <div class="contact-card-btn" style="cursor: default;">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Location</h4>
+                    <p style="font-family: 'Space Mono', monospace;">Mysore, India</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 35px; font-family: 'Space Mono', monospace; font-size: 0.9rem;">
+                📍 <strong>Address:</strong> #365, 2nd A Main, 2nd Cross, Kuvempunagar M Block, Mysore - 570023
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 30px; background: #000; color: #fff; font-family: 'Space Mono', monospace;">
-        <p style="margin: 0;">&copy; 2026 Adarsh V Pujar. All Info Declared True.</p>
+    <footer style="text-align: center; padding: 30px; background: #000000; color: #ffffff !important; font-family: 'Space Mono', monospace;">
+        <p style="margin: 0; font-size: 0.95rem; color: #fff !important;">&copy; 2026 Adarsh V Pujar. All Info Declared True.</p>
     </footer>
 
-    </div> 
-        <script>
+    </div>
+
+    <script>
+        // Dismiss preloader
         window.addEventListener('load', () => {
             const loader = document.querySelector('.loader-overlay');
-            if(loader) {
+            if (loader) {
                 setTimeout(() => {
                     loader.style.opacity = '0';
-                    setTimeout(() => loader.remove(), 500);
-                }, 1000); // Holds the animation for 1 second, then fades out nicely!
+                    setTimeout(() => { loader.style.display = 'none'; }, 400);
+                }, 600);
             }
         });
-        </script>
-    
+
+        // Dropdown Menu Drawer Trigger
+        const dropdownBtn = document.getElementById('themeDropdownBtn');
+        const themeMenu = document.getElementById('themeMenu');
+
+        dropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themeMenu.style.display = themeMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.addEventListener('click', () => {
+            themeMenu.style.display = 'none';
+        });
+
+        // Live Theme Configuration Swapper Function
+        function setGlobalTheme(themeName) {
+            // Remove all existing combination classes
+            document.body.classList.remove('theme-cyberpunk', 'theme-tangerine', 'theme-orchid');
+            
+            // Clear current active selector styling from options
+            document.querySelectorAll('.theme-dropdown-menu button').forEach(btn => {
+                btn.classList.remove('active-theme-item');
+            });
+
+            // Set chosen styles
+            if (themeName !== 'classic') {
+                document.body.classList.add('theme-' + themeName);
+            }
+            
+            // Highlight item chosen inside picker drawer
+            document.getElementById('btn-theme-' + themeName).classList.add('active-theme-item');
+        }
+    </script>
 </body>
 </html>
