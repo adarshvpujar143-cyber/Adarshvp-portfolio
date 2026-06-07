@@ -3610,73 +3610,60 @@ body[data-theme="dark"] .nav-lazyfire {
   overflow: hidden;
 }
 /* ==========================================================================
-   PORTFOLIO ARCHITECTURE LAYOUT PATCHES (Place at the bottom of neo-styles.css)
+   FINAL NEO-BRUTALIST STRUCTURAL FIXES (Absolute Bottom of neo-styles.css)
    ========================================================================== */
 
-/* 1. Fix Technical Skills Container & Content Overflow */
-#skills .card, 
-.skills-grid-modern,
-.skill-box {
-  height: auto !important;
-  min-height: max-content !important;
-  max-height: none !important;
-  overflow: visible !important;
-  padding-bottom: 2rem !important;
-  box-sizing: border-box !important;
+/* Force the Skills card to dynamically grow with the content */
+#skills .card {
+    height: auto !important;
+    min-height: max-content !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding-bottom: 40px !important;
 }
 
-/* 2. Re-enforce Thick Neo-Brutalist Borders on All Project Cards */
+/* Fix the project containers so they appear inside proper thick borders */
 .creator-projects-grid {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 2.5rem !important;
-  max-width: 950px !important;
-  margin: 2rem auto 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 30px !important;
+    margin-top: 30px !important;
 }
 
-/* Style the cards so they look like your other boxes */
 .creator-projects-grid .creator-item {
-  display: flex !important;
-  flex-direction: column !important;
-  background: var(--white, #ffffff) !important;
-  border: var(--border-width, 4px) solid var(--border, #000000) !important;
-  box-shadow: var(--shadow-offset, 8px) var(--shadow-offset, 8px) 0 var(--border, #000000) !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  border-radius: 0 !important;
-  text-align: left !important;
+    background: var(--white, #ffffff) !important;
+    border: var(--border-width, 4px) solid var(--border, #000000) !important;
+    box-shadow: var(--shadow-offset, 8px) var(--shadow-offset, 8px) 0 var(--border, #000000) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
-/* Lock picture frames inside your cards */
+/* Force the images inside your projects to take up a standard box space */
 .creator-projects-grid .creator-project {
-  width: 100% !important;
-  height: 200px !important;
-  position: relative !important;
-  overflow: hidden !important;
-  background: #2a2a2a !important;
-  border-bottom: var(--border-width, 4px) solid var(--border, #000000) !important;
-  display: block !important;
+    width: 100% !important;
+    height: 200px !important;
+    border-bottom: var(--border-width, 4px) solid var(--border, #000000) !important;
+    overflow: hidden !important;
 }
 
 .creator-projects-grid .creator-project img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
 }
 
-/* Force the third college item to stretch across both columns elegantly */
+/* Force your college collage item to span across the whole width nicely */
 .creator-projects-grid .college-span-card {
-  grid-column: span 2 !important;
+    grid-column: span 2 !important;
 }
 
-/* Mobile View Adjustments */
 @media (max-width: 768px) {
-  .creator-projects-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-    padding: 0 10px !important;
-  }
-  .creator-projects-grid .college-span-card {
-    grid-column: span 1 !important;
-  }
+    .creator-projects-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .creator-projects-grid .college-span-card {
+        grid-column: span 1 !important;
+    }
 }
