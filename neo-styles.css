@@ -3553,3 +3553,60 @@ body[data-theme="dark"] .nav-lazyfire {
     padding-bottom: 0.5rem;
   }
 }
+/* ==========================================================================
+   PORTFOLIO FIXES (Place at the absolute bottom of neo-styles.css)
+   ========================================================================== */
+
+/* 1. Fix Technical Skills Going Out of the Box */
+.skill-box {
+  height: auto !important;          /* Overrides any rigid vertical constraints */
+  min-height: max-content;         /* Dynamically grows downwards if content wraps */
+  padding: 1.5rem;
+  box-sizing: border-box;          /* Forces borders to be computed inside container sizes */
+  overflow: hidden;                /* Clean clip edge fallbacks */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+/* Ensure the main grid automatically expands to encapsulate all skill boxes */
+.skills-grid-modern {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  height: auto !important;         /* Prevents container squeezing */
+}
+
+
+/* 2. Fix Project Card Layout and Missing Images */
+.creator-project {
+  width: 100%;
+  height: 200px;                   /* Gives a perfectly aligned, solid display window */
+  background: #3a3a3a;             /* Dark placeholder fallback if your image asset is slow to load */
+  border: var(--border-width) solid var(--border);
+  box-shadow: 4px 4px 0 var(--border);
+  overflow: hidden;                /* Seamless layout framing boundary */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Forces your project images to scale perfectly without distorting or breaking container walls */
+.creator-project img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;               /* Automatically chops and scales images to fill the box neatly */
+  object-position: center;
+  display: block;
+}
+
+/* Holds short text descriptions cleanly so long strings don't push items misaligned */
+.creator-item .creator-tagline {
+  align-self: start;
+  min-height: 3.2em;
+  padding: 0.5rem 0;
+  overflow: hidden;
+}
+
