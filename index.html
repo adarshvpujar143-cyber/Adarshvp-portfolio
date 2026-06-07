@@ -309,5 +309,18 @@
         <p style="margin: 0;">&copy; 2026 Adarsh V Pujar. All Info Declared True.</p>
     </footer>
 
-    </div> </body>
-                    </html>
+    </div> 
+        <script>
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loader-overlay');
+            if(loader) {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.remove(), 500);
+                }, 1000); // Holds the animation for 1 second, then fades out nicely!
+            }
+        });
+        </script>
+    
+</body>
+</html>
