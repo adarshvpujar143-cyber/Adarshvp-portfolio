@@ -3609,4 +3609,51 @@ body[data-theme="dark"] .nav-lazyfire {
   padding: 0.5rem 0;
   overflow: hidden;
 }
+/* ==================== NEO-BRUTALIST GRID ENGINE ADJUSTMENTS ==================== */
+.creator-projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  max-width: 950px; /* Expanded for elegant layouts */
+  margin: 0 auto;
+}
+
+.creator-item {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: transform;
+  text-align: left;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.creator-item:hover {
+  transform: translate(-4px, -4px);
+}
+
+.creator-project {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Uniform grid top aspect-ratio */
+  background: #2a2a2a;
+  border-bottom: var(--border-width) solid var(--border);
+  overflow: hidden;
+}
+
+/* Perfect alignment for smaller mobile viewports */
+@media (max-width: 768px) {
+  .creator-projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+    padding: 0 10px;
+  }
+  
+  .creator-item {
+    grid-column: span 1 !important;
+  }
+  
+  .creator-project {
+    height: 180px !important;
+  }
+}
 
