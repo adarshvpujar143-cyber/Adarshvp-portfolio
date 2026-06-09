@@ -1,21 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Premium AI Portfolio</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium AI Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="bg"></div>
-<nav><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav>
-<header class="hero glass">
-<h1>AI Futuristic Developer Portfolio</h1>
-<p>Recruiter-friendly • Glassmorphism • Responsive</p>
-<a class="btn" href="resume.pdf">Download Resume</a>
-</header>
-<section id="skills" class="glass"><h2>Skills</h2><div class="bar"><span></span></div></section>
-<section id="projects" class="glass"><h2>Projects</h2></section>
-<section id="contact" class="glass"><h2>Contact</h2><form><input placeholder="Name"><input placeholder="Email"><textarea placeholder="Message"></textarea><button>Send</button></form></section>
-<script src="script.js"></script>
-</body></html>
+    <div class="bg"></div>
+    
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <header id="about" class="hero glass">
+        <h1>AI Futuristic Developer Portfolio</h1>
+        <p>Recruiter-friendly • Glassmorphism • Responsive</p>
+        <a class="btn" href="resume.pdf" download>Download Resume</a>
+    </header>
+
+    <section id="skills" class="glass">
+        <h2>Skills</h2>
+        <p style="color: #a0aec0; margin-bottom: 8px;">Development & AI Automation</p>
+        <div class="bar">
+            <span></span>
+        </div>
+    </section>
+
+    <section id="projects" class="glass">
+        <h2>Projects</h2>
+        <p style="color: #a0aec0; font-style: italic;">Project gallery coming soon...</p>
+    </section>
+
+    <section id="contact" class="glass">
+        <h2>Contact Me</h2>
+        <form action="#" method="POST">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
