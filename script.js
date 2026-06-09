@@ -1,13 +1,13 @@
-// Initialization Execution Sequence
+// Initialization Configuration Flow Sequence
 document.addEventListener("DOMContentLoaded", () => {
-    // Structural Staggered Content Entrance Cascade
+    // Dynamic Staggered Animations Entrance Cascade
     const cards = document.querySelectorAll('.glass');
     cards.forEach((card, index) => {
         card.animate([
             { opacity: 0, transform: 'translateY(35px) scale(0.99)' },
             { opacity: 1, transform: 'translateY(0) scale(1)' }
         ], {
-            duration: 700,
+            duration: 600,
             delay: index * 100,
             fill: 'forwards',
             easing: 'cubic-bezier(0.25, 1, 0.5, 1)'
@@ -15,28 +15,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Dynamic Active Theme Panel Switcher Controller
+// Real-time Palette Customization Switch Controller Engine
 function setTheme(themeName) {
     document.body.setAttribute('data-theme', themeName);
     
-    // Switch Active Button Indicator Status
+    // Clean indicator selection tags
     document.querySelectorAll('.theme-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     
-    // Reference Active Click Event Source Target
+    // Set selected element highlight state smoothly
     const eventTarget = window.event ? window.event.currentTarget : null;
     if(eventTarget) {
         eventTarget.classList.add('active');
     }
 }
 
-// Fullscreen Page Slide-In Routing Transitions Handlers
+// Project Modular Screen View Drawer Sliders Handlers
 function openProject(projectId) {
     const targetOverlay = document.getElementById(`project-slide-${projectId}`);
     if(targetOverlay) {
         targetOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden'; // Locks body scrolling beneath the slide layout
+        document.body.style.overflow = 'hidden'; // Prevents parent grid background viewport text scrolling
     }
 }
 
@@ -44,22 +44,6 @@ function closeProject(projectId) {
     const targetOverlay = document.getElementById(`project-slide-${projectId}`);
     if(targetOverlay) {
         targetOverlay.classList.remove('open');
-        document.body.style.overflow = 'auto'; // Restores scrolling safety variables
+        document.body.style.overflow = 'auto'; // Restores active device swipe variables
     }
 }
-
-// Internal Navigation Smooth Scroll Target Controller
-document.querySelectorAll('.nav-links a, .hero-actions a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const destinationSection = document.querySelector(targetId);
-        
-        if (destinationSection) {
-            destinationSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
