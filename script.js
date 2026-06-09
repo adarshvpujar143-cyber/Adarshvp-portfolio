@@ -28,39 +28,58 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* --- 2. THE LOCAL ARCHITECTURE LIVE FILTER SEARCH ENGINE --- */
-  const searchInput = document.getElementById("portfolio-search-input");
-  const searchFeedback = document.getElementById("search-results-feedback");
-  const searchableNodes = document.querySelectorAll(".searchable-node");
+  /* --- 2. WHATSAPP DROPDOWN SCANNER TOGGLE MECHANIC --- */
+  const qrTriggerBtn = document.getElementById("trigger-qr-view-btn");
+  const qrDropBox = document.getElementById("qr-dropdown-content-box");
 
-  if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-      const term = e.target.value.toLowerCase().trim();
-      let matchesCount = 0;
-
-      if (term === "") {
-        searchableNodes.forEach(node => node.style.display = "block");
-        searchFeedback.textContent = "";
-        return;
+  if (qrTriggerBtn && qrDropBox) {
+    qrTriggerBtn.addEventListener("click", () => {
+      if (qrDropBox.className === "qr-content-hidden") {
+        qrDropBox.className = "qr-content-visible";
+        qrTriggerBtn.textContent = "✖ Hide WhatsApp Scanner QR Code";
+      } else {
+        qrDropBox.className = "qr-content-hidden";
+        qrTriggerBtn.textContent = "📷 View WhatsApp Scanner QR Code";
       }
-
-      searchableNodes.forEach(node => {
-        const contentText = node.textContent.toLowerCase();
-        if (contentText.includes(term)) {
-          node.style.display = "block";
-          matchesCount++;
-        } else {
-          node.style.display = "none";
-        }
-      });
-
-      searchFeedback.textContent = matchesCount > 0 
-        ? `Showing ${matchesCount} matching sections` 
-        : "No sections found matching your search.";
     });
   }
 
-  /* --- 3. RULE-BASED VERIFIED PORTFOLIO INSIGHTS AI CHATBOT --- */
+  /* --- 3. TOP NAVBAR SEARCH AND AUTOMATIC CONTENT SCROLL SNAP FOCUS --- */
+  const searchInput = document.getElementById("portfolio-search-input");
+  
+  if (searchInput) {
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        const term = searchInput.value.toLowerCase().trim();
+        if (term === "") return;
+
+        let bestMatchNode = null;
+        const targetNodes = document.querySelectorAll(".searchable-node");
+
+        for (let node of targetNodes) {
+          if (node.textContent.toLowerCase().includes(term)) {
+            bestMatchNode = node;
+            break; // Stop at the first logical match section
+          }
+        }
+
+        if (bestMatchNode) {
+          // Smoothly scroll the view window right down to the matching container element!
+          const elementPosition = bestMatchNode.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: elementPosition - 90, // Leave padding space for sticky navigation bars
+            behavior: "smooth"
+          });
+          
+          // Flash effect to show focus
+          bestMatchNode.style.outline = "2px solid var(--text-main)";
+          setTimeout(() => { bestMatchNode.style.outline = "none"; }, 1500);
+        }
+      }
+    });
+  }
+
+  /* --- 4. HIGHLY STABLE GUARDED PORTFOLIO NLP CHATBOT --- */
   const botToggle = document.getElementById("bot-toggle-badge");
   const botWindow = document.getElementById("bot-window-panel");
   const botClose = document.getElementById("bot-close-panel-btn");
@@ -75,35 +94,35 @@ document.addEventListener("DOMContentLoaded", () => {
     botClose.addEventListener("click", () => botWindow.style.display = "none");
   }
 
-  // Knowledge base containing only your explicit, true portfolio details
+  // Strictly prioritize matches to stop cross-category fallback glitches
   const portfolioKnowledge = [
     {
-      keywords: ["project", "projects", "deaf", "communication", "sign language", "car rental", "database", "mysql"],
-      response: "📋 <strong>Adarsh's Featured Projects:</strong><br><br><strong>1. Two-Way Communication System for Deaf People:</strong> Full-stack app utilizing React, Python (Flask/FastAPI), OpenCV, and MediaPipe to translate hand gestures to text/speech with 95% accuracy.<br><br><strong>2. Car Rental Database Management System:</strong> Relational schema database normalized to 3NF using MySQL/MongoDB and Node.js/Django backend to handle variables and eliminate double booking error configurations."
+      keywords: ["contact", "phone", "call", "whatsapp", "instagram", "linkedin", "number", "reach", "social"],
+      response: "📬 <strong>Adarsh's Direct Application Links:</strong><br><br>• <strong>WhatsApp Direct Chat:</strong> Click the WhatsApp icon link at the page bottom to text directly at +91 9886103154.<br>• <strong>LinkedIn:</strong> Verified profile loaded into the blue LinkedIn application logo container.<br>• <strong>Instagram:</strong> Connect over app logs via the pink Instagram button slot."
     },
     {
-      keywords: ["skill", "skills", "technologies", "languages", "code", "react", "python"],
-      response: "🛠️ <strong>Technical Skills Stack:</strong><br>• Frontend: React.js, Angular, JavaScript ES6+, HTML5, CSS3, Bootstrap<br>• Backend: Node.js, Express.js, Python, Flask, FastAPI, REST APIs<br>• Databases: SQL, MySQL, MongoDB<br>• Tools & Cloud: Azure AI, Power BI, Git, GitHub, OpenCV"
+      keywords: ["education", "college", "school", "nie", "nieit", "mysore", "cgpa", "grade", "vvs"],
+      response: "🎓 <strong>Academic Records:</strong><br><br>• <strong>B.E. Information Science & Engineering:</strong> NIE Institute of Technology, Mysore. Completed with a verified <strong>8.3 CGPA</strong> rating metrics track.<br>• <strong>School Foundations:</strong> VVS Educational Institution."
     },
     {
-      keywords: ["experience", "job", "intern", "internship", "chromosis", "hpe", "work"],
-      response: "💼 <strong>Professional Timeline Experience:</strong><br><br>• <strong>Full Stack Apprentice:</strong> Chromosis Technologies Pvt Ltd (Dec 2025 - Present). Engineering robust code bases, debugging core features, and tuning REST architectures.<br><br>• <strong>Frontend Intern:</strong> Hewlett Packard Enterprise (4 Months). Tuned cross-browser rendering models in React.js loops.<br><br>• <strong>Marketing Executive:</strong> PhoneMax (6 Months). Driven regional sales conversions upwards by 25%."
+      keywords: ["project", "projects", "deaf", "communication", "car rental", "database"],
+      response: "🚀 <strong>Project Deployments:</strong><br><br>• <strong>Two-Way Deaf Communication Tool:</strong> Processes real-time gestures into text/speech output using Python, OpenCV, and MediaPipe models at 95% accuracy.<br>• <strong>Car Rental DBMS:</strong> Enterprise-grade 3NF normalized system built on MySQL/MongoDB schemas to eliminate duplicate data collisions."
     },
     {
-      keywords: ["certification", "azure", "ai", "microsoft", "ai-900"],
-      response: "📜 <strong>Verified Credentials:</strong><br>Adarsh holds the official <strong>Microsoft Certified: Azure AI Fundamentals (AI-900)</strong> badge. He is trained to design cloud solutions deploying cognitive models, image classification systems, and natural language sentiment tasks over API lines safely."
+      keywords: ["skill", "skills", "technologies", "languages", "react", "python", "sql"],
+      response: "🛠️ <strong>Technical Framework Inventory:</strong><br>• Engineering: React.js, Node.js, Express.js, JavaScript, Python, FastAPI, Flask, OpenCV, SQL, MySQL, MongoDB, and Azure AI modules."
     },
     {
-      keywords: ["contact", "email", "phone", "call", "hire", "linkedin", "message"],
-      response: "📬 <strong>Get in touch directly with Adarsh V Pujar:</strong><br>• Email: adarshvpujar143@gmail.com<br>• Phone: +91 9886103154<br>• Location: Mysore, Karnataka, India.<br>You can also drop a message using the form right at the bottom of the page!"
+      keywords: ["experience", "job", "intern", "chromosis", "hpe", "work"],
+      response: "💼 <strong>Professional Work Records:</strong><br><br>• <strong>Full Stack Apprentice:</strong> Chromosis Technologies (Dec 2025 - Present).<br>• <strong>Frontend Intern:</strong> Hewlett Packard Enterprise (4 Months duration loop). React optimization structures.<br>• <strong>Marketing:</strong> PhoneMax Management. Scaled sales counts by 25%."
     },
     {
-      keywords: ["education", "college", "cgpa", "grade", "mysore", "nie"],
-      response: "🎓 <strong>Education & Credentials:</strong><br>Adarsh graduated with an engineering degree in Information Science and Engineering from <strong>NIE Institute of Technology, Mysore</strong>, achieving an excellent cumulative grade point score of <strong>8.3 CGPA</strong>."
+      keywords: ["certification", "azure", "ai-900", "fundamentals"],
+      response: "📜 <strong>Cloud Credentials:</strong><br>Adarsh holds the formal <strong>Microsoft Certified: Azure AI Fundamentals (AI-900)</strong> designation, validating skills in cloud AI systems deployment."
     },
     {
-      keywords: ["cricket", "sports", "vtu", "hobby"],
-      response: "🏏 <strong>Extracurricular Highlights:</strong><br>Alongside engineering, Adarsh is an accomplished athlete, having represented his university at the <strong>State Level as a VTU Cricket Representative</strong>."
+      keywords: ["cricket", "sports", "vtu"],
+      response: "🏏 <strong>Athletic Honors:</strong><br>Adarsh is a decorated state-level student athlete, having represented his university as a <strong>VTU Cricket Representative</strong>."
     }
   ];
 
@@ -111,54 +130,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const rawQuery = botInput.value.trim();
     if (rawQuery === "") return;
 
-    // 1. Render user message
     const userBubble = document.createElement("div");
     userBubble.className = "chat-msg user-msg";
     userBubble.textContent = rawQuery;
     botChatLogs.appendChild(userBubble);
     botInput.value = "";
-
-    // Scroll chat downward
     botChatLogs.scrollTop = botChatLogs.scrollHeight;
 
-    // 2. Generate portfolio-guarded response
     setTimeout(() => {
       const lowerQuery = rawQuery.toLowerCase();
-      let matches = portfolioKnowledge.find(entry => 
+      
+      // Strict matching algorithm to catch precise keyword targets first
+      let matchedEntry = portfolioKnowledge.find(entry => 
         entry.keywords.some(keyword => lowerQuery.includes(keyword))
       );
 
-      let systemReplyText = matches 
-        ? matches.response 
-        : "ℹ️ I can only answer questions regarding Adarsh's skills, projects, experience, education, or contact details specified directly in his portfolio. Please ask something related to those sections!";
+      let systemReplyText = matchedEntry 
+        ? matchedEntry.response 
+        : "ℹ️ I can only answer questions regarding Adarsh's explicit portfolio info (Skills, Projects, Education, Experience, Certifications, or Social Contacts). Please check your phrasing!";
 
       const botBubble = document.createElement("div");
       botBubble.className = "chat-msg bot-msg";
       botBubble.innerHTML = systemReplyText;
       botChatLogs.appendChild(botBubble);
-      
       botChatLogs.scrollTop = botChatLogs.scrollHeight;
-    }, 450);
+    }, 400);
   }
 
   if (botSendBtn && botInput) {
     botSendBtn.addEventListener("click", processBotMessage);
-    botInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") processBotMessage();
-    });
+    botInput.addEventListener("keypress", (e) => { if (e.key === "Enter") processBotMessage(); });
   }
 
-  /* --- 4. CONTINUOUS ROTATING HEADLINE TIMERS --- */
+  /* --- 5. CONTINUOUS ROTATING HEADLINE TIMERS --- */
   const dynamicTitles = ["Full Stack Developer", "Data Analyst", "Azure AI Certified", "Software Engineer"];
   const headlineElement = document.getElementById("headline-target");
-  let stringIndex = 0;
+  let titleIndex = 0;
 
   if (headlineElement) {
     setInterval(() => {
       headlineElement.style.opacity = "0";
       setTimeout(() => {
-        stringIndex = (stringIndex + 1) % dynamicTitles.length;
-        headlineElement.textContent = dynamicTitles[stringIndex];
+        titleIndex = (titleIndex + 1) % dynamicTitles.length;
+        headlineElement.textContent = dynamicTitles[titleIndex];
         headlineElement.style.opacity = "1";
       }, 300);
     }, 3000);
