@@ -1562,6 +1562,25 @@ textarea:focus{
     glowMove 8s ease infinite;
 
 }
+   .stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.stat-card{
+padding:25px;
+text-align:center;
+border-radius:18px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.stat-card h3{
+font-size:1.8rem;
+color:#B3A7E8;
+margin-bottom:10px;
+}
 
 @keyframes glowMove {
 
@@ -1583,5 +1602,22 @@ textarea:focus{
       scale(1);
   }
 
+}
+   /* Active Navigation Link */
+
+.nav-links a.active-link{
+    color:#ffffff;
+}
+
+.nav-links a.active-link::after{
+    width:100%;
+}
+
+/* Smooth Glow */
+
+.glass-section:hover{
+    box-shadow:
+    0 20px 60px rgba(179,167,232,0.15),
+    0 0 40px rgba(87,172,200,0.08);
 }
       
