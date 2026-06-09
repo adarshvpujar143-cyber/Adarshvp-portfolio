@@ -1,114 +1,71 @@
-/* Custom 9-Palette Configuration Grid System */
+/* Custom 5-Palette Configurations System */
 
-/* Photo 1: Deep Navy Night / White / Mint Green */
+/* Theme 1: Palette Definition 1 */
 body[data-theme="theme1"] {
-    --bg-color: #070b14;
-    --accent-color: #00e5ff;
-    --accent-gradient: linear-gradient(135deg, #00e5ff, #00a3ff);
-    --text-primary: #ffffff;
-    --text-secondary: #a0aec0;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.07);
-    --glow: rgba(0, 229, 255, 0.15);
+    --bg-color: #011C40;
+    --accent-color: #54ACBF;
+    --accent-gradient: linear-gradient(135deg, #54ACBF, #26658C);
+    --text-primary: #FFFFFF;
+    --text-secondary: #A7EBF2;
+    --glass-bg: #023859;
+    --glass-border: rgba(84, 172, 191, 0.25);
+    --glow: rgba(84, 172, 191, 0.15);
+    --btn-hover: #A7EBF2;
 }
 
-/* Photo 2: Pitch Black / White / Crimson Red */
+/* Theme 2: Palette Definition 2 */
 body[data-theme="theme2"] {
-    --bg-color: #020204;
-    --accent-color: #ff0055;
-    --accent-gradient: linear-gradient(135deg, #ff0055, #990033);
-    --text-primary: #ffffff;
-    --text-secondary: #94a3b8;
-    --glass-bg: rgba(255, 255, 255, 0.02);
-    --glass-border: rgba(255, 0, 85, 0.15);
-    --glow: rgba(255, 0, 85, 0.2);
+    --bg-color: #0f172a;
+    --accent-color: #2DD4BF;
+    --accent-gradient: linear-gradient(135deg, #2DD4BF, #5B6CFF);
+    --text-primary: #F1F5F9;
+    --text-secondary: #8EC5FC;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(45, 212, 191, 0.2);
+    --glow: rgba(45, 212, 191, 0.15);
+    --btn-hover: #E0F7FF;
 }
 
-/* Photo 3: Muted Slate Blue / Soft Cream / Light Grey */
+/* Theme 3: Palette Definition 3 */
 body[data-theme="theme3"] {
-    --bg-color: #f4f6f9;
-    --accent-color: #1e3a8a;
-    --accent-gradient: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    --bg-color: #E0F2FE;
+    --accent-color: #22D3EE;
+    --accent-gradient: linear-gradient(135deg, #22D3EE, #93C5FD);
     --text-primary: #0f172a;
     --text-secondary: #475569;
-    --glass-bg: #ffffff;
-    --glass-border: rgba(30, 58, 138, 0.1);
-    --glow: rgba(30, 58, 138, 0.05);
+    --glass-bg: #F8FAFC;
+    --glass-border: rgba(34, 211, 238, 0.3);
+    --glow: rgba(147, 197, 253, 0.2);
+    --btn-hover: #BBF7D0;
 }
 
-/* Photo 4: Deep Velvet Purple / Electric Violet */
+/* Theme 4: Palette Definition 4 */
 body[data-theme="theme4"] {
-    --bg-color: #0b0518;
-    --accent-color: #a855f7;
-    --accent-gradient: linear-gradient(135deg, #a855f7, #6366f1);
+    --bg-color: #0b1329;
+    --accent-color: #7bbbff;
+    --accent-gradient: linear-gradient(135deg, #7bbbff, #99F6E4);
     --text-primary: #ffffff;
-    --text-secondary: #c084fc;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(168, 85, 247, 0.2);
-    --glow: rgba(168, 85, 247, 0.2);
+    --text-secondary: #99F6E4;
+    --glass-bg: rgba(242, 253, 255, 0.08);
+    --glass-border: rgba(123, 187, 255, 0.2);
+    --glow: rgba(123, 187, 255, 0.15);
+    --btn-hover: #99F6E4;
 }
 
-/* Photo 5: Charcoal Tech Black / Industrial Amber Gold */
+/* Theme 5: Palette Definition 5 */
 body[data-theme="theme5"] {
-    --bg-color: #121214;
-    --accent-color: #eab308;
-    --accent-gradient: linear-gradient(135deg, #eab308, #ca8a04);
-    --text-primary: #f4f4f5;
-    --text-secondary: #a1a1aa;
-    --glass-bg: rgba(255, 255, 255, 0.02);
-    --glass-border: rgba(234, 179, 8, 0.15);
-    --glow: rgba(234, 179, 8, 0.1);
+    --bg-color: #0B2E3A;
+    --accent-color: #5FA8A8;
+    --accent-gradient: linear-gradient(135deg, #5FA8A8, #0F6B78);
+    --text-primary: #EAF7FA;
+    --text-secondary: #5FA8A8;
+    --glass-bg: #0F6B78;
+    --glass-border: rgba(95, 168, 168, 0.3);
+    --glow: rgba(95, 168, 168, 0.2);
+    --btn-hover: #A8DCD1;
 }
 
-/* Photo 6: Forest Emerald Green / Mint Moss */
-body[data-theme="theme6"] {
-    --bg-color: #040d0a;
-    --accent-color: #10b981;
-    --accent-gradient: linear-gradient(135deg, #10b981, #059669);
-    --text-primary: #ecfdf5;
-    --text-secondary: #6ee7b7;
-    --glass-bg: rgba(255, 255, 255, 0.02);
-    --glass-border: rgba(16, 185, 129, 0.15);
-    --glow: rgba(16, 185, 129, 0.15);
-}
-
-/* Photo 7: Minimalist Rose Quartz White / Soft Ash Dark */
-body[data-theme="theme7"] {
-    --bg-color: #fafafb;
-    --accent-color: #f43f5e;
-    --accent-gradient: linear-gradient(135deg, #f43f5e, #be123c);
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --glass-bg: #ffffff;
-    --glass-border: rgba(244, 63, 94, 0.15);
-    --glow: rgba(244, 63, 94, 0.05);
-}
-
-/* Photo 8: Marine Abyss Blue / Oceanic Light Cyan */
-body[data-theme="theme8"] {
-    --bg-color: #020f18;
-    --accent-color: #06b6d4;
-    --accent-gradient: linear-gradient(135deg, #06b6d4, #0891b2);
-    --text-primary: #e0f2fe;
-    --text-secondary: #38bdf8;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(6, 182, 212, 0.2);
-    --glow: rgba(6, 182, 212, 0.2);
-}
-
-/* Photo 9: Cyberpunk Dark / Radioactive Neon Orange */
-body[data-theme="theme9"] {
-    --bg-color: #0c0805;
-    --accent-color: #f97316;
-    --accent-gradient: linear-gradient(135deg, #f97316, #ea580c);
-    --text-primary: #fff7ed;
-    --text-secondary: #fdba74;
-    --glass-bg: rgba(255, 255, 255, 0.02);
-    --glass-border: rgba(249, 115, 22, 0.2);
-    --glow: rgba(249, 115, 22, 0.2);
-}
-
-/* Base Body Framework Rules */
+/* Base Frame Rules */
 body {
     margin: 0;
     background-color: var(--bg-color);
@@ -117,7 +74,6 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
-    padding-bottom: 90px; /* Space for fixed bottom bar */
 }
 
 .bg {
@@ -127,94 +83,14 @@ body {
     z-index: -1;
 }
 
-/* Horizontal Scrolling Bottom Theme Switcher Engine */
-.theme-switcher-bar {
-    position: fixed;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 8px 12px;
-    border-radius: 40px;
-    display: flex;
-    gap: 8px;
-    z-index: 99999;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
-    max-width: 90%;
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: none; /* Hidden on Firefox */
-}
-
-.theme-switcher-bar::-webkit-scrollbar {
-    display: none; /* Hidden on Chrome/Safari/Mobile */
-}
-
-.theme-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    color: #ffffff;
-    padding: 8px 16px;
-    border-radius: 30px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-    transition: all 0.2s ease;
-}
-
-.theme-btn span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.theme-btn.active {
-    background: var(--accent-gradient);
-    color: #000000;
-    border-color: transparent;
-}
-
-/* Containers & Glass Panels */
-.main-container {
-    max-width: 850px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 40px;
-    margin-bottom: 32px;
-    opacity: 0;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Sticky Mobile Navigation Header */
+/* Navigation Layout Modules */
 nav {
     position: sticky;
     top: 0;
-    background: rgba(7, 11, 20, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: var(--bg-color);
     border-bottom: 1px solid var(--glass-border);
     z-index: 1000;
-    transition: background-color 0.3s ease;
-}
-
-body[data-theme="theme3"] nav, body[data-theme="theme7"] nav {
-    background: rgba(244, 246, 249, 0.85);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .nav-container {
@@ -253,9 +129,37 @@ body[data-theme="theme3"] nav, body[data-theme="theme7"] nav {
     color: var(--accent-color);
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Compact Theme Switcher Button at Top-Right Nav Container */
+.single-theme-toggle {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--accent-color);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.single-theme-toggle:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    transform: rotate(15deg);
+}
+
 .nav-resume-btn {
     background: var(--accent-gradient);
-    color: #000000 !important;
+    color: var(--text-primary);
     padding: 8px 14px;
     border-radius: 10px;
     font-size: 0.8rem;
@@ -265,14 +169,35 @@ body[data-theme="theme3"] nav, body[data-theme="theme7"] nav {
     align-items: center;
     gap: 6px;
     box-shadow: 0 4px 12px var(--glow);
+    border: 1px solid var(--glass-border);
 }
 
-body[data-theme="theme3"] .nav-resume-btn, 
-body[data-theme="theme7"] .nav-resume-btn {
+body[data-theme="theme3"] .nav-resume-btn,
+body[data-theme="theme1"] .nav-resume-btn,
+body[data-theme="theme5"] .nav-resume-btn {
     color: #ffffff !important;
 }
 
-/* Profiles Layout Components */
+/* Main Structural Grid Container */
+.main-container {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 32px;
+    opacity: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Profile Framework Sections */
 .hero {
     text-align: center;
     padding: 50px 40px;
@@ -348,15 +273,13 @@ body[data-theme="theme7"] .nav-resume-btn {
 
 .primary-btn {
     background: var(--accent-gradient);
-    color: #000000;
-}
-
-body[data-theme="theme3"] .primary-btn, 
-body[data-theme="theme7"] .primary-btn {
     color: #ffffff;
+    border: 1px solid var(--glass-border);
 }
 
 .primary-btn:hover {
+    background: var(--btn-hover);
+    color: #000000;
     transform: translateY(-2px);
     box-shadow: 0 8px 24px var(--glow);
 }
@@ -401,7 +324,7 @@ h2 i {
     color: var(--accent-color);
 }
 
-/* Timelines Component UI Layout */
+/* History Timelines Configurations UI */
 .timeline {
     border-left: 2px solid var(--glass-border);
     padding-left: 24px;
@@ -496,7 +419,7 @@ h2 i {
     border-radius: 12px;
 }
 
-/* Skills Modules Section UI */
+/* Custom Core Technical Expertise Layout Tags */
 .skills-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -523,7 +446,7 @@ h2 i {
     font-size: 0.85rem;
 }
 
-/* Projects Cards Grid Specification Rules */
+/* Interactive Embedded Project Modules Grid */
 .hint-lbl {
     font-size: 0.8rem;
     color: var(--text-secondary);
@@ -542,12 +465,13 @@ h2 i {
     border-radius: 18px;
     overflow: hidden;
     cursor: pointer;
-    transition: border-color 0.3s, transform 0.3s;
+    transition: border-color 0.3s, transform 0.3s, background-color 0.3s;
 }
 
 .project-card:hover {
     border-color: var(--accent-color);
     transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .project-img-container {
@@ -627,6 +551,11 @@ h2 i {
     width: 100%;
 }
 
+.close-overlay-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
 .overlay-content-wrapper {
     max-width: 700px;
     margin: 0 auto;
@@ -656,6 +585,11 @@ h2 i {
     padding-bottom: 24px;
 }
 
+.spec-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
 .spec-block h3 {
     margin: 0 0 12px 0;
     font-size: 1.1rem;
@@ -669,9 +603,10 @@ h2 i {
     margin: 0;
     font-size: 0.95rem;
     color: var(--text-secondary);
+    line-height: 1.7;
 }
 
-/* Contact Block Form Architecture Layout */
+/* Contact Network Forms Elements Setup */
 .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr;
@@ -722,11 +657,12 @@ form button {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    transition: all 0.2s ease;
 }
 
 form button:hover {
     background: var(--accent-color);
-    color: #000000;
+    color: var(--bg-color);
 }
 
 .contact-info {
@@ -767,23 +703,10 @@ form button:hover {
     font-size: 0.9rem;
 }
 
-/* Mobile Media Queries (Fully Optimized for Smart Devices) */
+/* Device Media Query Filters Layout Adjustments */
 @media (max-width: 768px) {
-    nav {
-        background: rgba(7, 11, 20, 0.95);
-    }
-    body[data-theme="theme3"] nav, body[data-theme="theme7"] nav {
-        background: rgba(244, 246, 249, 0.95);
-    }
     .nav-links {
-        display: none; /* Hides duplicate header text layout fields cleanly on phone monitors */
-    }
-    .nav-container {
-        justify-content: space-between;
-        padding: 12px 16px;
-    }
-    .logo {
-        color: var(--text-primary) !important;
+        display: none;
     }
     .main-container {
         margin: 10px auto;
