@@ -28,37 +28,33 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================== */
 
   const titles = [
-    "Data Analyst",
-    "Web Developer",
-    "Full Stack Developer"
-  ];
-
+  "Full Stack Developer",
+  "Data Analyst",
+  "Azure AI Certified",
+  "Problem Solver",
+  "Web Developer",
+  "Software Engineer"
+];
   const headline = document.getElementById("headline-target");
+function rotateHeadline() {
 
-  let currentIndex = 0;
+  headline.classList.add("fade-out");
 
-  function rotateHeadline() {
+  setTimeout(() => {
 
-    if (!headline) return;
+    currentIndex =
+      (currentIndex + 1) % titles.length;
 
-    headline.classList.add("fade-out");
+    headline.textContent =
+      titles[currentIndex];
 
-    setTimeout(() => {
+    headline.classList.remove("fade-out");
 
-      currentIndex =
-        (currentIndex + 1) % titles.length;
+  }, 400);
 
-      headline.textContent =
-        titles[currentIndex];
+}
 
-      headline.classList.remove("fade-out");
-
-    }, 500);
-
-  }
-
-  setInterval(rotateHeadline, 3500);
-
+setInterval(rotateHeadline, 2500);
   /* ==========================================================
      SCROLL PROGRESS BAR
      ========================================================== */
@@ -243,6 +239,21 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   updateActiveNav();
+   const skillTags =
+document.querySelectorAll(".skill-tag");
+
+skillTags.forEach((tag,index)=>{
+
+  tag.style.opacity="0";
+
+  setTimeout(()=>{
+
+    tag.style.opacity="1";
+    tag.style.transform="translateY(0px)";
+
+  },index*100);
+
+});
 
   /* ==========================================================
      MAGNETIC BUTTONS
@@ -488,7 +499,57 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 });
+const topBtn =
+document.getElementById("scrollTopBtn");
+
+window.addEventListener(
+"scroll",
+()=>{
+
+if(window.scrollY > 500){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+}
+);
+
+topBtn.addEventListener(
+"click",
+()=>{
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+);
 
 /* ==========================================================
    END OF FILE
    ========================================================== */
+console.log(
+"%c🚀 Adarsh V Pujar Portfolio",
+"font-size:24px;color:#B3A7E8;font-weight:bold;"
+);
+
+console.log(
+"%cFull Stack Developer | Data Analyst | Azure AI Certified",
+"font-size:14px;color:#57ACC8;"
+);
+
+console.log(
+"%cPortfolio Developed by Adarsh V Pujar",
+"font-size:13px;color:#ffffff;"
+);
+
+console.log(
+"%cGitHub: https://github.com/adarshvpujar143-cyber",
+"font-size:12px;color:#7BBBFF;"
+);
