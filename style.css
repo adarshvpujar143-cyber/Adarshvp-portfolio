@@ -1,7 +1,190 @@
-body{margin:0;background:#070b14;color:#fff;font-family:Inter,sans-serif}
-.bg{position:fixed;inset:0;background:radial-gradient(circle,#0ff2,transparent)}
-.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.15);margin:20px;padding:24px;border-radius:20px}
-.hero{text-align:center;min-height:50vh}
-.btn{padding:12px 20px;background:#00e5ff;color:#000;border-radius:12px;text-decoration:none}
-.bar{height:12px;background:#222;border-radius:20px}.bar span{display:block;height:100%;width:90%;background:#00e5ff}
-@media(max-width:768px){.glass{margin:10px;padding:16px}}
+/* Base Page Styling */
+body {
+    margin: 0;
+    background: #070b14;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+.bg {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, #00e5ff15, transparent 60%);
+    z-index: -1;
+}
+
+/* Modern Sticky Navigation Bar */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 16px;
+    background: rgba(7, 11, 20, 0.7);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+nav a {
+    color: #a0aec0;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #00e5ff;
+}
+
+/* Glassmorphism Containers */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 24px auto;
+    padding: 32px 24px;
+    border-radius: 24px;
+    max-width: 600px;
+    width: 90%;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 45vh;
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #fff 0%, #00e5ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: #a0aec0;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+/* Premium Button */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #00e5ff;
+    color: #070b14;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 229, 255, 0.5);
+}
+
+/* Sections Structure */
+h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-left: 4px solid #00e5ff;
+    padding-left: 10px;
+}
+
+/* Skills Section Progress Bar */
+.bar {
+    height: 12px;
+    background: #1a202c;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.bar span {
+    display: block;
+    height: 100%;
+    width: 90%;
+    background: linear-gradient(90deg, #00e5ff, #00a3ff);
+    border-radius: 20px;
+}
+
+/* Elegant Contact Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #00e5ff;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+form button {
+    padding: 14px;
+    background: transparent;
+    border: 1px solid #00e5ff;
+    color: #00e5ff;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background: #00e5ff;
+    color: #070b14;
+}
+
+/* Mobile Responsiveness Rules */
+@media (max-width: 768px) {
+    .glass {
+        margin: 16px auto;
+        padding: 24px 16px;
+    }
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    nav {
+        gap: 15px;
+        padding: 12px;
+    }
+    nav a {
+        font-size: 0.9rem;
+    }
+}
