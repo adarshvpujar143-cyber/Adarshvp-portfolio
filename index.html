@@ -11,15 +11,31 @@
 </head>
 <body data-theme="theme-1">
 
+  <nav class="top-navbar-container">
+    <div class="nav-links-left">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact Me</a>
+    </div>
+    <div class="nav-search-right">
+      <input type="text" id="portfolio-search-input" placeholder="🔍 Search portfolio...">
+    </div>
+  </nav>
+
   <div class="theme-switcher-container">
-    <button id="theme-toggle-btn" class="theme-btn" title="Switch Theme Palette">
+    <button id="theme-toggle-btn" class="theme-btn">
       🎨 Theme: <span id="current-theme-name">Palette 1</span>
     </button>
   </div>
 
-  <div class="portfolio-container">
+  <div class="portfolio-container" id="home">
     
-    <header class="hero-section">
+    <header class="hero-section searchable-node">
       <div class="profile-frame-box">
         <img src="profile.jpg" alt="Adarsh V Pujar" class="profile-img-element" onerror="this.src='avatar-gpt.png'">
       </div>
@@ -28,11 +44,6 @@
       
       <div class="headline-container">
         <span id="headline-target" class="headline-dynamic-text">Full Stack Developer</span>
-      </div>
-
-      <div class="portfolio-search-wrapper">
-        <input type="text" id="portfolio-search-input" placeholder="🔍 Search projects, skills, or experience...">
-        <div id="search-results-feedback" class="search-feedback-text"></div>
       </div>
 
       <p class="professional-statement-bio">
@@ -46,14 +57,13 @@
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4M7 10l5 5 5-5M12 15V3"/>
           </svg>
         </a>
-        <a href="#contact" class="action-btn secondary-btn">📬 Contact Me</a>
       </div>
     </header>
 
     <section class="metrics-display-grid">
       <div class="metric-card-item searchable-node">
         <h3>📊 8.3 CGPA</h3>
-        <p>B.E. ISE Graduate from NIE Institute of Technology, Mysore</p>
+        <p>B.E. ISE Graduate from NIEIT</p>
       </div>
       <div class="metric-card-item searchable-node">
         <h3>🏏 State Level</h3>
@@ -61,16 +71,16 @@
       </div>
       <div class="metric-card-item searchable-node">
         <h3>☁️ Azure AI</h3>
-        <p>Certified AI-900 Professional</p>
+        <p>Certified Professional</p>
       </div>
     </section>
 
-    <section class="info-card-block searchable-node">
+    <section id="about" class="info-card-block searchable-node">
       <h2>🧑‍💻 About Me</h2>
       <p>I am an Information Science and Engineering graduate from NIE Institute of Technology, Mysore (CGPA 8.3/10). I have hands-on experience in Full Stack Development, Frontend Engineering, REST API integration, Data Analytics, and Business Intelligence. My expertise includes React.js, Node.js, Python, SQL, MongoDB, MySQL, and Azure AI. I enjoy building scalable applications, solving real-world problems, and transforming complex datasets into meaningful business insights.</p>
     </section>
 
-    <section class="info-card-block searchable-node">
+    <section id="skills" class="info-card-block searchable-node">
       <h2>🛠️ Technical Skills</h2>
       <div class="skills-flex-wrap">
         <span class="skill-pill">React.js</span>
@@ -96,12 +106,38 @@
       </div>
     </section>
 
-    <section class="info-card-block searchable-node">
+    <section id="education" class="info-card-block searchable-node">
+      <h2>🎓 Education Details</h2>
+      <div class="education-timeline-wrapper">
+        <div class="edu-item">
+          <div class="edu-image-box">
+            <img src="nieit.jpg" alt="NIEIT Mysore" onerror="this.src='uploaded:33644.jpg'">
+          </div>
+          <div class="edu-details-text">
+            <h4>B.E. in Information Science & Engineering</h4>
+            <h5>NIE Institute of Technology, Mysore | CGPA: 8.3</h5>
+            <p>Comprehensive studies in database management pipelines, full-stack application development structures, architecture analysis, and advanced algorithmic logic systems.</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-image-box">
+            <img src="vvs.jpg" alt="VVS School" onerror="this.src='uploaded:33645.jpg'">
+          </div>
+          <div class="edu-details-text">
+            <h4>Secondary & Higher Secondary Education</h4>
+            <h5>VVS Educational Institution</h5>
+            <p>Core academic foundations covering mathematics computational engineering vectors, analytics basics, and initial software foundational syntax tools.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="info-card-block searchable-node">
       <h2>🚀 Featured Projects</h2>
       
       <a href="project-deaf-comm.html" class="interactive-project-card-wrapper">
         <div class="project-asset-frame">
-          <img src="33582.jpg" alt="Two-Way Communication System Layout Image">
+          <img src="project1.jpg" alt="Two-Way Communication System Layout Image" onerror="this.src='33582.jpg'">
         </div>
         <div class="project-text-content">
           <h3>Two-Way Communication System for Deaf People</h3>
@@ -112,7 +148,7 @@
 
       <a href="project-car-rental.html" class="interactive-project-card-wrapper">
         <div class="project-asset-frame">
-          <img src="car-rental-database.png" alt="Car Rental Database Layout Image" onerror="this.src='project1.jpg'">
+          <img src="project2.jpg" alt="Car Rental Database Layout Image" onerror="this.src='uploaded:33592.jpg'">
         </div>
         <div class="project-text-content">
           <h3>Car Rental Database Management System</h3>
@@ -122,26 +158,40 @@
       </a>
     </section>
 
-    <section class="info-card-block searchable-node">
+    <section id="experience" class="info-card-block searchable-node">
       <h2>💼 Professional Experience</h2>
       <div class="timeline-experience-item">
-        <h4>Full Stack Developer Apprentice</h4>
-        <h5>Chromosis Technologies Pvt Ltd | Dec 2025 - Present</h5>
-        <p>Developing and maintaining full-stack web applications using modern frontend and backend technologies. Building responsive user interfaces, integrating REST APIs, managing relational and non-relational databases, and participating in testing, debugging, and deployment pipelines.</p>
+        <div class="exp-company-logo">
+          <img src="chromosis.jpg" alt="Chromosis Logo" onerror="this.src='uploaded:33642.jpg'">
+        </div>
+        <div class="exp-info-data">
+          <h4>Full Stack Developer Apprentice</h4>
+          <h5>Chromosis Technologies Pvt Ltd | Dec 2025 - Present</h5>
+          <p>Developing and maintaining full-stack web applications using modern frontend and backend technologies. Building responsive user interfaces, integrating REST APIs, managing relational and non-relational databases, and participating in testing, debugging, and deployment pipelines.</p>
+        </div>
       </div>
+      
       <div class="timeline-experience-item">
-        <h4>Frontend Developer Intern</h4>
-        <h5>Hewlett Packard Enterprise | 2024 (4 Months)</h5>
-        <p>Developed responsive web applications using HTML, CSS, JavaScript, and React.js. Integrated REST APIs, improved UI consistency, ensured cross-browser compatibility, and collaborated with Agile teams.</p>
+        <div class="exp-company-logo">
+          <img src="HPE.jpg" alt="HPE Logo" onerror="this.src='uploaded:33643.jpg'">
+        </div>
+        <div class="exp-info-data">
+          <h4>Frontend Developer Intern</h4>
+          <h5>Hewlett Packard Enterprise | 2024 (4 Months)</h5>
+          <p>Developed responsive web applications using HTML, CSS, JavaScript, and React.js. Integrated REST APIs, improved UI consistency, ensured cross-browser compatibility, and collaborated with Agile teams.</p>
+        </div>
       </div>
+
       <div class="timeline-experience-item">
-        <h4>Digital Marketing Executive</h4>
-        <h5>PhoneMax (S & S Co Inc) | Mysore, Karnataka | 2023 (6 Months)</h5>
-        <p>Increased regional sales by 25% through targeted promotional campaigns and strategic partnerships. Managed social media campaigns and online promotions. Analyzed campaign performance metrics to optimize marketing strategies and improve lead generation.</p>
+        <div class="exp-info-data" style="padding-left: 64px;">
+          <h4>Digital Marketing Executive</h4>
+          <h5>PhoneMax (S & S Co Inc) | Mysore, Karnataka | 2023 (6 Months)</h5>
+          <p>Increased regional sales by 25% through targeted promotional campaigns and strategic partnerships. Managed social media campaigns and online promotions. Analyzed campaign performance metrics to optimize marketing strategies and improve lead generation.</p>
+        </div>
       </div>
     </section>
 
-    <section class="info-card-block searchable-node">
+    <section id="certifications" class="info-card-block searchable-node">
       <h2>📜 Certifications</h2>
       <div class="certification-detailed-card">
         <div class="certification-header-block">
@@ -167,26 +217,31 @@
     </section>
 
     <section id="contact" class="info-card-block final-contact-section searchable-node">
-      <h2>📬 Get In Touch</h2>
-      <form class="contact-form-element" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
-        <div class="form-input-row">
-          <input type="text" placeholder="Your Name" required class="styled-form-input">
-        </div>
-        <div class="form-input-row">
-          <input type="email" placeholder="Your Email Address" required class="styled-form-input">
-        </div>
-        <div class="form-input-row">
-          <textarea placeholder="Write your message here..." rows="5" required class="styled-form-input"></textarea>
-        </div>
-        <button type="submit" class="action-btn submit-form-btn">Send Message</button>
-      </form>
+      <h2 style="text-align: center; justify-content: center;">📬 Connect With Me</h2>
+      <p style="text-align: center; margin-bottom: 30px; opacity: 0.8;">Click an icon below to open the application and reach out to me directly.</p>
       
-      <div class="footer-contact-details">
-        <p>📧 Email: <a href="mailto:adarshvpujar143@gmail.com">adarshvpujar143@gmail.com</a></p>
-        <p>📱 Phone: <a href="tel:+919886103154">+91 9886103154</a></p>
-        <div class="social-footer-links">
-          <a href="https://linkedin.com" target="_blank">💼 LinkedIn</a>
-          <a href="https://github.com/adarshvpujar143-cyber" target="_blank">💻 GitHub</a>
+      <div class="native-app-logos-wrapper">
+        <a href="https://www.linkedin.com/in/adarsh-v-pujar-8947b0400?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="logo-app-btn linkedin-btn-color" title="Open LinkedIn Profile">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.67c0-.25.015-.5.09-.69a1.14 1.14 0 0 1 1-.77c.76 0 1 .58 1 1.42v4.71h2.8M6.5 8.37a1.37 1.37 0 1 0 0-2.75 1.37 1.37 0 0 0 0 2.75M8 18.5V10.13H5.13V18.5H8Z"/></svg>
+        </a>
+
+        <a href="https://www.instagram.com/_.rose__boyy._?igsh=d3M0bXB4OWNzaWdr" target="_blank" class="logo-app-btn instagram-btn-color" title="Open Instagram Account">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m12.4 2.25a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 1 0-6Z"/></svg>
+        </a>
+
+        <a href="https://wa.me/919886103154" target="_blank" class="logo-app-btn whatsapp-btn-color" title="Chat on WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.81 9.81 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.4-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.26-8.23m-3.83 4.52c-.2-.46-.42-.47-.61-.47-.16 0-.34-.02-.52-.02-.19 0-.49.07-.74.34-.26.27-.99.97-.99 2.37s1.02 2.76 1.16 2.96c.14.19 2 3.05 4.84 4.28.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.11.54-.08 1.66-.68 1.9-1.34.23-.66.23-1.23.16-1.34-.07-.11-.26-.18-.56-.33-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.49-.9-.8-1.51-1.79-1.69-2.1-.18-.3-.02-.46.13-.61.14-.14.3-.34.45-.51.15-.17.2-.29.3-.49.1-.2.05-.38-.02-.53-.07-.15-.61-1.47-.84-2.02Z"/></svg>
+        </a>
+
+        <a href="tel:+919886103154" class="logo-app-btn dialer-btn-color" title="Call Mobile Number">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.11-.27c1.12.42 2.33.64 3.57.64a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.22 2.45.64 3.57a1 1 0 0 1-.27 1.11l-2.25 2.22Z"/></svg>
+        </a>
+      </div>
+
+      <div class="scanner-toggle-section">
+        <button id="trigger-qr-view-btn" class="secondary-btn" style="margin: 0 auto; display: block;">📷 View WhatsApp Scanner QR Code</button>
+        <div id="qr-dropdown-content-box" class="qr-content-hidden">
+          <img src="33591.jpg" alt="WhatsApp QR Scanner Sheet">
         </div>
       </div>
     </section>
