@@ -7,35 +7,409 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* ==========================================================================
+       DYNAMIC VARIABLE SYSTEM & THEMES
+       ========================================================================== */
+    body[data-theme="theme-1"] {
+      --bg-primary: #091D1B;
+      --bg-card: rgba(27, 84, 80, 0.2);
+      --border-color: rgba(56, 110, 107, 0.4);
+      --text-main: #FFFFFF;
+      --text-muted: #B3C5BD;
+      --accent-color: #386E6B;
+      --accent-hover: #1B5450;
+      --shadow-style: rgba(0, 0, 0, 0.5);
+    }
+    body[data-theme="theme-2"] {
+      --bg-primary: #F1F2F6;
+      --bg-card: #FFFFFF;
+      --border-color: #D1CDDA;
+      --text-main: #4A3B63;
+      --text-muted: #9A8CB3;
+      --accent-color: #C3B1E1;
+      --accent-hover: #4A3B63;
+      --shadow-style: rgba(209, 205, 218, 0.5);
+    }
+    body[data-theme="theme-3"] {
+      --bg-primary: #050F2A;
+      --bg-card: rgba(123, 187, 255, 0.08);
+      --border-color: rgba(184, 169, 255, 0.25);
+      --text-main: #F2FDFF;
+      --text-muted: #7BBBFF;
+      --accent-color: #B8A9FF;
+      --accent-hover: #7BBBFF;
+      --shadow-style: rgba(0, 0, 0, 0.6);
+    }
+    body[data-theme="theme-4"] {
+      --bg-primary: #d5faf9;
+      --bg-card: #c1f0e2;
+      --border-color: #96d2c2;
+      --text-main: #26658C;
+      --text-muted: #6dd0b7;
+      --accent-color: #4fc7a7;
+      --accent-hover: #7fe3d7;
+      --shadow-style: rgba(109, 208, 183, 0.2);
+    }
+    body[data-theme="theme-5"] {
+      --bg-primary: #013137;
+      --bg-card: rgba(33, 94, 104, 0.25);
+      --border-color: #5C9396;
+      --text-main: #C1D9DE;
+      --text-muted: #5C9396;
+      --accent-color: #297376;
+      --accent-hover: #215E68;
+      --shadow-style: rgba(0, 0, 0, 0.4);
+    }
+    body[data-theme="theme-6"] {
+      --bg-primary: #011C40;
+      --bg-card: rgba(38, 101, 140, 0.15);
+      --border-color: #54ACBF;
+      --text-main: #A7EBF2;
+      --text-muted: #54ACBF;
+      --accent-color: #26658C;
+      --accent-hover: #023859;
+      --shadow-style: rgba(1, 28, 64, 0.6);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-family: 'Plus Jakarta Sans', sans-serif; }
+    
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      transition: background-color 0.4s ease, color 0.4s ease;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      overflow-x: hidden;
+      padding: 100px 20px 40px 20px;
+    }
+
+    /* INITIAL STRUCTURAL LOADING SCREEN STYLING */
+    #fast-loader {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #0a0a0c;
+      display: flex; justify-content: center; align-items: center;
+      z-index: 99999;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    #fast-loader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-content {
+      width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+    .loader-title {
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: #ffffff;
+      font-weight: 700;
+      font-family: monospace;
+    }
+    .loader-bar-container {
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-bar-progress {
+      width: 0%;
+      height: 100%;
+      background: #00ffaa;
+      transition: width 0.8s linear;
+    }
+
+    /* CONTROLLER WRAPPERS */
+    #app-content {
+      width: 100%;
+      max-width: 840px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      transition: filter 0.4s ease;
+    }
+    #app-content.content-blurred { filter: blur(8px); }
+    #app-content.content-ready { filter: blur(0); }
+
+    /* COMPACT ICON STICKY MENU BAR */
+    .top-navbar-container {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 56px;
+      background: var(--bg-card);
+      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 5000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      box-shadow: 0 4px 20px var(--shadow-style);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .top-navbar-container.nav-hidden {
+      transform: translateY(-100%);
+    }
+    .nav-links-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-icon-link {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      opacity: 0.8;
+    }
+    .nav-icon-link:hover {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+    .nav-search-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .nav-search-right #portfolio-search-input {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 30px;
+      outline: none;
+      font-size: 0.85rem;
+      width: 160px;
+      transition: width 0.25s ease;
+    }
+    .nav-search-right #portfolio-search-input:focus {
+      width: 220px;
+      border-color: var(--text-main);
+    }
+
+    /* COMPACT COLOR CHANGE TRIGGER BUTTON */
+    .theme-trigger-nav-btn {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+    .theme-trigger-nav-btn:hover { transform: scale(1.15); }
+
+    /* EXPANDED PROFILE BLOCK */
+    .hero-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+    .profile-frame-box {
+      width: 100%;
+      max-width: 480px;
+      height: 260px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid var(--border-color);
+      margin-bottom: 24px;
+      box-shadow: 0 8px 30px var(--shadow-style);
+    }
+    .profile-img-element {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .name-display-centered {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .headline-container { margin-bottom: 20px; height: 30px; }
+    .headline-dynamic-text { font-size: 1.3rem; font-weight: 600; color: var(--text-muted); }
+    .professional-statement-bio { font-size: 1.05rem; line-height: 1.7; margin-bottom: 24px; opacity: 0.95; }
+
+    .action-links-wrapper { display: flex; justify-content: center; width: 100%; }
+    .action-btn {
+      display: inline-flex; align-items: center; padding: 12px 28px;
+      border-radius: 12px; font-size: 0.95rem; font-weight: 700;
+      text-decoration: none; cursor: pointer; transition: all 0.25s ease;
+    }
+    .download-btn { background: var(--text-main); color: var(--bg-primary); }
+    .download-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+    .download-icon-symbol { width: 18px; height: 18px; margin-left: 8px; stroke: currentColor; }
+
+    /* METRICS SYSTEM */
+    .metrics-display-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .metric-card-item {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 16px; padding: 20px; text-align: center;
+    }
+
+    /* CONTAINER CONTENT CARDS */
+    .info-card-block {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 24px; padding: 36px;
+    }
+    .info-card-block h2 { font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+    .skills-flex-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-pill { background: var(--bg-primary); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 50px; font-size: 0.88rem; font-weight: 600; }
+
+    /* COMPACT ROW EDUCATION HOUSING */
+    .education-timeline-wrapper { display: flex; flex-direction: column; gap: 24px; }
+    .edu-item {
+      display: flex; flex-direction: column; gap: 16px;
+      background: rgba(0,0,0,0.15); padding: 24px; border-radius: 20px; border: 1px solid var(--border-color);
+    }
+    .edu-large-media-box {
+      width: 100%; height: 280px; border-radius: 14px; overflow: hidden; background: #000;
+    }
+    .edu-large-media-box img { width: 100%; height: 100%; object-fit: cover; }
+    .edu-details-text h4 { font-size: 1.25rem; font-weight: 700; }
+    .edu-details-text h5 { color: var(--text-muted); margin: 4px 0 8px 0; font-size: 0.95rem; }
+
+    /* MACRO PORTFOLIO SHOWCASE ASSETS */
+    .interactive-project-card-wrapper {
+      display: flex; flex-direction: column; background: var(--bg-primary);
+      border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden;
+      text-decoration: none; color: inherit; margin-bottom: 24px; transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .interactive-project-card-wrapper:hover { transform: translateY(-3px); border-color: var(--text-main); }
+    .project-large-asset-frame { width: 100%; height: 320px; background: #000; }
+    .project-large-asset-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .project-text-content { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .read-more-indicator { font-size: 0.88rem; font-weight: 700; color: var(--text-muted); margin-top: 8px; }
+
+    /* CHANNELS AND TIMELINE BLOCKS */
+    .timeline-experience-item { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .exp-large-media-box { width: 100%; height: 240px; border-radius: 14px; overflow: hidden; background: #fff; border: 1px solid var(--border-color); }
+    .exp-large-media-box img { width: 100%; height: 100%; object-fit: cover; }
+    .exp-info-data h4 { font-size: 1.3rem; font-weight: 700; }
+    .exp-info-data h5 { color: var(--text-muted); margin: 4px 0 8px 0; }
+    .certification-detailed-card { border-left: 4px solid var(--text-main); padding-left: 20px; }
+
+    /* ALIGNED COMPACT APPLICATION GRID SYSTEM */
+    .native-app-logos-wrapper { display: flex; justify-content: center; align-items: center; gap: 24px; margin: 20px 0; }
+    .logo-app-btn {
+      width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: #FFFFFF !important; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); transition: all 0.25s ease; cursor: pointer;
+    }
+    .logo-app-btn svg { width: 26px; height: 26px; }
+    .logo-app-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+    
+    .linkedin-btn-color { background: #0077B5; }
+    .instagram-btn-color { background: #E1306C; }
+    .whatsapp-btn-color { background: #25D366; }
+    .dialer-btn-color { background: #10b981; }
+
+    .scanner-toggle-section { width: 100%; text-align: center; margin-top: 24px; }
+    .secondary-btn {
+      background: var(--bg-primary); color: var(--text-main); border: 1px solid var(--border-color);
+      padding: 10px 20px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.88rem; transition: background 0.2s;
+    }
+    .secondary-btn:hover { background: var(--bg-card); }
+    
+    .qr-content-hidden { display: none; }
+    .qr-content-visible { display: block; margin-top: 18px; animation: fadeIn 0.3s ease; text-align: center; }
+    #qr-dropdown-content-box img { width: 220px; height: 220px; border-radius: 16px; border: 3px solid var(--border-color); }
+
+    /* CHAT DIALOG OVERLAYS */
+    .chatbot-floating-toggle {
+      position: fixed; bottom: 25px; right: 25px; background: var(--text-main); color: var(--bg-primary);
+      padding: 12px 20px; font-weight: 700; border-radius: 50px; cursor: pointer; z-index: 6000; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .chatbot-window-box {
+      position: fixed; bottom: 85px; right: 25px; width: 350px; height: 420px;
+      background: var(--bg-primary); border: 2px solid var(--border-color); border-radius: 20px;
+      display: none; flex-direction: column; z-index: 6000; box-shadow: 0 12px 40px rgba(0,0,0,0.4); overflow: hidden;
+    }
+    .chatbot-header-bar { background: var(--bg-card); border-bottom: 1px solid var(--border-color); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+    .chatbot-messages-area { flex: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.1); }
+    .chat-msg { padding: 8px 12px; border-radius: 12px; font-size: 0.9rem; max-width: 85%; line-height: 1.4; }
+    .bot-msg { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color); align-self: flex-start; }
+    .user-msg { background: var(--text-main); color: var(--bg-primary); align-self: flex-end; font-weight: 600; }
+    .chatbot-input-tray { display: flex; border-top: 1px solid var(--border-color); background: var(--bg-card); }
+    #bot-user-query { flex: 1; border: none; background: transparent; padding: 14px; color: var(--text-main); outline: none; }
+    #bot-send-btn { background: transparent; border: none; color: var(--text-main); padding: 0 18px; font-weight: 700; cursor: pointer; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      body { padding-top: 90px; }
+      .top-navbar-container { padding: 0 16px; }
+      .metrics-display-grid { grid-template-columns: 1fr; }
+      .profile-frame-box { height: 180px; }
+      .edu-large-media-box, .project-large-asset-frame, .exp-large-media-box { height: 200px; }
+    }
+  </style>
 </head>
 <body data-theme="theme-1">
 
-  <nav class="top-navbar-container">
+  <div id="fast-loader">
+    <div class="loader-content">
+      <h1 class="loader-title">INIT_PORTFOLIO</h1>
+      <div class="loader-bar-container">
+        <div class="loader-bar-progress" id="main-progress-node"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* EXECUTE IMMEDIATE SCRIPT BLOCK OVER OPENING LOGS TO ACCELERATE RUNTIME ENGINE */
+    (function() {
+      const skip = sessionStorage.getItem("fastSkipped");
+      const progressNode = document.getElementById("main-progress-node");
+      const loaderNode = document.getElementById("fast-loader");
+      
+      if (skip) {
+        if (loaderNode) loaderNode.style.display = "none";
+        document.body.classList.add("content-ready");
+      } else {
+        window.addEventListener("DOMContentLoaded", () => {
+          setTimeout(() => { if(progressNode) progressNode.style.width = "100%"; }, 50);
+          setTimeout(() => {
+            if(loaderNode) loaderNode.classList.add("fade-out");
+            sessionStorage.setItem("fastSkipped", "true");
+          }, 850);
+        });
+      }
+    })();
+  </script>
+
+  <nav class="top-navbar-container" id="global-sticky-nav">
     <div class="nav-links-left">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#contact">Contact Me</a>
+      <a href="#home" class="nav-icon-link" title="Home">🏠</a>
+      <a href="#about" class="nav-icon-link" title="About">🧑‍💻</a>
+      <a href="#skills" class="nav-icon-link" title="Skills">🛠️</a>
+      <a href="#education" class="nav-icon-link" title="Education">🎓</a>
+      <a href="#projects" class="nav-icon-link" title="Projects">🚀</a>
+      <a href="#experience" class="nav-icon-link" title="Experience">💼</a>
+      <a href="#certifications" class="nav-icon-link" title="Certifications">📜</a>
+      <a href="#contact" class="nav-icon-link" title="Contact Me">📬</a>
+      <button id="theme-toggle-btn" class="theme-trigger-nav-btn" title="Switch Scheme Theme">🎨</button>
     </div>
     <div class="nav-search-right">
-      <input type="text" id="portfolio-search-input" placeholder="🔍 Search portfolio...">
+      <input type="text" id="portfolio-search-input" placeholder="Search portfolio...">
     </div>
   </nav>
 
-  <div class="theme-switcher-container">
-    <button id="theme-toggle-btn" class="theme-btn">
-      🎨 Theme: <span id="current-theme-name">Palette 1</span>
-    </button>
-  </div>
-
-  <div class="portfolio-container" id="home">
+  <div id="app-content" class="content-ready">
     
-    <header class="hero-section searchable-node">
+    <header class="hero-section searchable-node" id="home">
       <div class="profile-frame-box">
         <img src="profile.jpg" alt="Adarsh V Pujar" class="profile-img-element" onerror="this.src='avatar-gpt.png'">
       </div>
@@ -101,6 +475,7 @@
         <span class="skill-pill">Angular</span>
         <span class="skill-pill">Git</span>
         <span class="skill-pill">GitHub</span>
+        <span class="skill-pill">GitHub</span>
         <span class="skill-pill">Power BI</span>
         <span class="skill-pill">Azure AI</span>
       </div>
@@ -110,8 +485,8 @@
       <h2>🎓 Education Details</h2>
       <div class="education-timeline-wrapper">
         <div class="edu-item">
-          <div class="edu-image-box">
-            <img src="nieit.jpg" alt="NIEIT Mysore" onerror="this.src='uploaded:33644.jpg'">
+          <div class="edu-large-media-box">
+            <img src="nieit.jpg" alt="NIEIT Engineering College View" onerror="this.src='uploaded:33644.jpg'">
           </div>
           <div class="edu-details-text">
             <h4>B.E. in Information Science & Engineering</h4>
@@ -119,9 +494,10 @@
             <p>Comprehensive studies in database management pipelines, full-stack application development structures, architecture analysis, and advanced algorithmic logic systems.</p>
           </div>
         </div>
+        
         <div class="edu-item">
-          <div class="edu-image-box">
-            <img src="vvs.jpg" alt="VVS School" onerror="this.src='uploaded:33645.jpg'">
+          <div class="edu-large-media-box">
+            <img src="vvs.jpg" alt="VVS School Layout View" onerror="this.src='uploaded:33645.jpg'">
           </div>
           <div class="edu-details-text">
             <h4>Secondary & Higher Secondary Education</h4>
@@ -136,8 +512,8 @@
       <h2>🚀 Featured Projects</h2>
       
       <a href="project-deaf-comm.html" class="interactive-project-card-wrapper">
-        <div class="project-asset-frame">
-          <img src="project1.jpg" alt="Two-Way Communication System Layout Image" onerror="this.src='33582.jpg'">
+        <div class="project-large-asset-frame">
+          <img src="project1.jpg" alt="Two-Way Communication Recognition Layout System" onerror="this.src='33582.jpg'">
         </div>
         <div class="project-text-content">
           <h3>Two-Way Communication System for Deaf People</h3>
@@ -147,8 +523,8 @@
       </a>
 
       <a href="project-car-rental.html" class="interactive-project-card-wrapper">
-        <div class="project-asset-frame">
-          <img src="project2.jpg" alt="Car Rental Database Layout Image" onerror="this.src='uploaded:33592.jpg'">
+        <div class="project-large-asset-frame">
+          <img src="project2.jpg" alt="Car Rental Management Schema Matrix" onerror="this.src='uploaded:33592.jpg'">
         </div>
         <div class="project-text-content">
           <h3>Car Rental Database Management System</h3>
@@ -160,9 +536,10 @@
 
     <section id="experience" class="info-card-block searchable-node">
       <h2>💼 Professional Experience</h2>
+      
       <div class="timeline-experience-item">
-        <div class="exp-company-logo">
-          <img src="chromosis.jpg" alt="Chromosis Logo" onerror="this.src='uploaded:33642.jpg'">
+        <div class="exp-large-media-box">
+          <img src="chromosis.jpg" alt="Chromosis Workplace Media Environment" onerror="this.src='uploaded:33642.jpg'">
         </div>
         <div class="exp-info-data">
           <h4>Full Stack Developer Apprentice</h4>
@@ -172,8 +549,8 @@
       </div>
       
       <div class="timeline-experience-item">
-        <div class="exp-company-logo">
-          <img src="HPE.jpg" alt="HPE Logo" onerror="this.src='uploaded:33643.jpg'">
+        <div class="exp-large-media-box">
+          <img src="HPE.jpg" alt="Hewlett Packard Enterprise Campus Media" onerror="this.src='uploaded:33643.jpg'">
         </div>
         <div class="exp-info-data">
           <h4>Frontend Developer Intern</h4>
@@ -183,7 +560,7 @@
       </div>
 
       <div class="timeline-experience-item">
-        <div class="exp-info-data" style="padding-left: 64px;">
+        <div class="exp-info-data">
           <h4>Digital Marketing Executive</h4>
           <h5>PhoneMax (S & S Co Inc) | Mysore, Karnataka | 2023 (6 Months)</h5>
           <p>Increased regional sales by 25% through targeted promotional campaigns and strategic partnerships. Managed social media campaigns and online promotions. Analyzed campaign performance metrics to optimize marketing strategies and improve lead generation.</p>
@@ -196,16 +573,14 @@
       <div class="certification-detailed-card">
         <div class="certification-header-block">
           <h3>Microsoft Certified: Azure AI Fundamentals (AI-900)</h3>
-          <span class="cert-authority-badge">Microsoft Authorized</span>
         </div>
-        
         <div class="cert-body-content" style="margin-top: 14px;">
           <h4>Project / Certification Description</h4>
           <p style="margin-bottom: 16px; font-size: 1.02rem; line-height: 1.65; opacity: 0.95;">
             The Microsoft Azure AI Associate certification demonstrates my understanding of building, managing, and deploying AI solutions using Microsoft Azure services. It validates skills in applying machine learning, natural language processing, computer vision, and responsible AI practices using Azure AI tools and Cognitive Services.
           </p>
           <h4 style="margin-bottom: 8px;">🧠 What I Learned</h4>
-          <ul style="padding-left: 20px; margin-bottom: 18px; line-height: 1.75;">
+          <ul style="padding-left: 20px; line-height: 1.75;">
             <li>Fundamentals of Artificial Intelligence and Machine Learning concepts</li>
             <li>Working with Azure Cognitive Services (Vision, Language, Speech, Decision APIs)</li>
             <li>Building and deploying AI models using Azure Machine Learning</li>
@@ -216,32 +591,32 @@
       </div>
     </section>
 
-    <section id="contact" class="info-card-block final-contact-section searchable-node">
-      <h2 style="text-align: center; justify-content: center;">📬 Connect With Me</h2>
-      <p style="text-align: center; margin-bottom: 30px; opacity: 0.8;">Click an icon below to open the application and reach out to me directly.</p>
+    <section id="contact" class="info-card-block searchable-node" style="padding: 40px 20px;">
+      <h2 style="justify-content: center; margin-bottom: 10px;">📬 Connect With Me</h2>
+      <p style="text-align: center; margin-bottom: 24px; opacity: 0.8; font-size: 0.95rem;">Tap any icon application button to chat or contact me instantly.</p>
       
       <div class="native-app-logos-wrapper">
         <a href="https://www.linkedin.com/in/adarsh-v-pujar-8947b0400?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="logo-app-btn linkedin-btn-color" title="Open LinkedIn Profile">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.67c0-.25.015-.5.09-.69a1.14 1.14 0 0 1 1-.77c.76 0 1 .58 1 1.42v4.71h2.8M6.5 8.37a1.37 1.37 0 1 0 0-2.75 1.37 1.37 0 0 0 0 2.75M8 18.5V10.13H5.13V18.5H8Z"/></svg>
         </a>
 
-        <a href="https://www.instagram.com/_.rose__boyy._?igsh=d3M0bXB4OWNzaWdr" target="_blank" class="logo-app-btn instagram-btn-color" title="Open Instagram Account">
+        <a href="https://www.instagram.com/_.rose__boyy._?igsh=d3M0bXB4OWNzaWdr" target="_blank" class="logo-app-btn instagram-btn-color" title="Open Instagram Profile">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m12.4 2.25a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 1 0-6Z"/></svg>
         </a>
 
-        <a href="https://wa.me/919886103154" target="_blank" class="logo-app-btn whatsapp-btn-color" title="Chat on WhatsApp">
+        <a href="https://wa.me/919886103154" target="_blank" class="logo-app-btn whatsapp-btn-color" title="Message via WhatsApp Native Core">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.81 9.81 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.4-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.26-8.23m-3.83 4.52c-.2-.46-.42-.47-.61-.47-.16 0-.34-.02-.52-.02-.19 0-.49.07-.74.34-.26.27-.99.97-.99 2.37s1.02 2.76 1.16 2.96c.14.19 2 3.05 4.84 4.28.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.11.54-.08 1.66-.68 1.9-1.34.23-.66.23-1.23.16-1.34-.07-.11-.26-.18-.56-.33-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.49-.9-.8-1.51-1.79-1.69-2.1-.18-.3-.02-.46.13-.61.14-.14.3-.34.45-.51.15-.17.2-.29.3-.49.1-.2.05-.38-.02-.53-.07-.15-.61-1.47-.84-2.02Z"/></svg>
         </a>
 
-        <a href="tel:+919886103154" class="logo-app-btn dialer-btn-color" title="Call Mobile Number">
+        <a href="tel:+919886103154" class="logo-app-btn dialer-btn-color" title="Launch Mobile Phone Dialer">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.11-.27c1.12.42 2.33.64 3.57.64a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.22 2.45.64 3.57a1 1 0 0 1-.27 1.11l-2.25 2.22Z"/></svg>
         </a>
       </div>
 
       <div class="scanner-toggle-section">
-        <button id="trigger-qr-view-btn" class="secondary-btn" style="margin: 0 auto; display: block;">📷 View WhatsApp Scanner QR Code</button>
+        <button id="trigger-qr-view-btn" class="secondary-btn">📷 View WhatsApp Scanner QR Code</button>
         <div id="qr-dropdown-content-box" class="qr-content-hidden">
-          <img src="33591.jpg" alt="WhatsApp QR Scanner Sheet">
+          <img src="33591.jpg" alt="WhatsApp Account Sync QR Scan Vector" onerror="this.src='uploaded:33591.jpg'">
         </div>
       </div>
     </section>
@@ -251,11 +626,11 @@
   
   <div class="chatbot-window-box" id="bot-window-panel">
     <div class="chatbot-header-bar">
-      <h4>🤖 Adarsh's Portfolio AI</h4>
-      <span id="bot-close-panel-btn">✖</span>
+      <h4 style="font-size: 0.95rem; font-weight:700;">🤖 Adarsh's Portfolio AI</h4>
+      <span id="bot-close-panel-btn" style="cursor:pointer; font-weight:700;">✖</span>
     </div>
     <div class="chatbot-messages-area" id="bot-chat-logs">
-      <div class="chat-msg bot-msg">Hello! I am Adarsh's custom portfolio assistant. What help do you want regarding this portfolio? Ask me about my skills, projects, experience, or contact information!</div>
+      <div class="chat-msg bot-msg">Hello! I am Adarsh's custom portfolio assistant. What help do you want regarding this portfolio? Ask me about my skills, projects, education, or contact data links!</div>
     </div>
     <div class="chatbot-input-tray">
       <input type="text" id="bot-user-query" placeholder="Type a portfolio question...">
@@ -263,6 +638,186 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      /* --- THEME PALETTE ENGINE ROTATION --- */
+      const themesList = [
+        { id: "theme-1" }, { id: "theme-2" }, { id: "theme-3" },
+        { id: "theme-4" }, { id: "theme-5" }, { id: "theme-6" }
+      ];
+
+      let savedThemeId = localStorage.getItem("activePortfolioTheme") || "theme-1";
+      let activeIndex = themesList.findIndex(t => t.id === savedThemeId);
+      if (activeIndex === -1) activeIndex = 0;
+      document.body.setAttribute("data-theme", themesList[activeIndex].id);
+
+      const toggleBtn = document.getElementById("theme-toggle-btn");
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          activeIndex = (activeIndex + 1) % themesList.length;
+          document.body.setAttribute("data-theme", themesList[activeIndex].id);
+          localStorage.setItem("activePortfolioTheme", themesList[activeIndex].id);
+        });
+      }
+
+      /* --- QR TRIGGER CONTROLLER --- */
+      const qrTriggerBtn = document.getElementById("trigger-qr-view-btn");
+      const qrDropBox = document.getElementById("qr-dropdown-content-box");
+      if (qrTriggerBtn && qrDropBox) {
+        qrTriggerBtn.addEventListener("click", () => {
+          if (qrDropBox.className === "qr-content-hidden") {
+            qrDropBox.className = "qr-content-visible";
+            qrTriggerBtn.textContent = "✖ Hide WhatsApp Scanner QR Code";
+          } else {
+            qrDropBox.className = "qr-content-hidden";
+            qrTriggerBtn.textContent = "📷 View WhatsApp Scanner QR Code";
+          }
+        });
+      }
+
+      /* --- TRANSITIONAL NAVIGATION BAR SHOW/HIDE ENGINE --- */
+      let lastScrollPos = window.pageYOffset;
+      const navBarElement = document.getElementById("global-sticky-nav");
+      
+      window.addEventListener("scroll", () => {
+        let currentScrollPos = window.pageYOffset;
+        if (currentScrollPos < 20) {
+          navBarElement.classList.remove("nav-hidden");
+          return;
+        }
+        if (lastScrollPos > currentScrollPos) {
+          // Scrolling Upwards -> Transition back to view
+          navBarElement.classList.remove("nav-hidden");
+        } else {
+          // Scrolling Downwards -> Hide navbar smoothly
+          navBarElement.classList.add("nav-hidden");
+        }
+        lastScrollPos = currentScrollPos;
+      });
+
+      /* --- NAVBAR FOCUS SNAP COMPONENT --- */
+      const searchInput = document.getElementById("portfolio-search-input");
+      if (searchInput) {
+        searchInput.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") {
+            const term = searchInput.value.toLowerCase().trim();
+            if (term === "") return;
+
+            let targetNode = null;
+            const searchableItems = document.querySelectorAll(".searchable-node");
+
+            for (let node of searchableItems) {
+              if (node.textContent.toLowerCase().includes(term)) {
+                targetNode = node;
+                break;
+              }
+            }
+
+            if (targetNode) {
+              const positioning = targetNode.getBoundingClientRect().top + window.pageYOffset;
+              window.scrollTo({ top: positioning - 80, behavior: "smooth" });
+              targetNode.style.outline = "2px dashed var(--text-main)";
+              setTimeout(() => { targetNode.style.outline = "none"; }, 1500);
+            }
+          }
+        });
+      }
+
+      /* --- HIGHLY RIGID PORTFOLIO assistant NLP CHAT ENGINE --- */
+      const botToggle = document.getElementById("bot-toggle-badge");
+      const botWindow = document.getElementById("bot-window-panel");
+      const botClose = document.getElementById("bot-close-panel-btn");
+      const botSendBtn = document.getElementById("bot-send-btn");
+      const botInput = document.getElementById("bot-user-query");
+      const botChatLogs = document.getElementById("bot-chat-logs");
+
+      if (botToggle && botWindow && botClose) {
+        botToggle.addEventListener("click", () => {
+          botWindow.style.display = botWindow.style.display === "flex" ? "none" : "flex";
+        });
+        botClose.addEventListener("click", () => botWindow.style.display = "none");
+      }
+
+      const portfolioKnowledge = [
+        {
+          keywords: ["education", "college", "school", "nie", "nieit", "mysore", "cgpa", "grade", "vvs"],
+          response: "🎓 <strong>Education Records:</strong><br><br>• <strong>B.E. Information Science & Engineering:</strong> NIE Institute of Technology, Mysore. Completed with a verified <strong>8.3 CGPA</strong> rating track.<br>• <strong>School Foundations:</strong> VVS Educational Institution."
+        },
+        {
+          keywords: ["contact", "phone", "call", "whatsapp", "instagram", "linkedin", "number", "reach", "social"],
+          response: "📬 <strong>Adarsh's Application Routing Buttons:</strong><br><br>• <strong>WhatsApp Link:</strong> Native connection to reach +91 9886103154.<br>• <strong>LinkedIn / Instagram:</strong> Re-routed inside application brand icons fixed at the bottom grid wrapper."
+        },
+        {
+          keywords: ["project", "projects", "deaf", "communication", "car rental", "database"],
+          response: "🚀 <strong>Project Architecture Specs:</strong><br><br>• <strong>Deaf Communication Matrix:</strong> 95% classification performance built using Python, OpenCV, and MediaPipe.<br>• <strong>Car Rental Management:</strong> Normalization models deployed on relational MySQL architectures."
+        },
+        {
+          keywords: ["skill", "skills", "technologies", "react", "python", "sql"],
+          response: "🛠️ <strong>Technical Framework Stack:</strong><br>React.js, Node.js, Express.js, JavaScript, Python, FastAPI, Flask, OpenCV, SQL, MySQL, MongoDB, and Azure cloud computing nodes."
+        },
+        {
+          keywords: ["experience", "job", "intern", "chromosis", "hpe", "work"],
+          response: "💼 <strong>Experience Milestones:</strong><br><br>• <strong>Full Stack Apprentice:</strong> Chromosis Technologies (Dec 2025 - Present).<br>• <strong>Frontend Intern:</strong> Hewlett Packard Enterprise (4 Months). Core React engineering cycles.<br>• <strong>Marketing Execution:</strong> PhoneMax Operations."
+        },
+        {
+          keywords: ["certification", "azure", "ai-900", "fundamentals"],
+          response: "📜 <strong>Cloud Credentials:</strong><br>Adarsh holds the <strong>Microsoft Certified: Azure AI Fundamentals (AI-900)</strong> credential, validating cognitive API orchestration."
+        }
+      ];
+
+      function runResponseCycle() {
+        const queryText = botInput.value.trim();
+        if (queryText === "") return;
+
+        const uBubble = document.createElement("div");
+        uBubble.className = "chat-msg user-msg";
+        uBubble.textContent = queryText;
+        botChatLogs.appendChild(uBubble);
+        botInput.value = "";
+        botChatLogs.scrollTop = botChatLogs.scrollHeight;
+
+        setTimeout(() => {
+          const processedQuery = queryText.toLowerCase();
+          
+          // Guarded algorithmic match prioritizing explicit matching maps
+          let entryFound = portfolioKnowledge.find(item => 
+            item.keywords.some(key => processedQuery.includes(key))
+          );
+
+          let systemOutput = entryFound 
+            ? entryFound.response 
+            : "ℹ️ I can only process direct inquiries regarding Adarsh's specific Skills, Projects, Education background, Experience timelines, Certifications, or Social App Accounts. Please check your spelling!";
+
+          const bBubble = document.createElement("div");
+          bBubble.className = "chat-msg bot-msg";
+          bBubble.innerHTML = systemOutput;
+          botChatLogs.appendChild(bBubble);
+          botChatLogs.scrollTop = botChatLogs.scrollHeight;
+        }, 350);
+      }
+
+      if (botSendBtn && botInput) {
+        botSendBtn.addEventListener("click", runResponseCycle);
+        botInput.addEventListener("keypress", (e) => { if (e.key === "Enter") runResponseCycle(); });
+      }
+
+      /* --- TYPING ROTATION TIMERS --- */
+      const dynamicTitles = ["Full Stack Developer", "Data Analyst", "Azure AI Certified", "Software Engineer"];
+      const elementNode = document.getElementById("headline-target");
+      let activeTextIndex = 0;
+
+      if (elementNode) {
+        setInterval(() => {
+          elementNode.style.opacity = "0";
+          setTimeout(() => {
+            activeTextIndex = (activeTextIndex + 1) % dynamicTitles.length;
+            elementNode.textContent = dynamicTitles[activeTextIndex];
+            elementNode.style.opacity = "1";
+          }, 300);
+        }, 3000);
+      }
+    });
+  </script>
 </body>
 </html>
