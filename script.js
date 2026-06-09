@@ -28,109 +28,75 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================== */
 
   const titles = [
-  "Full Stack Developer",
-  "Data Analyst",
-  "Azure AI Certified",
-  "Problem Solver",
-  "Web Developer",
-  "Software Engineer"
-];
+    "Full Stack Developer",
+    "Data Analyst",
+    "Azure AI Certified",
+    "Problem Solver",
+    "Web Developer",
+    "Software Engineer"
+  ];
+  
   const headline = document.getElementById("headline-target");
-function rotateHeadline() {
+  let currentIndex = 0; // Fixed: Initialized missing variable declaration
 
-  headline.classList.add("fade-out");
+  function rotateHeadline() {
+    if (!headline) return;
 
-  setTimeout(() => {
+    headline.classList.add("fade-out");
 
-    currentIndex =
-      (currentIndex + 1) % titles.length;
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % titles.length;
+      headline.textContent = titles[currentIndex];
+      headline.classList.remove("fade-out");
+    }, 400);
+  }
 
-    headline.textContent =
-      titles[currentIndex];
+  setInterval(rotateHeadline, 2500);
 
-    headline.classList.remove("fade-out");
-
-  }, 400);
-
-}
-
-setInterval(rotateHeadline, 2500);
   /* ==========================================================
      SCROLL PROGRESS BAR
      ========================================================== */
 
-  const progressBar =
-    document.getElementById("progress-bar");
+  const progressBar = document.getElementById("progress-bar");
 
   function updateProgressBar() {
-
-    const scrollTop =
-      window.scrollY;
-
-    const docHeight =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
-
-    const progress =
-      (scrollTop / docHeight) * 100;
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
 
     if (progressBar) {
-      progressBar.style.width =
-        progress + "%";
+      progressBar.style.width = progress + "%";
     }
-
   }
 
-  window.addEventListener(
-    "scroll",
-    updateProgressBar
-  );
-
+  window.addEventListener("scroll", updateProgressBar);
   updateProgressBar();
 
   /* ==========================================================
      CUSTOM CURSOR
      ========================================================== */
 
-  const cursor =
-    document.querySelector(".cursor");
+  const cursor = document.querySelector(".cursor");
 
   if (cursor) {
 
-    document.addEventListener(
-      "mousemove",
-      (e) => {
+    document.addEventListener("mousemove", (e) => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
 
-        cursor.style.left =
-          e.clientX + "px";
-
-        cursor.style.top =
-          e.clientY + "px";
-
-      }
+    const hoverTargets = document.querySelectorAll(
+      "a, button, .btn, .skill-tag, .project-card"
     );
 
-    const hoverTargets =
-      document.querySelectorAll(
-        "a, button, .btn, .skill-tag, .project-card"
-      );
-
     hoverTargets.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        cursor.classList.add("active");
+      });
 
-      item.addEventListener(
-        "mouseenter",
-        () => {
-          cursor.classList.add("active");
-        }
-      );
-
-      item.addEventListener(
-        "mouseleave",
-        () => {
-          cursor.classList.remove("active");
-        }
-      );
-
+      item.addEventListener("mouseleave", () => {
+        cursor.classList.remove("active");
+      });
     });
 
   }
@@ -139,35 +105,20 @@ setInterval(rotateHeadline, 2500);
      SCROLL REVEAL
      ========================================================== */
 
-  const revealElements =
-    document.querySelectorAll(
-      ".glass-section"
-    );
+  const revealElements = document.querySelectorAll(".glass-section");
 
-  const observer =
-    new IntersectionObserver(
-
-      (entries) => {
-
-        entries.forEach((entry) => {
-
-          if (entry.isIntersecting) {
-
-            entry.target.classList.add(
-              "show"
-            );
-
-          }
-
-        });
-
-      },
-
-      {
-        threshold: 0.15
-      }
-
-    );
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
 
   revealElements.forEach((el) => {
     observer.observe(el);
@@ -177,127 +128,65 @@ setInterval(rotateHeadline, 2500);
      ACTIVE NAVIGATION
      ========================================================== */
 
-  const sections =
-    document.querySelectorAll(
-      "section, header"
-    );
-
-  const navLinks =
-    document.querySelectorAll(
-      ".nav-links a"
-    );
+  const sections = document.querySelectorAll("section, header");
+  const navLinks = document.querySelectorAll(".nav-links a");
 
   function updateActiveNav() {
-
     let current = "";
 
     sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 150;
+      const sectionHeight = section.clientHeight;
 
-      const sectionTop =
-        section.offsetTop - 150;
-
-      const sectionHeight =
-        section.clientHeight;
-
-      if (
-        window.scrollY >= sectionTop &&
-        window.scrollY <
-          sectionTop + sectionHeight
-      ) {
-
-        current =
-          section.getAttribute("id");
-
+      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+        current = section.getAttribute("id");
       }
-
     });
 
     navLinks.forEach((link) => {
-
-      link.classList.remove(
-        "active-link"
-      );
-
-      if (
-        link.getAttribute("href") ===
-        `#${current}`
-      ) {
-
-        link.classList.add(
-          "active-link"
-        );
-
+      link.classList.remove("active-link");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active-link");
       }
-
     });
-
   }
 
-  window.addEventListener(
-    "scroll",
-    updateActiveNav
-  );
-
+  window.addEventListener("scroll", updateActiveNav);
   updateActiveNav();
-   const skillTags =
-document.querySelectorAll(".skill-tag");
 
-skillTags.forEach((tag,index)=>{
+  /* ==========================================================
+     SKILL TAGS INITIAL ANIMATION
+     ========================================================= */
 
-  tag.style.opacity="0";
+  const skillTags = document.querySelectorAll(".skill-tag");
 
-  setTimeout(()=>{
-
-    tag.style.opacity="1";
-    tag.style.transform="translateY(0px)";
-
-  },index*100);
-
-});
+  skillTags.forEach((tag, index) => {
+    tag.style.opacity = "0";
+    setTimeout(() => {
+      tag.style.opacity = "1";
+      tag.style.transform = "translateY(0px)";
+    }, index * 100);
+  });
 
   /* ==========================================================
      MAGNETIC BUTTONS
      ========================================================== */
 
-  const magneticButtons =
-    document.querySelectorAll(
-      ".btn, .submit-btn"
-    );
+  const magneticButtons = document.querySelectorAll(".btn, .submit-btn");
 
   magneticButtons.forEach((button) => {
 
-    button.addEventListener(
-      "mousemove",
-      (e) => {
+    button.addEventListener("mousemove", (e) => {
+      const rect = button.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
 
-        const rect =
-          button.getBoundingClientRect();
+      button.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+    });
 
-        const x =
-          e.clientX -
-          rect.left -
-          rect.width / 2;
-
-        const y =
-          e.clientY -
-          rect.top -
-          rect.height / 2;
-
-        button.style.transform =
-          `translate(${x * 0.12}px, ${y * 0.12}px)`;
-
-      }
-    );
-
-    button.addEventListener(
-      "mouseleave",
-      () => {
-
-        button.style.transform =
-          "translate(0px,0px)";
-
-      }
-    );
+    button.addEventListener("mouseleave", () => {
+      button.style.transform = "translate(0px,0px)";
+    });
 
   });
 
@@ -307,23 +196,15 @@ skillTags.forEach((tag,index)=>{
 
   if (typeof Lenis !== "undefined") {
 
-    const lenis =
-      new Lenis({
-
-        duration: 1.2,
-
-        smoothWheel: true,
-
-        smoothTouch: false
-
-      });
+    const lenis = new Lenis({
+      duration: 1.2,
+      smoothWheel: true,
+      smoothTouch: false
+    });
 
     function raf(time) {
-
       lenis.raf(time);
-
       requestAnimationFrame(raf);
-
     }
 
     requestAnimationFrame(raf);
@@ -334,63 +215,46 @@ skillTags.forEach((tag,index)=>{
      GSAP HERO ANIMATION
      ========================================================== */
 
-  if (
-    typeof gsap !== "undefined"
-  ) {
+  if (typeof gsap !== "undefined") {
 
-    gsap.from(
-      ".avatar-container",
-      {
-        duration: 1,
-        scale: 0.8,
-        opacity: 0,
-        ease: "power3.out"
-      }
-    );
+    gsap.from(".avatar-container", {
+      duration: 1,
+      scale: 0.8,
+      opacity: 0,
+      ease: "power3.out"
+    });
 
-    gsap.from(
-      ".name",
-      {
-        duration: 1,
-        opacity: 0,
-        y: 40,
-        delay: 0.2,
-        ease: "power3.out"
-      }
-    );
+    gsap.from(".name", {
+      duration: 1,
+      opacity: 0,
+      y: 40,
+      delay: 0.2,
+      ease: "power3.out"
+    });
 
-    gsap.from(
-      ".headline-container",
-      {
-        duration: 1,
-        opacity: 0,
-        y: 30,
-        delay: 0.4,
-        ease: "power3.out"
-      }
-    );
+    gsap.from(".headline-container", {
+      duration: 1,
+      opacity: 0,
+      y: 30,
+      delay: 0.4,
+      ease: "power3.out"
+    });
 
-    gsap.from(
-      ".bio",
-      {
-        duration: 1,
-        opacity: 0,
-        y: 30,
-        delay: 0.6,
-        ease: "power3.out"
-      }
-    );
+    gsap.from(".bio", {
+      duration: 1,
+      opacity: 0,
+      y: 30,
+      delay: 0.6,
+      ease: "power3.out"
+    });
 
-    gsap.from(
-      ".hero-buttons",
-      {
-        duration: 1,
-        opacity: 0,
-        y: 30,
-        delay: 0.8,
-        ease: "power3.out"
-      }
-    );
+    gsap.from(".hero-buttons", {
+      duration: 1,
+      opacity: 0,
+      y: 30,
+      delay: 0.8,
+      ease: "power3.out"
+    });
 
   }
 
@@ -398,30 +262,16 @@ skillTags.forEach((tag,index)=>{
      PARALLAX EFFECT
      ========================================================== */
 
-  const aurora =
-    document.querySelector(".aurora");
+  const aurora = document.querySelector(".aurora");
 
   if (aurora) {
 
-    window.addEventListener(
-      "mousemove",
-      (e) => {
+    window.addEventListener("mousemove", (e) => {
+      const x = (window.innerWidth / 2 - e.clientX) / 40;
+      const y = (window.innerHeight / 2 - e.clientY) / 40;
 
-        const x =
-          (window.innerWidth / 2 -
-            e.clientX) /
-          40;
-
-        const y =
-          (window.innerHeight / 2 -
-            e.clientY) /
-          40;
-
-        aurora.style.transform =
-          `translate(${x}px, ${y}px)`;
-
-      }
-    );
+      aurora.style.transform = `translate(${x}px, ${y}px)`;
+    });
 
   }
 
@@ -429,50 +279,24 @@ skillTags.forEach((tag,index)=>{
      IMAGE HOVER TILT
      ========================================================== */
 
-  const cards =
-    document.querySelectorAll(
-      ".project-card"
-    );
+  const cards = document.querySelectorAll(".project-card");
 
   cards.forEach((card) => {
 
-    card.addEventListener(
-      "mousemove",
-      (e) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-        const rect =
-          card.getBoundingClientRect();
+      const rotateX = ((y / rect.height) - 0.5) * -8;
+      const rotateY = ((x / rect.width) - 0.5) * 8;
 
-        const x =
-          e.clientX - rect.left;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+    });
 
-        const y =
-          e.clientY - rect.top;
-
-        const rotateX =
-          ((y / rect.height) - 0.5) * -8;
-
-        const rotateY =
-          ((x / rect.width) - 0.5) * 8;
-
-        card.style.transform =
-          `perspective(1000px)
-           rotateX(${rotateX}deg)
-           rotateY(${rotateY}deg)
-           translateY(-10px)`;
-
-      }
-    );
-
-    card.addEventListener(
-      "mouseleave",
-      () => {
-
-        card.style.transform =
-          "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-
-      }
-    );
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+    });
 
   });
 
@@ -482,74 +306,59 @@ skillTags.forEach((tag,index)=>{
 
   let resizeTimer;
 
-  window.addEventListener(
-    "resize",
-    () => {
-
-      clearTimeout(resizeTimer);
-
-      resizeTimer =
-        setTimeout(() => {
-
-          updateProgressBar();
-
-        }, 150);
-
-    }
-  );
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      updateProgressBar();
+    }, 150);
+  });
 
 });
-const topBtn =
-document.getElementById("scrollTopBtn");
-
-window.addEventListener(
-"scroll",
-()=>{
-
-if(window.scrollY > 500){
-
-topBtn.style.display="block";
-
-}else{
-
-topBtn.style.display="none";
-
-}
-
-}
-);
-
-topBtn.addEventListener(
-"click",
-()=>{
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-);
 
 /* ==========================================================
-   END OF FILE
+   SCROLL TO TOP BUTTON
+   ========================================================== */
+const topBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+  // Fixed: Added safety checks to prevent console execution crash if the button element is absent in layout
+  if (topBtn) {
+    if (window.scrollY > 500) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  }
+});
+
+if (topBtn) {
+  topBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}
+
+/* ==========================================================
+   END OF FILE - BRANDING
    ========================================================== */
 console.log(
-"%c🚀 Adarsh V Pujar Portfolio",
-"font-size:24px;color:#B3A7E8;font-weight:bold;"
+  "%c🚀 Adarsh V Pujar Portfolio", // Fixed: Corrected broken system syntax encoding with clean rocket emoji
+  "font-size:24px;color:#B3A7E8;font-weight:bold;"
 );
 
 console.log(
-"%cFull Stack Developer | Data Analyst | Azure AI Certified",
-"font-size:14px;color:#57ACC8;"
+  "%cFull Stack Developer | Data Analyst | Azure AI Certified",
+  "font-size:14px;color:#57ACC8;"
 );
 
 console.log(
-"%cPortfolio Developed by Adarsh V Pujar",
-"font-size:13px;color:#ffffff;"
+  "%cPortfolio Developed by Adarsh V Pujar",
+  "font-size:13px;color:#ffffff;"
 );
 
 console.log(
-"%cGitHub: https://github.com/adarshvpujar143-cyber",
-"font-size:12px;color:#7BBBFF;"
+  "%cGitHub: https://github.com/adarshvpujar143-cyber",
+  "font-size:12px;color:#7BBBFF;"
 );
