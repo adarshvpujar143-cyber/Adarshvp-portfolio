@@ -1,249 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adarsh V Pujar | Portfolio</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    /* --- COLOR PALETTES & STYLING SETTINGS --- */
-    :root {
-      /* Palette #1 & #3 Blend for Perfect Contrast */
-      --primary-accent: #B3A7E8;
-      --text-main: #EBE8F9;
-      --bg-main: #1D163D;
-      --card-bg: #4B447A;
-      --hover-state: #7F75B7;
-      
-      /* Glassmorphism Configuration (#4) */
-      --glass-bg: rgba(87, 172, 200, 0.08);
-      --glass-blur: blur(20px);
-      --glass-border: 1px solid rgba(87, 172, 200, 0.15);
-    }
 
-    /* --- RESET & BASIC STYLES --- */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <title>Adarsh V Pujar | Data Analyst | Full Stack Developer</title>
 
-    body {
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 24px 16px;
-    }
+  <meta name="description"
+    content="Adarsh V Pujar Portfolio - Data Analyst, Web Developer and Full Stack Developer specializing in modern web applications and business intelligence solutions.">
 
-    /* --- MAIN PORTFOLIO CARD --- */
-    .profile-card {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: var(--glass-border);
-      border-radius: 28px;
-      padding: 40px 28px;
-      width: 100%;
-      max-width: 440px;
-      text-align: center;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-    }
+  <meta name="keywords"
+    content="Adarsh V Pujar, Data Analyst, Full Stack Developer, Web Developer, Portfolio">
 
-    /* --- PROFILE IMAGE FIX --- */
-    .avatar-container {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 24px auto;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary-accent), var(--hover-state));
-      padding: 3px; 
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    }
+  <meta property="og:title"
+    content="Adarsh V Pujar Portfolio">
 
-    .avatar-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      display: block;
-    }
+  <meta property="og:description"
+    content="Professional Developer Portfolio">
 
-    .name {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 12px;
-      color: #FFFFFF;
-    }
+  <meta property="og:image"
+    content="profile.jpg">
 
-    /* --- SMOOTH ROLLING TEXT TRANSITIONS --- */
-    .headline-container {
-      height: 32px; 
-      overflow: hidden;
-      margin-bottom: 24px;
-    }
+  <meta property="og:type"
+    content="website">
 
-    .headline-sequence {
-      display: flex;
-      flex-direction: column;
-      animation: sequenceRotation 9s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
-    }
+  <meta name="theme-color"
+    content="#1D163D">
 
-    .headline-item {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--primary-accent);
-      line-height: 32px;
-      height: 32px;
-    }
+  <link rel="preconnect"
+    href="https://fonts.googleapis.com">
 
-    @keyframes sequenceRotation {
-      0%, 25% { transform: translateY(0); }
-      33%, 58% { transform: translateY(-32px); }
-      66%, 91% { transform: translateY(-64px); }
-      100% { transform: translateY(0); }
-    }
+  <link rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
 
-    .bio {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #D3CCE9;
-      margin-bottom: 32px;
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
-    /* --- READABLE CONTACT FORM --- */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      text-align: left;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 28px;
-    }
-
-    .contact-form h3 {
-      font-size: 1.3rem;
-      color: #FFFFFF;
-      margin-bottom: 4px;
-    }
-
-    .input-field {
-      width: 100%;
-      padding: 14px 16px;
-      background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      color: #FFFFFF; /* High contrast text inside inputs */
-      font-family: inherit;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-    }
-
-    .input-field::placeholder {
-      color: rgba(235, 232, 249, 0.6); /* Readable placeholder values */
-    }
-
-    .input-field:focus {
-      outline: none;
-      border-color: var(--primary-accent);
-      background: rgba(75, 68, 122, 0.9);
-      box-shadow: 0 0 0 3px rgba(179, 167, 232, 0.2);
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 15px;
-      background: var(--primary-accent);
-      color: #1D163D;
-      border: none;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.2s ease, transform 0.1s ease;
-    }
-
-    .submit-btn:hover {
-      background: #C2B8EE;
-    }
-
-    .submit-btn:active {
-      transform: scale(0.98);
-    }
-
-    /* --- DUAL CHANNELS BACKUP CONNECTION LINKS --- */
-    .direct-links-container {
-      margin-top: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .direct-action-link {
-      font-size: 0.85rem;
-      color: var(--primary-accent);
-      text-decoration: none;
-      transition: color 0.2s, text-decoration 0.2s;
-    }
-
-    .direct-action-link:hover {
-      color: #FFFFFF;
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet"
+    href="styles.css">
 </head>
+
 <body>
 
-  <div class="profile-card">
-    
-    <div class="avatar-container">
-      <img src="profile.jpg" alt="Adarsh V Pujar">
-    </div>
-
-    <h1 class="name">Adarsh V Pujar</h1>
-
-    <div class="headline-container">
-      <div class="headline-sequence">
-        <div class="headline-item">Web Developer</div>
-        <div class="headline-item">Full Stack Developer</div>
-        <div class="headline-item">Data Analyst</div>
-      </div>
-    </div>
-
-    <p class="bio">
-      Information Science & Engineering graduate specializing in building pixel-perfect, responsive frontends, robust backend APIs, and translating data into actionable business insights.
-    </p>
-
-    <form class="contact-form" action="https://formspree.io/f/xknkzbqy" method="POST">
-      <h3>Get in Touch</h3>
-      
-      <input class="input-field" type="text" name="name" placeholder="Your Name" required>
-      <input class="input-field" type="email" name="_replyto" placeholder="Your Email Address" required>
-      <textarea class="input-field" name="message" rows="4" placeholder="Write your text message here..." required></textarea>
-      
-      <button class="submit-btn" type="submit">Send Message</button>
-    </form>
-
-    <div class="direct-links-container">
-      <a class="direct-action-link" href="sms:+91adarshv143?body=Hi%20Adarsh,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect!">
-        💬 Prefer Texting/SMS Mobile? Click Here
-      </a>
-    </div>
-
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="spinner"></div>
   </div>
 
+  <!-- CURSOR -->
+  <div class="cursor"></div>
+
+  <!-- SCROLL BAR -->
+  <div id="progress-bar"></div>
+
+  <!-- AURORA -->
+  <div class="aurora"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+
+    <div class="logo">
+      AVP
+    </div>
+
+    <ul class="nav-links">
+
+      <li>
+        <a href="#home">Home</a>
+      </li>
+
+      <li>
+        <a href="#about">About</a>
+      </li>
+
+      <li>
+        <a href="#skills">Skills</a>
+      </li>
+
+      <li>
+        <a href="#projects">Projects</a>
+      </li>
+
+      <li>
+        <a href="#experience">Experience</a>
+      </li>
+
+      <li>
+        <a href="#education">Education</a>
+      </li>
+
+      <li>
+        <a href="#certifications">Certifications</a>
+      </li>
+
+      <li>
+        <a href="#contact">Contact</a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+  <main class="container">
+
+    <!-- HERO -->
+
+    <header
+      id="home"
+      class="glass-section hero-section">
+
+      <div class="avatar-container">
+        <img src="profile.jpg"
+          alt="Adarsh V Pujar">
+      </div>
+
+      <h1 class="name">
+        Adarsh V Pujar
+      </h1>
+
+      <div class="headline-container">
+
+        <span id="headline-target"
+          class="headline-item">
+          Data Analyst
+        </span>
+
+      </div>
+
+      <p class="bio">
+        Information Science & Engineering graduate specializing in
+        building pixel-perfect, responsive frontends, robust backend APIs,
+        and translating data into actionable business insights.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="resume.pdf"
+          target="_blank"
+          class="btn btn-primary">
+          📄 View Resume
+        </a>
+
+        <a href="#contact"
+          class="btn btn-secondary">
+          📬 Contact Me
+        </a>
+
+      </div>
+
+    </header>
+
+    <!-- ABOUT -->
+
+    <section
+      id="about"
+      class="glass-section">
+
+      <h2>👨‍💻 About Me</h2>
+
+      <p class="about-text">
+
+        Information Science & Engineering graduate with a strong
+        foundation in software development, data analytics,
+        responsive web technologies, APIs, database systems,
+        and business intelligence solutions.
+
+        Passionate about creating elegant user experiences,
+        scalable applications, and transforming complex
+        datasets into meaningful business decisions.
+
+      </p>
+
+    </section>
+
+    <!-- SKILLS -->
+
+    <section
+      id="skills"
+      class="glass-section">
+
+      <h2>🛠️ Technical Skills</h2>
+
+      <div class="skills-grid">
+
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Data Analysis</span>
+        <span class="skill-tag">JavaScript (ES6+)</span>
+        <span class="skill-tag">React.js</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">HTML5 & CSS3</span>
+        <span class="skill-tag">Git & GitHub</span>
+
+      </div>
+
+    </section>
+
+    <!-- PROJECTS -->
+
+    <section
+      id="projects"
+      class="glass-section">
+
+      <h2>🚀 Featured Projects</h2>
+
+      <div class="project-card">
+
+        <img src="project1.jpg"
+          alt="Business Intelligence Dashboard"
+          class="project-img">
+
+        <div class="project-info">
+
+          <h3 class="project-name">
+            Business Intelligence Dashboard
+          </h3>
+
+          <p class="project-desc">
+
+            An interactive analytics framework translating
+            complex operational numbers into clean visualizations
+            using Python and data frameworks.
+
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="project-card">
+
+        <img src="project2.jpg"
+          alt="Responsive E-Commerce Platform"
+          class="project-img">
+
+        <div class="project-info">
+
+          <h3 class="project-name">
+            Responsive E-Commerce Platform
+          </h3>
+
+          <p class="project-desc">
+
+            Built a robust, fast-loading storefront system utilizing
+            highly responsive component frontends connected
+            to backend API resources.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- EXPERIENCE -->
+
+    <section
+      id="experience"
+      class="glass-section">
+
+      <h2>💼 Professional Experience</h2>
+
+      <div class="timeline-item">
+
+        <h3 class="timeline-title">
+          Data Analyst & Full Stack Intern
+        </h3>
+
+        <div class="timeline-meta">
+          Tech Solutions Corp | Present
+        </div>
+
+        <p class="timeline-desc">
+
+          Engineered and designed modern frontend user interfaces
+          while structuring clean server-side datasets for
+          critical business report processing.
+
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- EDUCATION -->
+
+    <section
+      id="education"
+      class="glass-section">
+
+      <h2>🎓 Education</h2>
+
+      <div class="timeline-item">
+
+        <h3 class="timeline-title">
+          Bachelor of Engineering (B.E.)
+        </h3>
+
+        <div class="timeline-meta">
+          Information Science & Engineering
+        </div>
+
+        <p class="timeline-desc">
+
+          Gained comprehensive engineering training in systems
+          architecture, algorithmic optimization, database systems,
+          and software engineering principles.
+
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- CERTIFICATIONS -->
+
+    <section
+      id="certifications"
+      class="glass-section">
+
+      <h2>🏆 Certifications</h2>
+
+      <div class="certification-card">
+
+        <h3>Microsoft Azure AI Certification</h3>
+
+        <p>
+          Artificial Intelligence fundamentals,
+          machine learning concepts and Azure AI services.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- SOCIALS -->
+
+    <section class="glass-section">
+
+      <h2>🌐 Professional Links</h2>
+
+      <div class="social-links">
+
+        <a href="#"
+          class="social-btn">
+          LinkedIn
+        </a>
+
+        <a href="#"
+          class="social-btn">
+          GitHub
+        </a>
+
+        <a href="#"
+          class="social-btn">
+          Portfolio
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section
+      id="contact"
+      class="glass-section">
+
+      <h2>📬 Get In Touch</h2>
+
+      <form
+        class="contact-form"
+        action="https://formspree.io/f/xknkzbqy"
+        method="POST">
+
+        <input
+          class="input-field"
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required>
+
+        <input
+          class="input-field"
+          type="email"
+          name="_replyto"
+          placeholder="Your Email Address"
+          required>
+
+        <textarea
+          class="input-field"
+          name="message"
+          rows="5"
+          placeholder="Write your message here..."
+          required></textarea>
+
+        <button
+          class="submit-btn"
+          type="submit">
+
+          Send Message
+
+        </button>
+
+      </form>
+
+      <div class="info-details">
+
+        <p>
+
+          Email :
+
+          <a href="mailto:adarshvpujar143@gmail.com">
+
+            adarshvpujar143@gmail.com
+
+          </a>
+
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- THREE JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- LENIS -->
+  <script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
+
+  <script src="script.js"></script>
+
 </body>
-</html>
+
+  </html>
