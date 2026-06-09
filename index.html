@@ -3,51 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium AI Portfolio</title>
+    <title>Adarsh V Pujar | Premium Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body data-theme="mint">
     <div class="bg"></div>
     
+    <div class="theme-switcher-bar">
+        <button class="theme-btn active" onclick="setTheme('mint')"><span style="background:#00e5ff;"></span> Mint</button>
+        <button class="theme-btn" onclick="setTheme('crimson')"><span style="background:#ff0055;"></span> Crimson</button>
+        <button class="theme-btn" onclick="setTheme('slate')"><span style="background:#90caf9;"></span> Slate</button>
+    </div>
+
     <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <div class="nav-container">
+            <div class="logo">AVP<span>.dev</span></div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a class="nav-resume-btn" href="Adarsh_V_Pujar_Resume-1.pdf" download><i class="fa-solid fa-download"></i> Resume</a>
+        </div>
     </nav>
 
-    <header id="about" class="hero glass">
-        <h1>AI Futuristic Developer Portfolio</h1>
-        <p>Recruiter-friendly • Glassmorphism • Responsive</p>
-        <a class="btn" href="resume.pdf" download>Download Resume</a>
-    </header>
+    <div class="main-container">
+        <header id="about" class="hero glass">
+            <div class="badge">Immediate Availability</div>
+            <div class="profile-wrapper">
+                <img src="profile.jpg" alt="Adarsh V Pujar" class="profile-img">
+            </div>
+            <h1>Adarsh V Pujar</h1>
+            <h2>Full Stack Developer & Data Analyst</h2>
+            <p>Information Science & Engineering graduate specializing in building pixel-perfect, responsive frontends, robust backend APIs, and translating structural system data into actionable business analytics solutions.</p>
+            
+            <div class="hero-actions">
+                <a class="btn primary-btn" href="Adarsh_V_Pujar_Resume-1.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+                <a class="btn secondary-btn" href="#contact">Get In Touch</a>
+            </div>
+            
+            <div class="social-icons">
+                <a href="mailto:adarshvpujar143@gmail.com" title="Direct Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://linkedin.com" target="_blank" title="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/pujar143-cyber" target="_blank" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+                <a href="https://instagram.com" target="_blank" title="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
+                <a href="tel:+919886103154" title="Call Directly"><i class="fa-solid fa-phone"></i></a>
+            </div>
+        </header>
 
-    <section id="skills" class="glass">
-        <h2>Skills</h2>
-        <p style="color: #a0aec0; margin-bottom: 8px;">Development & AI Automation</p>
-        <div class="bar">
-            <span></span>
+        <section id="experience" class="glass">
+            <h2><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <h3>Full Stack Developer Apprenticeship</h3>
+                        <span class="date">Dec 2025 - Present</span>
+                    </div>
+                    <h4 class="company">Chromosis Technologies Pvt Ltd | Hubli, Karnataka</h4>
+                    <div class="timeline-body-with-img">
+                        <ul>
+                            <li>Developing and maintaining full-stack web applications using modern frontend and backend technologies.</li>
+                            <li>Building responsive user interfaces and integrating RESTful APIs for seamless data communication.</li>
+                            <li>Managing relational and non-relational database structures to ensure optimized data access and security.</li>
+                        </ul>
+                        <img src="chromosis.jpg" alt="Chromosis Workspace" class="timeline-img">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <h3>Data Analyst Internship</h3>
+                        <span class="date">Oct 2025 - Nov 2025</span>
+                    </div>
+                    <h4 class="company">Chromosis Technologies Pvt Ltd | Hubli, Karnataka</h4>
+                    <ul>
+                        <li>Queried, cleaned, and processed complex datasets using SQL and Python to ensure data integrity for business reporting.</li>
+                        <li>Designed interactive Power BI dashboards to track key performance metrics and surface actionable business trends.</li>
+                        <li>Collaborated within Agile sprint frameworks to present structured data findings to engineering stakeholders.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <h3>Web Development Internship</h3>
+                        <span class="date">An Internship Experience</span>
+                    </div>
+                    <h4 class="company">Tech Development Role</h4>
+                    <ul>
+                        <li>Gained hands-on experience utilizing core technologies like HTML5, CSS3, JavaScript, and modern design libraries.</li>
+                        <li>Implemented mobile-first responsive layouts, optimizing across popular cross-device display ecosystems.</li>
+                        <li>Participated in code reviews, feature testing, and cross-browser quality assurance procedures.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="education" class="glass">
+            <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <h3>Bachelor of Engineering (Information Science & Engineering)</h3>
+                        <span class="date">2021 - 2025</span>
+                    </div>
+                    <h4 class="company">NIE Institute of Technology | Mysore, Karnataka</h4>
+                    <div class="timeline-body-with-img">
+                        <div>
+                            <p class="gpa"><strong>CGPA:</strong> 8.31 / 10.0 (Affiliated to VTU)</p>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 4px;">Core focus on database management systems, web applications, and artificial intelligence fundamental integrations.</p>
+                        </div>
+                        <img src="nieit.jpg" alt="NIE Institute of Technology" class="institution-img">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <h3>Pre-University Certificate (PUC) - Science (PCMB)</h3>
+                        <span class="date">2019 - 2021</span>
+                    </div>
+                    <h4 class="company">VVS Golden Jubilee PU College | Mysore, Karnataka</h4>
+                    <div class="timeline-body-with-img">
+                        <p class="gpa"><strong>Percentage:</strong> 87.28%</p>
+                        <img src="vvs.jpg" alt="VVS College" class="institution-img">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <h3>Secondary School Leaving Certificate (SSLC)</h3>
+                        <span class="date">2018 - 2019</span>
+                    </div>
+                    <h4 class="company">Vidya Vardhaka Pandit Nehru High School | Mysore, Karnataka</h4>
+                    <div class="timeline-body-with-img">
+                        <p class="gpa"><strong>Percentage:</strong> 89.38%</p>
+                        <img src="school.jpg" alt="Pandit Nehru High School" class="institution-img">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="skills" class="glass">
+            <h2><i class="fa-solid fa-code"></i> Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages & Front-End</h3>
+                    <div class="skill-tags">
+                        <span>Python</span><span>Java</span><span>C</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>React.js</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Back-End & Databases</h3>
+                    <div class="skill-tags">
+                        <span>Node.js</span><span>Express.js</span><span>MySQL</span><span>MongoDB</span><span>Firebase</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Cloud Integration</h3>
+                    <div class="skill-tags">
+                        <span>Git & GitHub</span><span>Docker</span><span>Postman</span><span>VS Code</span><span>Microsoft Azure</span><span>Power BI</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 32px; font-size: 1.1rem; color: var(--accent-color);"><i class="fa-solid fa-award"></i> Certifications</h3>
+            <div class="certifications-list">
+                <div class="cert-item">
+                    <i class="fa-brands fa-microsoft" style="color: #00a3ff;"></i>
+                    <div>
+                        <strong>Microsoft Certified: Azure AI Fundamentals (AI-900)</strong>
+                        <span>Issued 2024</span>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <i class="fa-brands fa-microsoft" style="color: #00a3ff;"></i>
+                    <div>
+                        <strong>Microsoft Azure AI Associate</strong>
+                        <span>Professional Technical Accreditation</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="glass">
+            <h2><i class="fa-solid fa-laptop-code"></i> Featured Projects <span class="hint-lbl">(Tap to inspect details)</span></h2>
+            <div class="projects-grid">
+                
+                <div class="project-card" onclick="openProject(1)">
+                    <div class="project-img-container">
+                        <img src="project1.jpg" alt="Full Stack Application Deployment" class="project-card-img">
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Full-Stack Web Deployments</h3>
+                        <p>Scalable, database-driven web architecture tracking full API route communications natively.</p>
+                        <span class="action-trigger-lbl">Read Detailed Specification <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProject(2)">
+                    <div class="project-img-container">
+                        <img src="project2.jpg" alt="Data Analytics Dashboard Interface" class="project-card-img">
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Data Visualization Engines</h3>
+                        <p>Processing complex data schemas and rendering clear analytical interfaces mapping structural business insights.</p>
+                        <span class="action-trigger-lbl">Read Detailed Specification <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="glass">
+            <h2><i class="fa-solid fa-paper-plane"></i> Get in Touch</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">Have an opening, a freelance project, or just want to connect? Send a line directly below.</p>
+            
+            <div class="contact-wrapper">
+                <form action="https://formspree.io/f/your_id_here" method="POST">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <textarea name="message" placeholder="Write down your message details here..." required></textarea>
+                    <button type="submit">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+                
+                <div class="contact-info">
+                    <div class="info-meta" onclick="window.open('tel:+919886103154')">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <span>Phone Contact</span>
+                            <p>+91 9886103154</p>
+                        </div>
+                    </div>
+                    <div class="info-meta">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <span>Current Base</span>
+                            <p>Mysore, Karnataka, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="project-slide-1" class="fullscreen-project-overlay">
+        <div class="overlay-scroll-container">
+            <button class="close-overlay-btn" onclick="closeProject(1)"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</button>
+            <div class="overlay-content-wrapper">
+                <img src="project1.jpg" alt="Full Stack Deployment Spec" class="overlay-banner-img">
+                <h1>Full-Stack Web Deployments Architecture</h1>
+                
+                <div class="spec-block">
+                    <h3><i class="fa-solid fa-circle-info"></i> Project Description</h3>
+                    <p>This initiative focuses on developing highly responsive end-to-end full stack software ecosystems designed to handle concurrent user requests efficiently. The solution implements decoupled frontend and backend models, optimizing state management systems on client interfaces while ensuring structural robustness at server termination blocks. The setup leverages secure multi-tier user verification routes, real-time communications parameters, and responsive error mitigation schemas to mirror modern premium technical service design patterns.</p>
+                </div>
+
+                <div class="spec-block">
+                    <h3><i class="fa-solid fa-layer-group"></i> Technologies Utilized</h3>
+                    <div class="skill-tags">
+                        <span>React.js</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>MySQL</span><span>REST APIs</span><span>Postman</span><span>Git</span>
+                    </div>
+                </div>
+
+                <div class="spec-block">
+                    <h3><i class="fa-solid fa-square-poll-vertical"></i> Core Architecture & Outcome</h3>
+                    <p>Successfully integrated secure database-driven structural environments that drop transactional latency down significantly. Relational data modeling patterns implemented within MySQL pools ensure reliable data tracking metrics, while flexible collection patterns inside MongoDB handle volatile document logging securely. All route parameters are verified using structured API testing methodologies via Postman, creating a stable, deployment-ready backend architecture framework.</p>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <section id="projects" class="glass">
-        <h2>Projects</h2>
-        <p style="color: #a0aec0; font-style: italic;">Project gallery coming soon...</p>
-    </section>
+    <div id="project-slide-2" class="fullscreen-project-overlay">
+        <div class="overlay-scroll-container">
+            <button class="close-overlay-btn" onclick="closeProject(2)"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</button>
+            <div class="overlay-content-wrapper">
+                <img src="project2.jpg" alt="Data Analytics Spec" class="overlay-banner-img">
+                <h1>Data Visualization Engines & Analytics Architecture</h1>
+                
+                <div class="spec-block">
+                    <h3><i class="fa-solid fa-circle-info"></i> Project Description</h3>
+                    <p>An enterprise-ready analytical solution centered around handling raw, unstructured datasets, executing complex cleaning procedures, and normalizing records into highly structured formats. Once data parity is reached, the information flows directly into interactive frontend interfaces and business intelligence nodes designed to calculate crucial key performance metrics instantly. The architecture aims to remove informational fog, empowering cross-functional business stakeholders to evaluate real-time performance indicators safely.</p>
+                </div>
 
-    <section id="contact" class="glass">
-        <h2>Contact Me</h2>
-        <form action="#" method="POST">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+                <div class="spec-block">
+                    <h3><i class="fa-solid fa-layer-group"></i> Technologies Utilized</h3>
+                    <div class="skill-tags">
+                        <span>Python</span><span>Pandas</span><span>NumPy</span><span>SQL Server</span><span>Power BI</span><span>Data Normalization</span><span>Chart.js</span>
+                    </div>
+                </div>
+
+                <div class="spec-block">
+                    <h3><i class="fa-solid fa-square-poll-vertical"></i> Core Architecture & Outcome</h3>
+                    <p>The system processing layer efficiently maps complex business data distributions to high-fidelity reporting interfaces. By utilizing analytical libraries like Pandas alongside direct SQL querying patterns, manual data filtering anomalies are completely eliminated. The final interactive visualization components present cleanly formatted telemetry, letting leadership teams spot performance variations and track resource metrics directly through a single unified pane.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
-</html>
+                        </html>
