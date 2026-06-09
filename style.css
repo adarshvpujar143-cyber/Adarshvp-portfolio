@@ -1553,42 +1553,28 @@ html, body {
   max-width: 100% !important;
 }
 /* =========================================================
-   MOBILE RESPONSIVENESS FIX FOR PROJECT CARDS
+   MOBILE SCREEN ALIGNMENT FIX 
    ========================================================= */
-
 @media (max-width: 768px) {
-  /* Forces the layout container to stack vertically instead of squeezing side-by-side */
+  /* This prevents your project elements from shrinking horizontally */
   .project-card, 
-  div[class*="project-card"] {
+  [class*="project-card"] {
     display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
+    flex-direction: column !important; /* Stacks image on top, text on bottom */
     width: 100% !important;
     max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
     box-sizing: border-box !important;
-    overflow: hidden !important;
   }
 
-  /* Forces your bridge image to span perfectly wide and removes the black side-mask */
+  /* This stretches your bridge image across the entire phone screen width */
   .project-img, 
-  .project-card img, 
-  div[class*="project"] img {
+  [class*="project-img"],
+  .project-card img {
     width: 100% !important;
     max-width: 100% !important;
-    height: 240px !important; /* Sets a crisp, beautiful vertical height limit for mobile */
-    object-fit: cover !important; /* Crops the image dynamically without warping the aspect ratio */
+    height: 250px !important; /* Perfect height frame for phone layouts */
+    object-fit: cover !important; /* Crops it cleanly without looking squished */
     display: block !important;
-    flex: none !important;
-  }
-
-  /* Ensures text info blocks stretch naturally below the image asset */
-  .project-info, 
-  div[class*="project-info"] {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    padding: 20px !important;
   }
 }
    
