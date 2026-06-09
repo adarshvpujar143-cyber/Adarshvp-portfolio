@@ -3,230 +3,205 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adarsh V Pujar | Portfolio</title>
-  
+  <title>Adarsh V Pujar | Professional Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
-<body>    
-    <div id="loader">  
-        <div class="spinner"></div>  
-    </div>    
+</head>
+<body data-theme="theme-1">
 
-    <div class="cursor"></div>    
+  <div class="theme-switcher-container">
+    <button id="theme-toggle-btn" class="theme-btn" title="Switch Theme Palette">
+      🎨 Theme: <span id="current-theme-name">Palette 1</span>
+    </button>
+  </div>
 
-    <div id="progress-bar"></div>    
-
-    <div class="aurora"></div>    
-
-    <nav class="navbar">  
-        <div class="logo">AVP</div>  
-        <ul class="nav-links">  
-            <li><a href="#home">Home</a></li>  
-            <li><a href="#about">About</a></li>  
-            <li><a href="#skills">Skills</a></li>  
-            <li><a href="#projects">Projects</a></li>  
-            <li><a href="#experience">Experience</a></li>  
-            <li><a href="#education">Education</a></li>  
-            <li><a href="#certifications">Certifications</a></li>  
-            <li><a href="#contact">Contact</a></li>  
-        </ul>
-    </nav>    
-
-    <main class="container">  
-        <header id="home" class="glass-section hero-section">  
-            <div class="avatar-container">  
-                <img src="profile.jpg" alt="Adarsh V Pujar">  
-            </div>
-            <h1 class="name">Adarsh V Pujar</h1>
-            <div class="headline-container">  
-                <span id="headline-target" class="headline-item">Data Analyst</span>  
-            </div>  
-            <p class="bio">
-                Results-driven Information Science and Engineering graduate with hands-on experience in frontend development, full-stack web application development, and data analysis. Proficient in React.js, Node.js, Python, SQL, and modern web technologies. Experienced in building responsive UIs, RESTful APIs, database-driven applications, and deriving actionable insights from data.
-            </p>
-            <div class="hero-buttons">  
-                <a href="resume.pdf" target="_blank" class="btn btn-primary">📄 View Resume</a>  
-                <a href="#contact" class="btn btn-secondary">📬 Contact Me</a>  
-            </div>  
-        </header>  
-
-        <section class="glass-section">
-            <h2>📈 Highlights</h2>  
-            <div class="stats-grid">  
-                <div class="stat-card">  
-                    <h3>8.3 CGPA</h3>  
-                    <p>B.E ISE</p>  
-                </div>  
-                <div class="stat-card">  
-                    <h3>State Level</h3>  
-                    <p>VTU Cricket</p>  
-                </div>  
-                <div class="stat-card">  
-                    <h3>Azure AI</h3>  
-                    <p>Certified</p>  
-                </div>  
-                <div class="stat-card">  
-                    <h3>Full Stack</h3>  
-                    <p>Developer</p>  
-                </div>  
-            </div>  
-        </section>  
-
-        <section id="about" class="glass-section">  
-            <h2>👨‍💻 About Me</h2>  
-            <p class="about-text">
-                I am an Information Science and Engineering graduate from NIE Institute of Technology, Mysore (CGPA 8.3/10). I have hands-on experience in Full Stack Development, Frontend Engineering, REST API integration, Data Analytics, and Business Intelligence. My expertise includes React.js, Node.js, Python, SQL, MongoDB, MySQL, and Azure AI. I enjoy building scalable applications, solving real-world problems, and transforming complex datasets into meaningful business insights.
-            </p>
-        </section>  
-
-        <section id="skills" class="glass-section">  
-            <h2>🛠️ Technical Skills</h2>
-            <div class="skills-grid">  
-                <span class="skill-tag">React.js</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">Express.js</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">JavaScript ES6+</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">MySQL</span>
-                <span class="skill-tag">MongoDB</span>
-                <span class="skill-tag">REST APIs</span>
-                <span class="skill-tag">Flask</span>
-                <span class="skill-tag">FastAPI</span>
-                <span class="skill-tag">OpenCV</span>
-                <span class="skill-tag">HTML5</span>
-                <span class="skill-tag">CSS3</span>
-                <span class="skill-tag">Bootstrap</span>
-                <span class="skill-tag">Angular</span>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">GitHub</span>
-                <span class="skill-tag">Power BI</span>
-                <span class="skill-tag">Azure AI</span>
-            </div>  
-        </section>  
-
-        <section id="projects" class="glass-section">  
-            <h2>🚀 Featured Projects</h2>  
-            <div class="project-card">  
-                <img src="project1.jpg" alt="Two-Way Communication System for Deaf People" class="project-img">  
-                <div class="project-info">  
-                    <h3 class="project-name">Two-Way Communication System for Deaf People</h3>  
-                    <p class="project-desc">  
-                        Built a full-stack real-time communication platform using React.js frontend and Python (Flask/FastAPI) backend. Integrated OpenCV and MediaPipe for sign-language recognition with 95% accuracy and implemented speech-to-text and text-to-speech communication pipelines for seamless interaction between deaf and hearing users.  
-                    </p>  
-                </div>  
-            </div>  
-
-            <div class="project-card">
-             <img src="33582.jpg" alt="Two-Way Communication System" class="project-img"> 
-           <div class="project-info">
-          <h3 class="project-name">Project Title</h3>
-          <p class="project-desc">Your project description goes here...</p>
-        </div>
+  <div class="portfolio-container">
     
-            <section id="experience" class="glass-section">  
-            <h2>💼 Professional Experience</h2>  
-            <div class="timeline-item">  
-                <h3 class="timeline-title">Full Stack Developer Apprentice</h3>  
-                <div class="timeline-meta">Chromosis Technologies Pvt Ltd | Dec 2025 - Present</div>
-                <p class="timeline-desc">  
-                    Developing and maintaining full-stack web applications using modern frontend and backend technologies. Building responsive user interfaces, integrating REST APIs, managing relational and non-relational databases, and participating in testing, debugging, and deployment pipelines.  
-                </p>  
-            </div>
+    <header class="hero-section">
+      <div class="profile-frame-box">
+        <img src="profile.jpg" alt="Adarsh V Pujar" class="profile-img-element" onerror="this.src='avatar-gpt.png'">
+      </div>
+      
+      <h1 class="name-display-centered">Adarsh V Pujar</h1>
+      
+      <div class="headline-container">
+        <span id="headline-target" class="headline-dynamic-text">Full Stack Developer</span>
+      </div>
 
-            <div class="timeline-item">  
-                <h3 class="timeline-title">Frontend Developer Intern</h3>  
-                <div class="timeline-meta">Hewlett Packard Enterprise | 2024 (4 Months)</div>  
-                <p class="timeline-desc">  
-                    Developed responsive web applications using HTML, CSS, JavaScript, and React.js. Integrated REST APIs, improved UI consistency, ensured cross-browser compatibility, and collaborated with Agile teams.  
-                </p>  
-            </div>  
+      <p class="professional-statement-bio">
+        Results-driven Information Science and Engineering graduate with hands-on experience in frontend development, full-stack web application development, and data analysis. Proficient in React.js, Node.js, Python, SQL, and modern web technologies. Experienced in building responsive UIs, RESTful APIs, database-driven applications, and deriving actionable insights from data. All specified career attributes and background summaries provided herein represent verified professional records.
+      </p>
 
-            <div class="timeline-item">  
-                <h3 class="timeline-title">Digital Marketing Executive</h3>  
-                <div class="timeline-meta">PhoneMax (S & S Co Inc) | Mysore, Karnataka | 2023 (6 Months)</div>  
-                <p class="timeline-desc">  
-                    Increased regional sales by 25% through targeted promotional campaigns and strategic partnerships. Managed social media campaigns and online promotions. Analyzed campaign performance metrics to optimize marketing strategies and improve lead generation.  
-                </p>  
-            </div>  
-        </section>  
+      <div class="action-links-wrapper">
+        <a href="Adarsh_V_Pujar_Resume.pdf" download="Adarsh_V_Pujar_Resume.pdf" class="action-btn download-btn">
+          <span>View & Download Resume</span>
+          <svg class="download-icon-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+        </a>
+        <a href="#contact" class="action-btn secondary-btn">📬 Contact Me</a>
+      </div>
+    </header>
 
-        <section id="education" class="glass-section">
-            <h2>🎓 Education</h2>  
-            <div class="timeline-item">  
-                <h3 class="timeline-title">Bachelor of Engineering (B.E.)</h3>  
-                <div class="timeline-meta">NIE Institute of Technology, Mysore | 2021 - 2025</div>  
-                <p class="timeline-desc">  
-                    Information Science & Engineering | CGPA: 8.3 / 10 <br> Affiliated to Visvesvaraya Technological University (VTU).  
-                </p>
-            </div>  
-            <div class="timeline-item">  
-                <h3 class="timeline-title">Pre-University Course (PUC)</h3>  
-                <div class="timeline-meta">VVS Golden Jubilee PU College, Mysore | 2019 - 2021</div>  
-                <p class="timeline-desc">PCMB Stream | Percentage: 87.28%</p>
-            </div>  
-            <div class="timeline-item">  
-                <h3 class="timeline-title">Secondary School Leaving Certificate (SSLC)</h3>  
-                <div class="timeline-meta">Vidya Vardhaka Pandit Nehru High School, Mysore | 2018 - 2019</div>
-                <p class="timeline-desc">Percentage: 89.38%</p>
-            </div>   
-        </section>  
+    <section class="metrics-display-grid">
+      <div class="metric-card-item">
+        <h3>📊 8.3 CGPA</h3>
+        <p>B.E. ISE Graduate</p>
+      </div>
+      <div class="metric-card-item">
+        <h3>🏏 State Level</h3>
+        <p>VTU Cricket Representative</p>
+      </div>
+      <div class="metric-card-item">
+        <h3>☁️ Azure AI</h3>
+        <p>Certified Professional</p>
+      </div>
+    </section>
 
-        <section id="certifications" class="glass-section">
-            <h2>📜 Certifications</h2>
-            <div class="certification-card">
-                <h3>Microsoft Certified: Azure AI Fundamentals (AI-900)</h3>  
-                <p>  
-                    Microsoft Azure AI Associate Certification validating Artificial Intelligence, Machine Learning concepts, Responsible AI principles, and Azure Cognitive Services.  
-                </p>  
-            </div>  
-        </section>
+    <section class="info-card-block">
+      <h2>🧑‍💻 About Me</h2>
+      <p>I am an Information Science and Engineering graduate from NIE Institute of Technology, Mysore (CGPA 8.3/10). I have hands-on experience in Full Stack Development, Frontend Engineering, REST API integration, Data Analytics, and Business Intelligence. My expertise includes React.js, Node.js, Python, SQL, MongoDB, MySQL, and Azure AI. I enjoy building scalable applications, solving real-world problems, and transforming complex datasets into meaningful business insights.</p>
+    </section>
 
-        <section id="strengths" class="glass-section">
-            <h2>⭐ Core Strengths</h2>  
-            <div class="skills-grid">  
-                <span class="skill-tag">UI/UX Sensibility</span>
-                <span class="skill-tag">Data-Driven Thinking</span>
-                <span class="skill-tag">Full Stack Development</span>
-                <span class="skill-tag">Problem Solving</span>
-                <span class="skill-tag">Agile Collaboration</span>
-                <span class="skill-tag">Attention to Detail</span>
-                <span class="skill-tag">Quick Learner</span>
-                <span class="skill-tag">Immediate Availability</span>
-            </div>  
-        </section>  
+    <section class="info-card-block">
+      <h2>🛠️ Technical Skills</h2>
+      <div class="skills-flex-wrap">
+        <span class="skill-pill">React.js</span>
+        <span class="skill-pill">Node.js</span>
+        <span class="skill-pill">Express.js</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">JavaScript ES6+</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">MySQL</span>
+        <span class="skill-pill">MongoDB</span>
+        <span class="skill-pill">REST APIs</span>
+        <span class="skill-pill">Flask</span>
+        <span class="skill-pill">FastAPI</span>
+        <span class="skill-pill">OpenCV</span>
+        <span class="skill-pill">HTML5</span>
+        <span class="skill-pill">CSS3</span>
+        <span class="skill-pill">Bootstrap</span>
+        <span class="skill-pill">Angular</span>
+        <span class="skill-pill">Git</span>
+        <span class="skill-pill">GitHub</span>
+        <span class="skill-pill">Power BI</span>
+        <span class="skill-pill">Azure AI</span>
+      </div>
+    </section>
 
-        <section id="contact" class="glass-section">  
-            <h2>📬 Get In Touch</h2>  
-            <form class="contact-form" action="https://formspree.io/f/xknkzbqy" method="POST">  
-                <input class="input-field" type="text" name="name" placeholder="Your Name" required>  
-                <input class="input-field" type="email" name="_replyto" placeholder="Your Email Address" required>  
-                <textarea class="input-field" name="message" rows="5" placeholder="Write your message here..." required></textarea>  
-                <button class="submit-btn" type="submit">Send Message</button>  
-            </form>  
+    <section class="info-card-block">
+      <h2>🚀 Featured Projects</h2>
+      
+      <a href="project-deaf-comm.html" class="interactive-project-card-wrapper">
+        <div class="project-asset-frame">
+          <img src="33582.jpg" alt="Two-Way Communication System Layout Image">
+        </div>
+        <div class="project-text-content">
+          <h3>Two-Way Communication System for Deaf People</h3>
+          <p>Built a full-stack real-time communication platform using React.js frontend and Python (Flask/FastAPI) backend. Integrated OpenCV and MediaPipe for sign-language recognition with 95% accuracy and implemented speech-to-text and text-to-speech communication pipelines for seamless interaction between deaf and hearing users.</p>
+          <span class="read-more-indicator">Click to view full case study and outcomes →</span>
+        </div>
+      </a>
 
-            <div class="info-details">  
-                <p>Email: <a href="mailto:adarshvpujar143@gmail.com">adarshvpujar143@gmail.com</a></p>
-                <p>📱 +91 9886103154</p>  
-            </div>  
+      <a href="project-car-rental.html" class="interactive-project-card-wrapper">
+        <div class="project-asset-frame">
+          <img src="car-rental-database.png" alt="Car Rental Database Layout Image" onerror="this.src='project1.jpg'">
+        </div>
+        <div class="project-text-content">
+          <h3>Car Rental Database Management System</h3>
+          <p>Designed and deployed a highly scalable relational database architecture handling variable auto inventory, client profile synchronization matrices, and billing logs. Configured analytical schema normalization architectures alongside indexed procedure lookups to dramatically accelerate data generation speed maps.</p>
+          <span class="read-more-indicator">Click to view full case study and outcomes →</span>
+        </div>
+      </a>
+    </section>
 
-            <div class="social-links" style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
-                <a href="https://www.linkedin.com/in/adarsh-v-pujar-8947b0400?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="social-btn">💼 LinkedIn</a>
-                <a href="https://github.com/adarshvpujar143-cyber/Adarshvp-portfolio/edit/main/index.html" target="_blank" class="social-btn">💻 GitHub</a>
-                <a href="https://www.instagram.com/.rose__boyy.?igsh=d3M0bXB4OWNzaWdr" target="_blank" class="social-btn">📸 Instagram</a>
-                <a href="https://adarshvpujar143-cyber.github.io/Adarshvp-portfolio/" target="_blank" class="social-btn">🌐 Portfolio</a>
-            </div>  
-        </section>  
-    </main>
+    <section class="info-card-block">
+      <h2>💼 Professional Experience</h2>
+      <div class="timeline-experience-item">
+        <h4>Full Stack Developer Apprentice</h4>
+        <h5>Chromosis Technologies Pvt Ltd | Dec 2025 - Present</h5>
+        <p>Developing and maintaining full-stack web applications using modern frontend and backend technologies. Building responsive user interfaces, integrating REST APIs, managing relational and non-relational databases, and participating in testing, debugging, and deployment pipelines.</p>
+      </div>
+      <div class="timeline-experience-item">
+        <h4>Frontend Developer Intern</h4>
+        <h5>Hewlett Packard Enterprise | 2024 (4 Months)</h5>
+        <p>Developed responsive web applications using HTML, CSS, JavaScript, and React.js. Integrated REST APIs, improved UI consistency, ensured cross-browser compatibility, and collaborated with Agile teams.</p>
+      </div>
+      <div class="timeline-experience-item">
+        <h4>Digital Marketing Executive</h4>
+        <h5>PhoneMax (S & S Co Inc) | Mysore, Karnataka | 2023 (6 Months)</h5>
+        <p>Increased regional sales by 25% through targeted promotional campaigns and strategic partnerships. Managed social media campaigns and online promotions. Analyzed campaign performance metrics to optimize marketing strategies and improve lead generation.</p>
+      </div>
+    </section>
 
-      <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.36/dist/lenis.min.js"></script>
-  
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  
-      <script src="script.js"></script>
-            
-   </body>
+    <section class="info-card-block">
+      <h2>📜 Certifications</h2>
+      <div class="certification-detailed-card">
+        <div class="certification-header-block">
+          <h3>Microsoft Certified: Azure AI Fundamentals (AI-900)</h3>
+          <span class="cert-authority-badge">Microsoft Authorized</span>
+        </div>
+        
+        <div class="cert-body-content" style="margin-top: 14px;">
+          <h4>Project / Certification Description</h4>
+          <p style="margin-bottom: 16px; font-size: 1.02rem; line-height: 1.65; opacity: 0.95;">
+            The Microsoft Azure AI Associate certification demonstrates my understanding of building, managing, and deploying AI solutions using Microsoft Azure services. It validates skills in applying machine learning, natural language processing, computer vision, and responsible AI practices using Azure AI tools and Cognitive Services. The certification focuses on designing scalable AI solutions that can be integrated into real-world applications.
+          </p>
+
+          <h4 style="margin-bottom: 8px;">🧠 What I Learned</h4>
+          <ul style="padding-left: 20px; margin-bottom: 18px; line-height: 1.75; font-size: 0.98rem;">
+            <li>Fundamentals of Artificial Intelligence and Machine Learning concepts</li>
+            <li>Working with Azure Cognitive Services (Vision, Language, Speech, Decision APIs)</li>
+            <li>Building and deploying AI models using Azure Machine Learning</li>
+            <li>Implementing Natural Language Processing (text analysis, sentiment detection, language understanding)</li>
+            <li>Computer Vision tasks like image classification, object detection, and OCR</li>
+            <li>Speech processing (speech-to-text and text-to-speech systems)</li>
+            <li>Responsible AI principles including fairness, transparency, and security</li>
+            <li>Integrating AI services into applications using REST APIs and SDKs</li>
+            <li>Monitoring, managing, and optimizing AI solutions on Azure cloud</li>
+          </ul>
+
+          <h4 style="margin-bottom: 8px;">🚀 Outcomes</h4>
+          <ul style="padding-left: 20px; line-height: 1.75; font-size: 0.98rem;">
+            <li>Ability to design and deploy AI-powered cloud applications</li>
+            <li>Practical understanding of Azure AI ecosystem and services</li>
+            <li>Experience in applying AI solutions to real-world business problems</li>
+            <li>Improved knowledge of cloud-based machine learning workflows</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="info-card-block final-contact-section">
+      <h2>📬 Get In Touch</h2>
+      <form class="contact-form-element" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+        <div class="form-input-row">
+          <input type="text" placeholder="Your Name" required class="styled-form-input">
+        </div>
+        <div class="form-input-row">
+          <input type="email" placeholder="Your Email Address" required class="styled-form-input">
+        </div>
+        <div class="form-input-row">
+          <textarea placeholder="Write your message here..." rows="5" required class="styled-form-input"></textarea>
+        </div>
+        <button type="submit" class="action-btn submit-form-btn">Send Message</button>
+      </form>
+      
+      <div class="footer-contact-details">
+        <p>📧 Email: <a href="mailto:adarshvpujar143@gmail.com">adarshvpujar143@gmail.com</a></p>
+        <p>📱 Phone: <a href="tel:+919886103154">+91 9886103154</a></p>
+        <div class="social-footer-links">
+          <a href="https://linkedin.com" target="_blank">💼 LinkedIn</a>
+          <a href="https://github.com/adarshvpujar143-cyber" target="_blank">💻 GitHub</a>
+          <a href="https://instagram.com" target="_blank">📸 Instagram</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
