@@ -15,20 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Real-time Palette Customization Switch Controller Engine
-function setTheme(themeName) {
-    document.body.setAttribute('data-theme', themeName);
-    
-    // Clean indicator selection tags
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    // Set selected element highlight state smoothly
-    const eventTarget = window.event ? window.event.currentTarget : null;
-    if(eventTarget) {
-        eventTarget.classList.add('active');
+// Tracking active theme state array index counter
+let currentThemeIndex = 1;
+const totalThemesCount = 5;
+
+// Single top-right button click handler cycling through themes 1 to 5 cleanly
+function cycleTheme() {
+    currentThemeIndex++;
+    if (currentThemeIndex > totalThemesCount) {
+        currentThemeIndex = 1; // resets index state seamlessly
     }
+    document.body.setAttribute('data-theme', `theme${currentThemeIndex}`);
 }
 
 // Project Modular Screen View Drawer Sliders Handlers
@@ -36,14 +33,15 @@ function openProject(projectId) {
     const targetOverlay = document.getElementById(`project-slide-${projectId}`);
     if(targetOverlay) {
         targetOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden'; // Prevents parent grid background viewport text scrolling
+        document.body.style.overflow = 'hidden'; // Prevents parent background page scrolling
     }
 }
 
+// Closes full window sliders smoothly
 function closeProject(projectId) {
     const targetOverlay = document.getElementById(`project-slide-${projectId}`);
     if(targetOverlay) {
         targetOverlay.classList.remove('open');
-        document.body.style.overflow = 'auto'; // Restores active device swipe variables
+        document.body.style.overflow = 'auto'; // Restores device viewport swipe functionality
     }
 }
