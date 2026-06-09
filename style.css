@@ -1536,4 +1536,20 @@ margin-bottom:10px;
     0 20px 60px rgba(179,167,232,0.15),
     0 0 40px rgba(87,172,200,0.08);
 }
-      
+      /* =========================================================
+   EMERGENCY GLOBAL LAYOUT ALIGNMENT RESET
+   ========================================================= */
+html, body {
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  display: block !important;
+}
+
+.container, .hero-section, .glass-section {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+   
