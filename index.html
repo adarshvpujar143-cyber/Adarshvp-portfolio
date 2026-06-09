@@ -1,320 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adarsh V Pujar | Premium Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adarsh V Pujar | Portfolio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- COLOR PALETTES & STYLING SETTINGS --- */
+    :root {
+      /* Palette #1 & #3 Blend for Perfect Contrast */
+      --primary-accent: #B3A7E8;
+      --text-main: #EBE8F9;
+      --bg-main: #1D163D;
+      --card-bg: #4B447A;
+      --hover-state: #7F75B7;
+      
+      /* Glassmorphism Configuration (#4) */
+      --glass-bg: rgba(87, 172, 200, 0.08);
+      --glass-blur: blur(20px);
+      --glass-border: 1px solid rgba(87, 172, 200, 0.15);
+    }
+
+    /* --- RESET & BASIC STYLES --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+
+    /* --- MAIN PORTFOLIO CARD --- */
+    .profile-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 28px;
+      padding: 40px 28px;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* --- PROFILE IMAGE FIX --- */
+    .avatar-container {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 24px auto;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-accent), var(--hover-state));
+      padding: 3px; 
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .avatar-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .name {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      color: #FFFFFF;
+    }
+
+    /* --- SMOOTH ROLLING TEXT TRANSITIONS --- */
+    .headline-container {
+      height: 32px; 
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .headline-sequence {
+      display: flex;
+      flex-direction: column;
+      animation: sequenceRotation 9s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+    }
+
+    .headline-item {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-accent);
+      line-height: 32px;
+      height: 32px;
+    }
+
+    @keyframes sequenceRotation {
+      0%, 25% { transform: translateY(0); }
+      33%, 58% { transform: translateY(-32px); }
+      66%, 91% { transform: translateY(-64px); }
+      100% { transform: translateY(0); }
+    }
+
+    .bio {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #D3CCE9;
+      margin-bottom: 32px;
+    }
+
+    /* --- READABLE CONTACT FORM --- */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 28px;
+    }
+
+    .contact-form h3 {
+      font-size: 1.3rem;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #FFFFFF; /* High contrast text inside inputs */
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .input-field::placeholder {
+      color: rgba(235, 232, 249, 0.6); /* Readable placeholder values */
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--primary-accent);
+      background: rgba(75, 68, 122, 0.9);
+      box-shadow: 0 0 0 3px rgba(179, 167, 232, 0.2);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--primary-accent);
+      color: #1D163D;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .submit-btn:hover {
+      background: #C2B8EE;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* --- DUAL CHANNELS BACKUP CONNECTION LINKS --- */
+    .direct-links-container {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .direct-action-link {
+      font-size: 0.85rem;
+      color: var(--primary-accent);
+      text-decoration: none;
+      transition: color 0.2s, text-decoration 0.2s;
+    }
+
+    .direct-action-link:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+  </style>
 </head>
-<body data-theme="theme1">
-    <div class="bg"></div>
+<body>
 
-    <nav>
-        <div class="nav-container">
-            <div class="logo">AVP<span>.dev</span></div>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#education">Education</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <button class="single-theme-toggle" onclick="cycleTheme()" title="Change Theme Palette">
-                    <i class="fa-solid fa-palette"></i>
-                </button>
-                <a class="nav-resume-btn" href="Adarsh_V_Pujar_Resume-1.pdf" download><i class="fa-solid fa-download"></i> Resume</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="main-container">
-        <header id="about" class="hero glass">
-            <div class="badge">Immediate Availability</div>
-            <div class="profile-wrapper">
-                <img src="Pictures/IMG-20260221-WA0014.jpg" alt="Adarsh V Pujar" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
-            </div>
-            <h1>Adarsh V Pujar</h1>
-            <h2>Full Stack Developer & Data Analyst</h2>
-            <p>Information Science & Engineering graduate specializing in building pixel-perfect, responsive frontends, robust backend APIs, and translating data into actionable business insights.</p>
-            
-            <div class="hero-actions">
-                <a class="btn primary-btn" href="Adarsh_V_Pujar_Resume-1.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
-                <a class="btn secondary-btn" href="#contact">Get In Touch</a>
-            </div>
-            
-            <div class="social-icons">
-                <a href="mailto:adarshvpujar143@gmail.com" title="Direct Email"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://linkedin.com/in/adarshvpujar" target="_blank" title="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/pujar143-cyber" target="_blank" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
-                <a href="https://instagram.com" target="_blank" title="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
-                <a href="tel:+919886103154" title="Call Directly"><i class="fa-solid fa-phone"></i></a>
-            </div>
-        </header>
-
-        <section id="experience" class="glass">
-            <h2><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
-            <div class="timeline">
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-header">
-                        <h3>Full Stack Developer Apprenticeship</h3>
-                        <span class="date">Dec 2025 - Present</span>
-                    </div>
-                    <h4 class="company">Chromosis Technologies Pvt Ltd | Hubli, Karnataka</h4>
-                    <div class="timeline-body-with-img">
-                        <ul>
-                            <li>Developing and maintaining full-stack web applications using modern frontend and backend environments.</li>
-                            <li>Building responsive interfaces and integrating secure RESTful APIs for fast data distribution.</li>
-                            <li>Managing relational and non-relational database models to guarantee quick server communication.</li>
-                        </ul>
-                        <img src="Pictures/IMG-20260221-WA0013.jpg" alt="Chromosis Workspace" class="timeline-img" onerror="this.style.display='none'">
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-header">
-                        <h3>Frontend Developer Intern</h3>
-                        <span class="date">4 Months Duration</span>
-                    </div>
-                    <h4 class="company">HP (Hewlett-Packard) | Bangalore, Karnataka</h4>
-                    <div class="timeline-body-with-img">
-                        <ul>
-                            <li>Engineered highly optimized frontend features using modular frameworks, reducing component load overhead.</li>
-                            <li>Collaborated with product designers to map clean UX wireframes into responsive, cross-browser functional assets.</li>
-                            <li>Conducted code reviews, continuous application debugging, and quality-assurance rendering tests.</li>
-                        </ul>
-                        <img src="Pictures/IMG-20260221-WA0012.jpg" alt="HP Workspace" class="timeline-img" onerror="this.style.display='none'">
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-header">
-                        <h3>Digital Marketing Executive</h3>
-                        <span class="date">5 Months Duration</span>
-                    </div>
-                    <h4 class="company">PhoneMax</h4>
-                    <div class="timeline-body-with-img">
-                        <ul>
-                            <li>Led digital client acquisition strategies, scaling platform reach through performance-driven campaign tracking models.</li>
-                            <li>Automated user traffic distributions, setting up metric funnels to optimize operational conversion rates.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="education" class="glass">
-            <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
-            <div class="timeline">
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-header">
-                        <h3>Bachelor of Engineering (Information Science & Engineering)</h3>
-                        <span class="date">2021 - 2025</span>
-                    </div>
-                    <h4 class="company">NIE Institute of Technology | Mysore, Karnataka</h4>
-                    <div class="timeline-body-with-img">
-                        <div>
-                            <p class="gpa"><strong>CGPA:</strong> 8.31 / 10.0 (Affiliated to VTU)</p>
-                        </div>
-                        <img src="Pictures/IMG-20260221-WA0009.jpg" alt="NIE Institute of Technology" class="institution-img" onerror="this.style.display='none'">
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-header">
-                        <h3>Pre-University Certificate (PUC) - Science (PCMB)</h3>
-                        <span class="date">2019 - 2021</span>
-                    </div>
-                    <h4 class="company">VVS Golden Jubilee PU College | Mysore, Karnataka</h4>
-                    <div class="timeline-body-with-img">
-                        <p class="gpa"><strong>Percentage:</strong> 87.28%</p>
-                        <img src="Pictures/IMG-20260221-WA0011.jpg" alt="VVS College" class="institution-img" onerror="this.style.display='none'">
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-header">
-                        <h3>Secondary School Leaving Certificate (SSLC)</h3>
-                        <span class="date">2018 - 2019</span>
-                    </div>
-                    <h4 class="company">Vidya Vardhaka Pandit Nehru High School | Mysore, Karnataka</h4>
-                    <div class="timeline-body-with-img">
-                        <p class="gpa"><strong>Percentage:</strong> 89.38%</p>
-                        <img src="Pictures/IMG-20260221-WA0010.jpg" alt="Pandit Nehru High School" class="institution-img" onerror="this.style.display='none'">
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="skills" class="glass">
-            <h2><i class="fa-solid fa-code"></i> Technical Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Languages & Front-End</h3>
-                    <div class="skill-tags">
-                        <span>Python</span><span>Java</span><span>C</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>React.js</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Back-End & Databases</h3>
-                    <div class="skill-tags">
-                        <span>Node.js</span><span>Express.js</span><span>MySQL</span><span>MongoDB</span><span>Firebase</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & Cloud Integration</h3>
-                    <div class="skill-tags">
-                        <span>Git & GitHub</span><span>Docker</span><span>Postman</span><span>VS Code</span><span>Microsoft Azure</span><span>Power BI</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="glass">
-            <h2><i class="fa-solid fa-laptop-code"></i> Featured Projects <span class="hint-lbl">(Tap to inspect details)</span></h2>
-            <div class="projects-grid">
-                
-                <div class="project-card" onclick="openProject(1)">
-                    <div class="project-img-container">
-                        <img src="Pictures/IMG-20260221-WA0008.jpg" alt="Car Rental Management System" class="project-card-img" onerror="this.src='https://via.placeholder.com/400x200'">
-                    </div>
-                    <div class="project-card-content">
-                        <h3>Car Rental Management Systems</h3>
-                        <p>An automated web platform designed to streamline vehicle booking operations and fleet tracking workflows metrics natively.</p>
-                        <span class="action-trigger-lbl">Read Full Specification & Usage <i class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-                </div>
-
-                <div class="project-card" onclick="openProject(2)">
-                    <div class="project-img-container">
-                        <img src="Pictures/IMG-20260221-WA0007.jpg" alt="Two Way Communication System" class="project-card-img" onerror="this.src='https://via.placeholder.com/400x200'">
-                    </div>
-                    <div class="project-card-content">
-                        <h3>Two Way Communication for deaf people</h3>
-                        <p>An accessibility translation engine bridging communication gaps through real-time conversion models.</p>
-                        <span class="action-trigger-lbl">Read Full Specification & Usage <i class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="contact" class="glass">
-            <h2><i class="fa-solid fa-paper-plane"></i> Get in Touch</h2>
-            
-            <div class="contact-wrapper">
-                <form action="https://formspree.io/f/your_id_here" method="POST">
-                    <div class="form-row">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <textarea name="message" placeholder="Write down your message details here..." required></textarea>
-                    <button type="submit">Send Message <i class="fa-solid fa-paper-plane"></i></button>
-                </form>
-                
-                <div class="contact-info">
-                    <a class="info-meta" href="tel:+919886103154" style="text-decoration: none; color: inherit;">
-                        <i class="fa-solid fa-phone"></i>
-                        <div>
-                            <span>Phone Contact</span>
-                            <p>+91 9886103154</p>
-                        </div>
-                    </a>
-                    <div class="info-meta">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <div>
-                            <span>Current Base</span>
-                            <p>Mysore, Karnataka, India</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <div class="profile-card">
+    
+    <div class="avatar-container">
+      <img src="profile.jpg" alt="Adarsh V Pujar">
     </div>
 
-    <div id="project-slide-1" class="fullscreen-project-overlay">
-        <div class="overlay-scroll-container">
-            <button class="close-overlay-btn" onclick="closeProject(1)"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</button>
-            <div class="overlay-content-wrapper">
-                <img src="Pictures/IMG-20260221-WA0008.jpg" alt="Car Rental Management Spec" class="overlay-banner-img" onerror="this.src='https://via.placeholder.com/600x300'">
-                <h1>Car Rental Management Systems</h1>
-                
-                <div class="spec-block">
-                    <h3><i class="fa-solid fa-file-text"></i> Project Description</h3>
-                    <p>The Car Rental Management System is an enterprise-tier web ecosystem engineered to simplify end-to-end car rental operations. The platform offers direct interactive interfaces for clients to browse live inventories, track price distributions, and manage bookings, while providing rental firms with administrative control panels to monitor fleet health, contract durations, and automated invoice dispatches.</p>
-                </div>
+    <h1 class="name">Adarsh V Pujar</h1>
 
-                <div class="spec-block">
-                    <h3><i class="fa-solid fa-layer-group"></i> Technologies Used</h3>
-                    <div class="skill-tags">
-                        <span>React.js</span><span>Node.js</span><span>Express.js</span><span>MySQL</span><span>Sequelize ORM</span><span>Bootstrap 5</span>
-                    </div>
-                </div>
-
-                <div class="spec-block">
-                    <h3><i class="fa-solid fa-square-poll-vertical"></i> Real Outcome of the Project</h3>
-                    <p>Successfully automated manual booking schedules, reducing vehicle reservation processing delays by 60%. The centralized database architecture minimizes scheduling conflicts and ensures real-time updates for vehicle availability across all operational points.</p>
-                </div>
-
-                <div class="spec-block">
-                    <h3><i class="fa-solid fa-circle-play"></i> Usage & Execution Instructions</h3>
-                    <p>1. Navigate to the vehicle terminal display pool to inspect catalog records.<br>
-                       2. Select target reservation windows and complete user verification forms.<br>
-                       3. The administrative ledger verifies payment tokens and generates a secure checkout contract automatically.</p>
-                </div>
-            </div>
-        </div>
+    <div class="headline-container">
+      <div class="headline-sequence">
+        <div class="headline-item">Web Developer</div>
+        <div class="headline-item">Full Stack Developer</div>
+        <div class="headline-item">Data Analyst</div>
+      </div>
     </div>
 
-    <div id="project-slide-2" class="fullscreen-project-overlay">
-        <div class="overlay-scroll-container">
-            <button class="close-overlay-btn" onclick="closeProject(2)"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</button>
-            <div class="overlay-content-wrapper">
-                <img src="Pictures/IMG-20260221-WA0007.jpg" alt="Deaf Communication Spec" class="overlay-banner-img" onerror="this.src='https://via.placeholder.com/600x300'">
-                <h1>Two Way Communication for deaf people</h1>
-                
-                <div class="spec-block">
-                    <h3><i class="fa-solid fa-file-text"></i> Project Description</h3>
-                    <p>An innovative assistive framework engineered to remove structural communication barriers between the deaf community and non-sign language users. The application features a dual-module translation core that converts spoken voice into readable text or dynamic sign representations, while translating manual text submissions back into clear synthetic audio outputs.</p>
-                </div>
+    <p class="bio">
+      Information Science & Engineering graduate specializing in building pixel-perfect, responsive frontends, robust backend APIs, and translating data into actionable business insights.
+    </p>
 
-                <div class="spec-block">
-                    <h3><i class="fa-solid fa-layer-group"></i> Technologies Used</h3>
-                    <div class="skill-tags">
-                        <span>Python</span><span>OpenCV</span><span>TensorFlow</span><span>WebRTC</span><span>JavaScript API</span>
-                    </div>
-                </div>
+    <form class="contact-form" action="https://formspree.io/f/xknkzbqy" method="POST">
+      <h3>Get in Touch</h3>
+      
+      <input class="input-field" type="text" name="name" placeholder="Your Name" required>
+      <input class="input-field" type="email" name="_replyto" placeholder="Your Email Address" required>
+      <textarea class="input-field" name="message" rows="4" placeholder="Write your text message here..." required></textarea>
+      
+      <button class="submit-btn" type="submit">Send Message</button>
+    </form>
 
-                <div class="spec-block">
-                    <h3><i class="fa-solid fa-square-poll-vertical"></i> Real Outcome of the Project</h3>
-                    <p>Achieved a high translation accuracy rate for conversational language tokens. The web application establishes a lightweight communication channel operating at minimal latency thresholds, making it highly effective for daily conversational environments.</p>
-                </div>
-
-                <div class="spec-block">
-                    <h3><i class="fa-solid fa-circle-play"></i> Usage & Execution Instructions</h3>
-                    <p>1. Grant audio recording permissions to authorize language processing streams.<br>
-                       2. Speak directly into the system or input structural text into the interactive dashboard.<br>
-                       3. The communication matrix renders immediate visual components or synthesized audio signals in real time.</p>
-                </div>
-            </div>
-        </div>
+    <div class="direct-links-container">
+      <a class="direct-action-link" href="sms:+91adarshv143?body=Hi%20Adarsh,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect!">
+        💬 Prefer Texting/SMS Mobile? Click Here
+      </a>
     </div>
 
-    <script src="script.js"></script>
+  </div>
+
 </body>
-                        </html>
+</html>
