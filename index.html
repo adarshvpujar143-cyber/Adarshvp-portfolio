@@ -30,6 +30,11 @@
         <span id="headline-target" class="headline-dynamic-text">Full Stack Developer</span>
       </div>
 
+      <div class="portfolio-search-wrapper">
+        <input type="text" id="portfolio-search-input" placeholder="🔍 Search projects, skills, or experience...">
+        <div id="search-results-feedback" class="search-feedback-text"></div>
+      </div>
+
       <p class="professional-statement-bio">
         Results-driven Information Science and Engineering graduate with hands-on experience in frontend development, full-stack web application development, and data analysis. Proficient in React.js, Node.js, Python, SQL, and modern web technologies. Experienced in building responsive UIs, RESTful APIs, database-driven applications, and deriving actionable insights from data. All specified career attributes and background summaries provided herein represent verified professional records.
       </p>
@@ -46,26 +51,26 @@
     </header>
 
     <section class="metrics-display-grid">
-      <div class="metric-card-item">
+      <div class="metric-card-item searchable-node">
         <h3>📊 8.3 CGPA</h3>
-        <p>B.E. ISE Graduate</p>
+        <p>B.E. ISE Graduate from NIE Institute of Technology, Mysore</p>
       </div>
-      <div class="metric-card-item">
+      <div class="metric-card-item searchable-node">
         <h3>🏏 State Level</h3>
         <p>VTU Cricket Representative</p>
       </div>
-      <div class="metric-card-item">
+      <div class="metric-card-item searchable-node">
         <h3>☁️ Azure AI</h3>
-        <p>Certified Professional</p>
+        <p>Certified AI-900 Professional</p>
       </div>
     </section>
 
-    <section class="info-card-block">
+    <section class="info-card-block searchable-node">
       <h2>🧑‍💻 About Me</h2>
       <p>I am an Information Science and Engineering graduate from NIE Institute of Technology, Mysore (CGPA 8.3/10). I have hands-on experience in Full Stack Development, Frontend Engineering, REST API integration, Data Analytics, and Business Intelligence. My expertise includes React.js, Node.js, Python, SQL, MongoDB, MySQL, and Azure AI. I enjoy building scalable applications, solving real-world problems, and transforming complex datasets into meaningful business insights.</p>
     </section>
 
-    <section class="info-card-block">
+    <section class="info-card-block searchable-node">
       <h2>🛠️ Technical Skills</h2>
       <div class="skills-flex-wrap">
         <span class="skill-pill">React.js</span>
@@ -91,7 +96,7 @@
       </div>
     </section>
 
-    <section class="info-card-block">
+    <section class="info-card-block searchable-node">
       <h2>🚀 Featured Projects</h2>
       
       <a href="project-deaf-comm.html" class="interactive-project-card-wrapper">
@@ -117,7 +122,7 @@
       </a>
     </section>
 
-    <section class="info-card-block">
+    <section class="info-card-block searchable-node">
       <h2>💼 Professional Experience</h2>
       <div class="timeline-experience-item">
         <h4>Full Stack Developer Apprentice</h4>
@@ -136,7 +141,7 @@
       </div>
     </section>
 
-    <section class="info-card-block">
+    <section class="info-card-block searchable-node">
       <h2>📜 Certifications</h2>
       <div class="certification-detailed-card">
         <div class="certification-header-block">
@@ -147,34 +152,21 @@
         <div class="cert-body-content" style="margin-top: 14px;">
           <h4>Project / Certification Description</h4>
           <p style="margin-bottom: 16px; font-size: 1.02rem; line-height: 1.65; opacity: 0.95;">
-            The Microsoft Azure AI Associate certification demonstrates my understanding of building, managing, and deploying AI solutions using Microsoft Azure services. It validates skills in applying machine learning, natural language processing, computer vision, and responsible AI practices using Azure AI tools and Cognitive Services. The certification focuses on designing scalable AI solutions that can be integrated into real-world applications.
+            The Microsoft Azure AI Associate certification demonstrates my understanding of building, managing, and deploying AI solutions using Microsoft Azure services. It validates skills in applying machine learning, natural language processing, computer vision, and responsible AI practices using Azure AI tools and Cognitive Services.
           </p>
-
           <h4 style="margin-bottom: 8px;">🧠 What I Learned</h4>
-          <ul style="padding-left: 20px; margin-bottom: 18px; line-height: 1.75; font-size: 0.98rem;">
+          <ul style="padding-left: 20px; margin-bottom: 18px; line-height: 1.75;">
             <li>Fundamentals of Artificial Intelligence and Machine Learning concepts</li>
             <li>Working with Azure Cognitive Services (Vision, Language, Speech, Decision APIs)</li>
             <li>Building and deploying AI models using Azure Machine Learning</li>
-            <li>Implementing Natural Language Processing (text analysis, sentiment detection, language understanding)</li>
-            <li>Computer Vision tasks like image classification, object detection, and OCR</li>
-            <li>Speech processing (speech-to-text and text-to-speech systems)</li>
+            <li>Implementing Natural Language Processing, Computer Vision, and Speech tasks</li>
             <li>Responsible AI principles including fairness, transparency, and security</li>
-            <li>Integrating AI services into applications using REST APIs and SDKs</li>
-            <li>Monitoring, managing, and optimizing AI solutions on Azure cloud</li>
-          </ul>
-
-          <h4 style="margin-bottom: 8px;">🚀 Outcomes</h4>
-          <ul style="padding-left: 20px; line-height: 1.75; font-size: 0.98rem;">
-            <li>Ability to design and deploy AI-powered cloud applications</li>
-            <li>Practical understanding of Azure AI ecosystem and services</li>
-            <li>Experience in applying AI solutions to real-world business problems</li>
-            <li>Improved knowledge of cloud-based machine learning workflows</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="info-card-block final-contact-section">
+    <section id="contact" class="info-card-block final-contact-section searchable-node">
       <h2>📬 Get In Touch</h2>
       <form class="contact-form-element" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
         <div class="form-input-row">
@@ -195,11 +187,25 @@
         <div class="social-footer-links">
           <a href="https://linkedin.com" target="_blank">💼 LinkedIn</a>
           <a href="https://github.com/adarshvpujar143-cyber" target="_blank">💻 GitHub</a>
-          <a href="https://instagram.com" target="_blank">📸 Instagram</a>
         </div>
       </div>
     </section>
+  </div>
 
+  <div class="chatbot-floating-toggle" id="bot-toggle-badge">💬 Portfolio AI</div>
+  
+  <div class="chatbot-window-box" id="bot-window-panel">
+    <div class="chatbot-header-bar">
+      <h4>🤖 Adarsh's Portfolio AI</h4>
+      <span id="bot-close-panel-btn">✖</span>
+    </div>
+    <div class="chatbot-messages-area" id="bot-chat-logs">
+      <div class="chat-msg bot-msg">Hello! I am Adarsh's custom portfolio assistant. What help do you want regarding this portfolio? Ask me about my skills, projects, experience, or contact information!</div>
+    </div>
+    <div class="chatbot-input-tray">
+      <input type="text" id="bot-user-query" placeholder="Type a portfolio question...">
+      <button id="bot-send-btn">Send</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
