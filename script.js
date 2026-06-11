@@ -1,180 +1,123 @@
-document.addEventListener("DOMContentLoaded", () => {
-  
-  /* --- 1. CONFIGURING THE MULTI-THEME ROTATOR ENGINE --- */
-  const themesList = [
-    { id: "theme-1", name: "Pale Teal Green" },
-    { id: "theme-2", name: "Lavender Purple" },
-    { id: "theme-3", name: "Sky Blue / Navy" },
-    { id: "theme-4", name: "Glacier Mint" },
-    { id: "theme-5", name: "Midnight Teal" },
-    { id: "theme-6", name: "Cyan Ocean Blue" }
-  ];
+// Preloader Timeout Handling
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.visibility = 'hidden', 500);
+    }, 800);
+});
 
-  let savedThemeId = localStorage.getItem("activePortfolioTheme") || "theme-1";
-  let activeIndex = themesList.findIndex(t => t.id === savedThemeId);
-  if (activeIndex === -1) activeIndex = 0;
-
-  document.body.setAttribute("data-theme", themesList[activeIndex].id);
-  const labelIndicator = document.getElementById("current-theme-name");
-  if (labelIndicator) labelIndicator.textContent = themesList[activeIndex].name;
-
-  const toggleBtn = document.getElementById("theme-toggle-btn");
-  if (toggleBtn) {
-    toggleBtn.addEventListener("click", () => {
-      activeIndex = (activeIndex + 1) % themesList.length;
-      document.body.setAttribute("data-theme", themesList[activeIndex].id);
-      localStorage.setItem("activePortfolioTheme", themesList[activeIndex].id);
-      if (labelIndicator) labelIndicator.textContent = themesList[activeIndex].name;
-    });
-  }
-
-  /* --- 2. WHATSAPP DROPDOWN SCANNER TOGGLE MECHANIC --- */
-  const qrTriggerBtn = document.getElementById("trigger-qr-view-btn");
-  const qrDropBox = document.getElementById("qr-dropdown-content-box");
-
-  if (qrTriggerBtn && qrDropBox) {
-    qrTriggerBtn.addEventListener("click", () => {
-      if (qrDropBox.className === "qr-content-hidden") {
-        qrDropBox.className = "qr-content-visible";
-        qrTriggerBtn.textContent = "✖ Hide WhatsApp Scanner QR Code";
-      } else {
-        qrDropBox.className = "qr-content-hidden";
-        qrTriggerBtn.textContent = "📷 View WhatsApp Scanner QR Code";
-      }
-    });
-  }
-
-  /* --- 3. TOP NAVBAR SEARCH AND AUTOMATIC CONTENT SCROLL SNAP FOCUS --- */
-  const searchInput = document.getElementById("portfolio-search-input");
-  
-  if (searchInput) {
-    searchInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        const term = searchInput.value.toLowerCase().trim();
-        if (term === "") return;
-
-        let bestMatchNode = null;
-        const targetNodes = document.querySelectorAll(".searchable-node");
-
-        for (let node of targetNodes) {
-          if (node.textContent.toLowerCase().includes(term)) {
-            bestMatchNode = node;
-            break; // Stop at the first logical match section
-          }
-        }
-
-        if (bestMatchNode) {
-          // Smoothly scroll the view window right down to the matching container element!
-          const elementPosition = bestMatchNode.getBoundingClientRect().top + window.pageYOffset;
-          window.scrollTo({
-            top: elementPosition - 90, // Leave padding space for sticky navigation bars
-            behavior: "smooth"
-          });
-          
-          // Flash effect to show focus
-          bestMatchNode.style.outline = "2px solid var(--text-main)";
-          setTimeout(() => { bestMatchNode.style.outline = "none"; }, 1500);
-        }
-      }
-    });
-  }
-
-  /* --- 4. HIGHLY STABLE GUARDED PORTFOLIO NLP CHATBOT --- */
-  const botToggle = document.getElementById("bot-toggle-badge");
-  const botWindow = document.getElementById("bot-window-panel");
-  const botClose = document.getElementById("bot-close-panel-btn");
-  const botSendBtn = document.getElementById("bot-send-btn");
-  const botInput = document.getElementById("bot-user-query");
-  const botChatLogs = document.getElementById("bot-chat-logs");
-
-  if (botToggle && botWindow && botClose) {
-    botToggle.addEventListener("click", () => {
-      botWindow.style.display = botWindow.style.display === "flex" ? "none" : "flex";
-    });
-    botClose.addEventListener("click", () => botWindow.style.display = "none");
-  }
-
-  // Strictly prioritize matches to stop cross-category fallback glitches
-  const portfolioKnowledge = [
-    {
-      keywords: ["contact", "phone", "call", "whatsapp", "instagram", "linkedin", "number", "reach", "social"],
-      response: "📬 <strong>Adarsh's Direct Application Links:</strong><br><br>• <strong>WhatsApp Direct Chat:</strong> Click the WhatsApp icon link at the page bottom to text directly at +91 9886103154.<br>• <strong>LinkedIn:</strong> Verified profile loaded into the blue LinkedIn application logo container.<br>• <strong>Instagram:</strong> Connect over app logs via the pink Instagram button slot."
-    },
-    {
-      keywords: ["education", "college", "school", "nie", "nieit", "mysore", "cgpa", "grade", "vvs"],
-      response: "🎓 <strong>Academic Records:</strong><br><br>• <strong>B.E. Information Science & Engineering:</strong> NIE Institute of Technology, Mysore. Completed with a verified <strong>8.3 CGPA</strong> rating metrics track.<br>• <strong>School Foundations:</strong> VVS Educational Institution."
-    },
-    {
-      keywords: ["project", "projects", "deaf", "communication", "car rental", "database"],
-      response: "🚀 <strong>Project Deployments:</strong><br><br>• <strong>Two-Way Deaf Communication Tool:</strong> Processes real-time gestures into text/speech output using Python, OpenCV, and MediaPipe models at 95% accuracy.<br>• <strong>Car Rental DBMS:</strong> Enterprise-grade 3NF normalized system built on MySQL/MongoDB schemas to eliminate duplicate data collisions."
-    },
-    {
-      keywords: ["skill", "skills", "technologies", "languages", "react", "python", "sql"],
-      response: "🛠️ <strong>Technical Framework Inventory:</strong><br>• Engineering: React.js, Node.js, Express.js, JavaScript, Python, FastAPI, Flask, OpenCV, SQL, MySQL, MongoDB, and Azure AI modules."
-    },
-    {
-      keywords: ["experience", "job", "intern", "chromosis", "hpe", "work"],
-      response: "💼 <strong>Professional Work Records:</strong><br><br>• <strong>Full Stack Apprentice:</strong> Chromosis Technologies (Dec 2025 - Present).<br>• <strong>Frontend Intern:</strong> Hewlett Packard Enterprise (4 Months duration loop). React optimization structures.<br>• <strong>Marketing:</strong> PhoneMax Management. Scaled sales counts by 25%."
-    },
-    {
-      keywords: ["certification", "azure", "ai-900", "fundamentals"],
-      response: "📜 <strong>Cloud Credentials:</strong><br>Adarsh holds the formal <strong>Microsoft Certified: Azure AI Fundamentals (AI-900)</strong> designation, validating skills in cloud AI systems deployment."
-    },
-    {
-      keywords: ["cricket", "sports", "vtu"],
-      response: "🏏 <strong>Athletic Honors:</strong><br>Adarsh is a decorated state-level student athlete, having represented his university as a <strong>VTU Cricket Representative</strong>."
+// Light/Dark Theme Switching System
+function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    
+    const btn = document.querySelector('.theme-toggle-btn');
+    if (newTheme === 'light') {
+        btn.innerHTML = '<i class="fas fa-sun"></i> Theme';
+    } else {
+        btn.innerHTML = '<i class="fas fa-moon"></i> Theme';
     }
-  ];
+}
 
-  function processBotMessage() {
-    const rawQuery = botInput.value.trim();
-    if (rawQuery === "") return;
+// Deep Project Slide-In Dictionary Data Mapping
+const projectData = {
+    'deaf-comm': {
+        title: "Two-Way Communication System for Deaf People",
+        desc: "Designed and built a full-stack real-time communication platform using a React.js frontend and Python (Flask/FastAPI) backend, enabling seamless interaction between deaf and hearing users.",
+        tech: "React.js, Python, Flask/FastAPI, OpenCV, MediaPipe, MongoDB, Firebase, gTTS, SpeechRecognition, Git",
+        outcomes: "Integrated a computer vision pipeline achieving over 95% recognition accuracy for sign language gestures, successfully implementing real-time text-to-speech and speech-to-text bidirectional flows.",
+        learnt: "Mastered working with media streaming pipelines, localized model prediction latency management inside user interfaces, asynchronous state coordination rules, and non-relational backend structures."
+    },
+    'car-rental': {
+        title: "Car Rental Management System",
+        desc: "Built a robust full-stack vehicle rental platform enabling users to browse vehicles, book rentals, view rental history, and manage end-to-end transaction records efficiently.",
+        tech: "React.js, Node.js, Express.js, MongoDB/MySQL, JWT, bcrypt, Postman, Git",
+        outcomes: "Designed an admin panel for tracking inventory, dynamic pricing logic, and secure user sessions, eliminating manual scheduling operational overheads.",
+        learnt: "Deepened engineering knowledge surrounding authentication workflows (JWT, bcrypt hashing), schema data integrity normalization, RESTful router configurations, and API payload testing."
+    }
+};
 
-    const userBubble = document.createElement("div");
-    userBubble.className = "chat-msg user-msg";
-    userBubble.textContent = rawQuery;
-    botChatLogs.appendChild(userBubble);
-    botInput.value = "";
-    botChatLogs.scrollTop = botChatLogs.scrollHeight;
+// Opening and Closing the Project Panel with Slide Effect
+function openProject(key) {
+    const data = projectData[key];
+    const content = `
+        <h2>${data.title}</h2>
+        <div class="panel-section">
+            <h4>Description</h4>
+            <p>${data.desc}</p>
+        </div>
+        <div class="panel-section">
+            <h4>Technologies Used</h4>
+            <p>${data.tech}</p>
+        </div>
+        <div class="panel-section">
+            <h4>Outcomes</h4>
+            <p>${data.outcomes}</p>
+        </div>
+        <div class="panel-section">
+            <h4>What I Learnt</h4>
+            <p>${data.learnt}</p>
+        </div>
+    `;
+    document.getElementById('panel-content').innerHTML = content;
+    document.getElementById('slide-panel').classList.add('active');
+    document.getElementById('panel-overlay').classList.add('active');
+}
+
+function closeProject() {
+    document.getElementById('slide-panel').classList.remove('active');
+    document.getElementById('panel-overlay').classList.remove('active');
+}
+
+// Chatbot UI Toggle Visibility
+function toggleChat() {
+    document.getElementById('chat-window').classList.toggle('active');
+}
+
+function handleChatKey(e) {
+    if (e.key === 'Enter') sendChatMessage();
+}
+
+// Portfolio-Constrained Profile AI Chat Engine
+function sendChatMessage() {
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim().toLowerCase();
+    if (!text) return;
+
+    appendMessage(input.value, 'user');
+    input.value = '';
 
     setTimeout(() => {
-      const lowerQuery = rawQuery.toLowerCase();
-      
-      // Strict matching algorithm to catch precise keyword targets first
-      let matchedEntry = portfolioKnowledge.find(entry => 
-        entry.keywords.some(keyword => lowerQuery.includes(keyword))
-      );
+        let reply = "I can only answer questions related specifically to Adarsh's portfolio sections (Skills, Experience, Education, Projects, Certifications, Contact). Please ask about these!";
+        
+        if (text.includes('skill') || text.includes('language') || text.includes('tech')) {
+            reply = "Adarsh is proficient across the technical stack. Frontend: React.js, Angular, HTML5, CSS3, JS. Backend: Node.js, Express.js, PHP, Flask. Languages: Python, SQL, Java, C. Databases: MySQL, MongoDB, Firebase.";
+        } else if (text.includes('project')) {
+            reply = "He features two primary projects: 1. A Two-Way Communication System for Deaf People combining React and Python computer vision pipelines. 2. A transactional Car Rental Management System built with React, Node.js, and Express.";
+        } else if (text.includes('experience') || text.includes('work') || text.includes('job')) {
+            reply = "Adarsh's work history includes: 1. Full Stack Developer Apprentice at Chromosis Technologies (Dec 2025 - Present). 2. Frontend Developer Intern at Hewlett Packard Enterprise (4 months). 3. Digital Marketing Executive at PhoneMax (6 months).";
+        } else if (text.includes('education') || text.includes('college') || text.includes('degree')) {
+            reply = "Adarsh graduated with a Bachelor of Engineering in Information Science and Engineering from NIE Institute of Technology, maintaining a CGPA of 8.3/10.";
+        } else if (text.includes('certif')) {
+            reply = "Adarsh holds professional credentials including Microsoft Azure AI Engineer Associate and Microsoft Certified: Azure AI Fundamentals (AI-900).";
+        } else if (text.includes('contact') || text.includes('email') || text.includes('phone')) {
+            reply = "You can contact Adarsh directly via phone at +91 9886103154 or drop an email to adarshvpujar143@gmail.com.";
+        } else if (text.includes('hi') || text.includes('hello') || text.includes('hey')) {
+            reply = "Hello! I'm here to answer questions regarding Adarsh's skills, qualifications, or professional experience. What section would you like to explore?";
+        }
 
-      let systemReplyText = matchedEntry 
-        ? matchedEntry.response 
-        : "ℹ️ I can only answer questions regarding Adarsh's explicit portfolio info (Skills, Projects, Education, Experience, Certifications, or Social Contacts). Please check your phrasing!";
+        appendMessage(reply, 'bot');
+    }, 600);
+}
 
-      const botBubble = document.createElement("div");
-      botBubble.className = "chat-msg bot-msg";
-      botBubble.innerHTML = systemReplyText;
-      botChatLogs.appendChild(botBubble);
-      botChatLogs.scrollTop = botChatLogs.scrollHeight;
-    }, 400);
-  }
-
-  if (botSendBtn && botInput) {
-    botSendBtn.addEventListener("click", processBotMessage);
-    botInput.addEventListener("keypress", (e) => { if (e.key === "Enter") processBotMessage(); });
-  }
-
-  /* --- 5. CONTINUOUS ROTATING HEADLINE TIMERS --- */
-  const dynamicTitles = ["Full Stack Developer", "Data Analyst", "Azure AI Certified", "Software Engineer"];
-  const headlineElement = document.getElementById("headline-target");
-  let titleIndex = 0;
-
-  if (headlineElement) {
-    setInterval(() => {
-      headlineElement.style.opacity = "0";
-      setTimeout(() => {
-        titleIndex = (titleIndex + 1) % dynamicTitles.length;
-        headlineElement.textContent = dynamicTitles[titleIndex];
-        headlineElement.style.opacity = "1";
-      }, 300);
-    }, 3000);
-  }
-});
+function appendMessage(text, sender) {
+    const container = document.getElementById('chat-messages');
+    const msgEl = document.createElement('div');
+    msgEl.className = `msg ${sender}`;
+    msgEl.innerText = text;
+    container.appendChild(msgEl);
+    container.scrollTop = container.scrollHeight;
+}
