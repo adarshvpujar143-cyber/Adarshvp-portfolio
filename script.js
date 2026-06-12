@@ -1,9 +1,8 @@
-/* --- 1. Global Core Application Memory Pools & Datasets --- */
+/* --- 1. Global Memory Databases & Repositories --- */
 const GLOBAL_PALETTES = [
     { primary: "#250e2c", secondary: "#837ab6", fontPri: "#f7c2ca", fontSec: "#9d85b6", accent: "#cc8db3" },
     { primary: "#0b192c", secondary: "#1f3e5a", fontPri: "#e2e8f0", fontSec: "#94a3b8", accent: "#38bdf8" },
-    { primary: "#141e27", secondary: "#203239", fontPri: "#eeebdd", fontSec: "#e0d8b0", accent: "#f2a154" },
-    { primary: "#1a1a2e", secondary: "#16213e", fontPri: "#e94560", fontSec: "#0f3460", accent: "#e94560" }
+    { primary: "#141e27", secondary: "#203239", fontPri: "#eeebdd", fontSec: "#e0d8b0", accent: "#f2a154" }
 ];
 
 let activePaletteIndex = 0;
@@ -11,349 +10,274 @@ let profileTitleScrollInterval = null;
 let currentModalSlideshowIndex = 0;
 let currentSlideshowImageCollection = [];
 
-// GALLERY DATABASE: This feeds your large page opening modal with detailed text and specific image loops!
+// EXTENSIVE INFORMATION PORTFOLIO DATABASE (Description, Stacks, Outcomes, Learnings, Journeys)
 const GALLERY_DATABASE = {
     chromosis: {
-        title: "Chromosis Technologies Pvt Ltd — Detailed Corporate Journey",
+        title: "Chromosis Technologies Pvt Ltd — Software Engineering Intern Workspace",
         narrative: `
-            <div style="text-align: left; margin-top: 15px;">
-                <h4 style="color: #cc8db3; margin-bottom: 5px;"><i class="fa-solid fa-map-location-dot"></i> My Journey:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">Stepping into Chromosis Technologies in Hubli was my foundational leap from an academic student to an industry developer. I entered a fast-paced agile development environment where I participated in daily stand-up syncs, sprint planning, and system layout modeling workflows.</p>
-                
-                <h4 style="color: #cc8db3; margin-bottom: 5px;"><i class="fa-solid fa-microchip"></i> Technologies Used:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">HTML5, CSS3, JavaScript (ES6+), Git Source Control, Responsive UI Viewport Engines, and Cross-Device Emulators.</p>
-                
-                <h4 style="color: #cc8db3; margin-bottom: 5px;"><i class="fa-solid fa-square-poll-vertical"></i> Detailed Description & Task Scope:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">I was tasked with modernizing old legacy front-end viewports, mapping structural interface blueprints, and resolving rendering abnormalities. I systematically inspected application nodes to eliminate unexpected shifts across modern mobile, tablet, and ultra-wide desktop viewports, ensuring pixel-perfect delivery.</p>
-                
-                <h4 style="color: #cc8db3; margin-bottom: 5px;"><i class="fa-solid fa-chart-line"></i> Measurable Outcomes:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">Successfully upgraded layout fluid presentation rules across 12 distinct system viewpoints and cleared away bottlenecks within asset delivery pipelines, speeding up client-side render loading thresholds.</p>
-                
-                <h4 style="color: #cc8db3; margin-bottom: 5px;"><i class="fa-solid fa-graduation-cap"></i> What I Learnt:</h4>
-                <p style="font-size: 0.92rem; color: #333; line-height: 1.5;">I learned the absolute necessity of modular component programming, clean stylesheet naming conventions, and how to branch, pull, merge, and resolve structural code conflicts smoothly across shared Git version control systems.</p>
+            <div class="deepdive-modal-content" style="text-align: left; margin-top: 15px; color: #222; font-family: sans-serif;">
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>🌟 Journey of Adarsh in the Company:</strong> Stepping into Chromosis Technologies in Hubli marked my transition into real-world workspace dynamics. Immersed completely in an active engineering team environment, I learned how software updates flow from design rooms to daily production staging pipelines while matching strict timelines.</p>
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>📝 Detailed Description & Scope:</strong> Worked directly with senior technical leads layout components, building and verifying modular interface blocks, managing source control updates, and resolving rendering errors across multiple device sizes.</p>
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>⚙️ Technologies Used:</strong> HTML5, CSS3, JavaScript (ES6+ Layout Matrix structures), Git Architecture, Frontend Emulators.</p>
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>🚀 Core Project Outcomes:</strong> Upgraded client layout styling rules across 12 unique mobile and tablet viewport layout models, dropping layout loading failures and making asset retrieval much cleaner.</p>
+                <p style="margin-bottom: 4px; line-height: 1.6;"><strong>🎓 What I Learnt:</strong> Developed clean formatting methods, absolute stylesheet namespace separation workflows, and mastered cross-collaborative feature branching loops without running into Git synchronization issues.</p>
             </div>
         `,
         images: ["35159.jpg", "35160.jpg"]
     },
     hpe: {
-        title: "Hewlett Packard Enterprise (HPE) — Enterprise Infrastructure Specialist",
+        title: "Hewlett Packard Enterprise (HPE) — Technical Solutions Hub",
         narrative: `
-            <div style="text-align: left; margin-top: 15px;">
-                <h4 style="color: #3498db; margin-bottom: 5px;"><i class="fa-solid fa-route"></i> My Journey:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">Operating within a global computing titan like HPE in Bengaluru challenged me to focus on reliability, compliance, and enterprise resilience. I was integrated directly into active monitoring and system diagnostics operations, tracking critical performance anomalies.</p>
-                
-                <h4 style="color: #3498db; margin-bottom: 5px;"><i class="fa-solid fa-terminal"></i> Technologies Used:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">Enterprise Resource Consoles, Systems Telemetry Logs, Shell Automation Scripts, Microsoft Cloud Configuration Tracers.</p>
-                
-                <h4 style="color: #3498db; margin-bottom: 5px;"><i class="fa-solid fa-shield-halved"></i> Detailed Description & Task Scope:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">My daily duties revolved around analyzing massive structural monitoring spreadsheets, handling hardware configuration anomalies, and tracking performance flags across distributed production database lines. I translated chaotic error files into clear troubleshooting trees for the engineering groups.</p>
-                
-                <h4 style="color: #3498db; margin-bottom: 5px;"><i class="fa-solid fa-square-check"></i> Measurable Outcomes:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">Maintained system uptime protocols by proactively spotting and reporting pipeline concurrency faults and memory leaks before they reached customer environments.</p>
-                
-                <h4 style="color: #3498db; margin-bottom: 5px;"><i class="fa-solid fa-brain"></i> What I Learnt:</h4>
-                <p style="font-size: 0.92rem; color: #333; line-height: 1.5;">I deeply learned how critical enterprise Service Level Agreements (SLAs) are managed, how corporate cloud topologies map together, and how to write automation checks to monitor server hardware clusters under high stress.</p>
+            <div class="deepdive-modal-content" style="text-align: left; margin-top: 15px; color: #222; font-family: sans-serif;">
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>🌟 Journey of Adarsh in the Company:</strong> Entering the corporate workspace at HPE in Bengaluru pushed my software experience towards high-availability requirements. Over a 4-month specialized tenure, I operated inside the technical support framework analyzing system data configurations.</p>
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>📝 Detailed Description & Scope:</strong> Monitored distributed cloud servers, logged hardware tracking files, isolated operational runtime failure markers, and optimized server health checklists.</p>
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>⚙️ Technologies Used:</strong> Cloud Metric Tracers, Enterprise Support Systems, Automated Monitoring Consoles, System Logging Libraries.</p>
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>🚀 Core Project Outcomes:</strong> Successfully reviewed resource exhaustion spikes across production blocks, preventing platform downtime events by mapping clear predictive alert points for engineering teams.</p>
+                <p style="margin-bottom: 4px; line-height: 1.6;"><strong>🎓 What I Learnt:</strong> Mastered the rules of corporate Service Level Agreements (SLAs), enterprise disaster risk recovery procedures, and infrastructure tracking concepts.</p>
             </div>
         `,
         images: ["35161.jpg", "35162.jpg"]
     },
     phonemax: {
-        title: "PhoneMax Core Marketing Division — Telemetry Campaign Hub",
+        title: "PhoneMax Operations — Quantitative Audience Analytics Campaign",
         narrative: `
-            <div style="text-align: left; margin-top: 15px;">
-                <h4 style="color: #2ecc71; margin-bottom: 5px;"><i class="fa-solid fa-arrow-trend-up"></i> My Journey:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">My 6-month stay at PhoneMax allowed me to combine my technical software engineering backgrounds with data analytics and consumer psychology, monitoring complex conversion engines.</p>
-                
-                <h4 style="color: #2ecc71; margin-bottom: 5px;"><i class="fa-solid fa-sliders"></i> Technologies Used:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">Audience Telemetry Trackers, Split A/B Testing Management Panels, Web Traffic Analytics, Data Spreadsheets and Macros.</p>
-                
-                <h4 style="color: #2ecc71; margin-bottom: 5px;"><i class="fa-solid fa-chart-pie"></i> Detailed Description & Task Scope:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">I managed client-side tracking pixels, formulated tracking campaigns, and executed controlled structure variants (A/B testing) to discover exactly which interface element variations converted web traffic fastest.</p>
-                
-                <h4 style="color: #2ecc71; margin-bottom: 5px;"><i class="fa-solid fa-gem"></i> Measurable Outcomes:</h4>
-                <p style="font-size: 0.92rem; color: #333; margin-bottom: 12px; line-height: 1.5;">Drove user engagement indexes up by 22% across multi-channel customer layouts through highly precise UX adaptations.</p>
-                
-                <h4 style="color: #2ecc71; margin-bottom: 5px;"><i class="fa-solid fa-lightbulb"></i> What I Learnt:</h4>
-                <p style="font-size: 0.92rem; color: #333; line-height: 1.5;">Mastered quantitative user telemetry collection, user behavior logging, and how to use data analytics to justify design adjustments.</p>
+            <div class="deepdive-modal-content" style="text-align: left; margin-top: 15px; color: #222; font-family: sans-serif;">
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>🌟 Journey of Adarsh in the Company:</strong> My 6-month stay at PhoneMax allowed me to balance backend knowledge with digital layout telemetry systems, driving large-scale consumer behavior mapping pipelines.</p>
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>📝 Detailed Description & Scope:</strong> Engineered conversion analytics scripts, processed clickstream matrix tracking data, oversaw web traffic tags, and executed high-fidelity behavioral split-testing runs.</p>
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>⚙️ Technologies Used:</strong> Behavioral Analytics Panels, Split A/B Telemetry Engine, Data Mapping Scripts, Excel Processing Systems.</p>
+                <p style="margin-bottom: 12px; line-height: 1.6;"><strong>🚀 Core Project Outcomes:</strong> Multiplied general user interaction index rates by 22% regionally by reorganizing layout presentation tunnels via real data-driven insights.</p>
+                <p style="margin-bottom: 4px; line-height: 1.6;"><strong>🎓 What I Learnt:</strong> Gained deep quantitative insight into target demographic modeling, interaction lifecycle monitoring, and high-conversion structural placement mechanics.</p>
             </div>
         `,
-        images: ["PhoneMax.jpg", "PhoneMax1.jpg", "PhoneMax2.jpg"]
+        images: ["PhoneMax.jpg", "PhoneMax1.jpg", "PhoneMax2.jpg", "PhoneMax3.jpg", "PhoneMax4.jpg", "PhoneMax5.jpg", "PhoneMax6.jpg", "PhoneMax7.jpg", "PhoneMax8.jpg"]
     },
     nieit: {
-        title: "NIE Institute Campus Memories — Mysuru",
-        narrative: "Academic research sessions, engineering project milestone presentations, cultural networking initiatives, and varsity leadership memory logs compiled throughout my Computer Science engineering training.",
+        title: "NIE Institute of Technology — Academic Portfolio Display",
+        narrative: `
+            <div class="deepdive-modal-content" style="text-align: left; margin-top: 15px; color: #222; font-family: sans-serif;">
+                <p style="margin-bottom: 8px;"><strong>🎓 The Academic Path (2021 - 2025):</strong> My engineering journey in Computer Science was built on a strong technical base. This media repository holds memories from research cycles, software layout reviews, labs, and collaborative team showcases.</p>
+                <p><strong>💡 Key Focus Areas:</strong> Foundational Algorithms, Object-Oriented Software Design patterns, Relational Schemas, and Real-time Concurrent Computing.</p>
+            </div>
+        `,
         images: ["35163.jpg", "35164.jpg", "35158.jpg"]
     }
 };
 
-// Case Study Deep Dives
 const PROJECT_CASE_STUDIES = {
     "deaf-comm": {
         title: "Two Way Communication Systems for Deaf People",
         bullets: [
-            "Engineered an automated mathematical processing matrix to translate hand gestures into natural language string readouts.",
-            "Utilized high-performance frame monitoring structures to capture spatial orientation data matrices asynchronously.",
-            "Integrated cross-platform presentation frameworks to output real-time text layouts to portable devices with minimal system delays."
+            "<strong>Description & Journey:</strong> Designed to remove accessibility gaps by mapping real-time physical hand motions straight into standard text parameters.",
+            "<strong>Technologies Used:</strong> Computer Vision Tracking Frameworks, Asynchronous Data Pipelines, Mathematical Vector Mapping.",
+            "<strong>Outcomes & Learning:</strong> Built high-speed frame analytical matrices ensuring sub-second transcription layouts, teaching me a massive lesson in signal capturing and runtime stream optimizations."
         ]
     },
     "car-rental": {
         title: "Car Rental Management Systems",
         bullets: [
-            "Architected an optimized transactional database system designed to resolve inventory concurrency faults and asset distribution requests.",
-            "Integrated atomic reservation engines containing localized checking workflows to shield table schemas against racial-condition overlaps.",
-            "Created responsive system analytics dashboards tracing rental revenue patterns, asset maintenance status logs, and customer returns."
+            "<strong>Description & Journey:</strong> Created a highly reliable data portal designed to streamline booking requests and handle asset operations.",
+            "<strong>Technologies Used:</strong> Node.js, Express.js, SQL Relational Schemas, Atomic Verification Rules.",
+            "<strong>Outcomes & Learning:</strong> Safely mitigated multi-user runtime booking collisions and table lock errors. I learned how to create clean isolation layers and robust transaction patterns."
         ]
     }
 };
 
-/* --- 2. Initialization & Sequenced Message Preloader Controls --- */
+/* --- 2. Initializers & Preloaders --- */
 document.addEventListener("DOMContentLoaded", () => {
+    // Safety exit rule to clear loader screen if any exception triggers
     setTimeout(() => {
-        const structuralLoaderMask = document.getElementById("loader-screen");
-        const primaryAppContentWrapper = document.getElementById("app-content");
-        if (structuralLoaderMask && !structuralLoaderMask.classList.contains("hidden-node")) {
-            structuralLoaderMask.classList.add("hidden-node");
-            if (primaryAppContentWrapper) primaryAppContentWrapper.classList.remove("hidden-node");
-            unveilRestOfPortfolioSystems();
+        const preloader = document.getElementById("loader-screen");
+        const appMain = document.getElementById("app-content");
+        if (preloader && !preloader.classList.contains("hidden-node")) {
+            preloader.classList.add("hidden-node");
+            if (appMain) appMain.classList.remove("hidden-node");
+            initializeVisualDynamics();
         }
-    }, 10000);
+    }, 2800);
 
-    executeSequencedWelcomePreloader();
+    // Structural fade triggers
+    setTimeout(() => {
+        const preloader = document.getElementById("loader-screen");
+        const appMain = document.getElementById("app-content");
+        if (preloader) preloader.classList.add("hidden-node");
+        if (appMain) appMain.classList.remove("hidden-node");
+        initializeVisualDynamics();
+    }, 2000);
 
-    const themeBtn = document.getElementById("theme-swapper") || document.getElementById("theme-trigger-btn");
-    if (themeBtn) {
-        themeBtn.addEventListener("click", cycleNextApplicationPalette);
-    }
+    const paletteBtn = document.getElementById("theme-swapper");
+    if (paletteBtn) paletteBtn.addEventListener("click", cycleApplicationPalettes);
 });
 
-function executeSequencedWelcomePreloader() {
-    const textHolder = document.getElementById("loader-animated-text-container");
-    const loaderScreen = document.getElementById("loader-screen");
-    const mainContent = document.getElementById("app-content");
-
-    if (!textHolder) {
-        if (loaderScreen) loaderScreen.classList.add("hidden-node");
-        if (mainContent) mainContent.classList.remove("hidden-node");
-        unveilRestOfPortfolioSystems();
-        return;
-    }
-
-    const preloaderMessagesPool = [
-        { text: "INITIALIZING PORTFOLIO METRICS...", style: "font-size: 11px; letter-spacing: 0.35em; color: #e2b662; font-weight: 700;" },
-        { text: '"While you\'re generating queries, I\'m generating solutions."', style: "font-size: 1.15rem; font-style: italic; font-weight: 600; color: #cc8db3; line-height: 1.4;" },
-        { text: "You're viewing more than a portfolio—you're exploring the work of a developer committed to building reliable, scalable, and user-focused solutions. Welcome to the digital workspace of Adarsh V Pujar. 🚀", style: "font-size: 1rem; font-weight: 500; color: #f7c2ca; line-height: 1.6;" }
-    ];
-
-    let sequentialStepIndex = 0;
-
-    function renderNextPreloaderTextChunk() {
-        if (sequentialStepIndex < preloaderMessagesPool.length) {
-            textHolder.style.opacity = 0;
-            setTimeout(() => {
-                textHolder.innerHTML = `<p style="${preloaderMessagesPool[sequentialStepIndex].style}">${preloaderMessagesPool[sequentialStepIndex].text}</p>`;
-                textHolder.style.transition = "opacity 0.6s ease";
-                textHolder.style.opacity = 1;
-                
-                let visibilityHoldTime = sequentialStepIndex === 2 ? 4500 : 2500;
-                sequentialStepIndex++;
-                
-                setTimeout(renderNextPreloaderTextChunk, visibilityHoldTime);
-            }, 400);
-        } else {
-            if (loaderScreen) loaderScreen.classList.add("hidden-node");
-            if (mainContent) mainContent.classList.remove("hidden-node");
-            unveilRestOfPortfolioSystems();
-        }
-    }
-
-    renderNextPreloaderTextChunk();
+function initializeVisualDynamics() {
+    initializeScrollingHeroTitleText();
+    initializeSectionTrackingObservers();
 }
 
-function unveilRestOfPortfolioSystems() {
-    try {
-        initializeHeroScrollingAnimations();
-        initializeSectionNavigationIntersectionObservers();
-    } catch (err) {
-        console.warn("Secondary visualization systems skipped:", err);
-    }
-}
-
-/* --- 3. UI Presentation Mechanics & Theme Engines --- */
-function cycleNextApplicationPalette() {
+/* --- 3. UI Display Engines & Palette Controls --- */
+function cycleApplicationPalettes() {
     activePaletteIndex = (activePaletteIndex + 1) % GLOBAL_PALETTES.length;
-    const selection = GLOBAL_PALETTES[activePaletteIndex];
+    const layoutConfig = GLOBAL_PALETTES[activePaletteIndex];
     const targetRoot = document.documentElement;
     
-    targetRoot.style.setProperty("--bg-primary", selection.primary);
-    targetRoot.style.setProperty("--bg-secondary", selection.secondary);
-    targetRoot.style.setProperty("--font-primary", selection.fontPri);
-    targetRoot.style.setProperty("--font-secondary", selection.fontSec);
-    targetRoot.style.setProperty("--accent", selection.accent);
+    targetRoot.style.setProperty("--bg-primary", layoutConfig.primary);
+    targetRoot.style.setProperty("--bg-secondary", layoutConfig.secondary);
+    targetRoot.style.setProperty("--font-primary", layoutConfig.fontPri);
+    targetRoot.style.setProperty("--font-secondary", layoutConfig.fontSec);
+    targetRoot.style.setProperty("--accent", layoutConfig.accent);
 }
 
-function initializeHeroScrollingAnimations() {
-    let activeIndex = 0;
-    const rolls = document.querySelectorAll(".roll-node");
-    if (rolls.length === 0) return;
+function initializeScrollingHeroTitleText() {
+    let activeIdx = 0;
+    const rollNodes = document.querySelectorAll(".roll-node");
+    if (rollNodes.length === 0) return;
     
     if (profileTitleScrollInterval) clearInterval(profileTitleScrollInterval);
     
     profileTitleScrollInterval = setInterval(() => {
-        rolls[activeIndex].classList.remove("active");
-        rolls[activeIndex].classList.add("exit");
+        rollNodes[activeIdx].classList.remove("active");
+        rollNodes[activeIdx].classList.add("exit");
         
-        let previousIndex = activeIndex;
-        activeIndex = (activeIndex + 1) % rolls.length;
+        let priorIdx = activeIdx;
+        activeIdx = (activeIdx + 1) % rollNodes.length;
         
-        rolls[activeIndex].classList.remove("exit");
-        rolls[activeIndex].classList.add("active");
+        rollNodes[activeIdx].classList.remove("exit");
+        rollNodes[activeIdx].classList.add("active");
         
-        setTimeout(() => {
-            rolls[previousIndex].classList.remove("exit");
-        }, 500);
+        setTimeout(() => { rollNodes[priorIdx].classList.remove("exit"); }, 500);
     }, 3000);
 }
 
-function initializeSectionNavigationIntersectionObservers() {
-    const targets = document.querySelectorAll("section");
-    const navItems = document.querySelectorAll(".nav-item");
-    if (targets.length === 0 || navItems.length === 0) return;
+function initializeSectionTrackingObservers() {
+    const panels = document.querySelectorAll("section");
+    const navigationLinks = document.querySelectorAll(".nav-item");
+    if (panels.length === 0 || navigationLinks.length === 0) return;
     
-    const config = { root: null, rootMargin: "-30% 0px -60% 0px", threshold: 0 };
+    const intersectionConfig = { root: null, rootMargin: "-30% 0px -50% 0px", threshold: 0 };
     
-    const navWatcher = new IntersectionObserver((items) => {
-        items.forEach(node => {
-            if (node.isIntersecting) {
-                const sectionId = node.target.getAttribute("id");
-                navItems.forEach(link => {
+    const dynamicObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const visibleSectionId = entry.target.getAttribute("id");
+                navigationLinks.forEach(link => {
                     link.classList.remove("active");
-                    if (link.getAttribute("href") === `#${sectionId}`) {
+                    if (link.getAttribute("href") === `#${visibleSectionId}`) {
                         link.classList.add("active");
                     }
                 });
             }
         });
-    }, config);
+    }, intersectionConfig);
     
-    targets.forEach(section => navWatcher.observe(section));
+    panels.forEach(p => dynamicObserver.observe(p));
 }
 
-/* --- 4. Dynamic Interactive Modal Subsystem --- */
+/* --- 4. Large Page Opening Slideshow Modal Subsystem --- */
 function openGallery(key) {
-    const source = GALLERY_DATABASE[key];
-    if (!source) {
-        console.error("Gallery key configuration fault encountered:", key);
-        return;
-    }
+    const dataSet = GALLERY_DATABASE[key];
+    if (!dataSet) return;
     
     currentModalSlideshowIndex = 0;
-    currentSlideshowImageCollection = source.images;
+    currentSlideshowImageCollection = dataSet.images;
     
-    let slideshowMarkup = `
-        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; color: #111;">${source.title}</h2>
-        <div class="slideshow-box" style="position: relative; width: 100%; height: 380px; background: #000; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.25);">
+    let modalStructureHTML = `
+        <h2 style="font-size: 1.4rem; font-weight:800; margin-bottom:12px; color:#111; text-align:left; border-bottom:2px solid #eee; padding-bottom:6px;">${dataSet.title}</h2>
+        <div class="slideshow-box" style="position:relative; width:100%; height:340px; background:#111; border-radius:8px; overflow:hidden;">
     `;
     
-    source.images.forEach((imgName, index) => {
-        slideshowMarkup += `
-            <img src="${imgName}" class="picture-node ${index === 0 ? 'active-img' : ''}" data-slide-idx="${index}" style="position: absolute; width: 100%; height: 100%; object-fit: contain; background: #111; opacity: ${index === 0 ? 1 : 0}; transition: opacity 0.4s ease;" alt="Gallery Media Matrix Asset">
+    dataSet.images.forEach((name, i) => {
+        modalStructureHTML += `
+            <img src="${name}" class="picture-node ${i === 0 ? 'active-img' : ''}" data-slide-idx="${i}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:${i === 0 ? 1 : 0}; transition:opacity 0.4s ease;" alt="Portfolio Viewport Image Asset">
         `;
     });
     
-    slideshowMarkup += `
-            <div class="slideshow-nav-row" style="position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10;">
-                <button class="nav-btn" onclick="shiftSlideshowViewport(-1)" style="background: rgba(255,255,255,0.9); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"><i class="fa-solid fa-chevron-left" style="color:#222;"></i></button>
-                <button class="nav-btn" onclick="shiftSlideshowViewport(1)" style="background: rgba(255,255,255,0.9); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"><i class="fa-solid fa-chevron-right" style="color:#222;"></i></button>
+    modalStructureHTML += `
+            <div class="slideshow-nav-row" style="position:absolute; bottom:12px; left:50%; transform:translateX(-50%); display:flex; gap:12px; z-index:15;">
+                <button class="nav-btn" onclick="shiftSlideshowViewport(-1)" style="background:#fff; border:none; width:34px; height:34px; border-radius:50%; cursor:pointer; font-weight:bold; box-shadow:0 2px 5px rgba(0,0,0,0.3);"><i class="fa-solid fa-chevron-left" style="color:#111;"></i></button>
+                <button class="nav-btn" onclick="shiftSlideshowViewport(1)" style="background:#fff; border:none; width:34px; height:34px; border-radius:50%; cursor:pointer; font-weight:bold; box-shadow:0 2px 5px rgba(0,0,0,0.3);"><i class="fa-solid fa-chevron-right" style="color:#111;"></i></button>
             </div>
         </div>
-        <div class="thumbs-row-container" style="display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; margin-bottom: 12px;">
+        <div class="thumbs-row-container" style="display:flex; gap:8px; overflow-x:auto; padding:10px 0; margin-bottom:12px;">
     `;
     
-    source.images.forEach((imgName, index) => {
-        slideshowMarkup += `
-            <img src="${imgName}" class="thumb-node ${index === 0 ? 'active-thumb' : ''}" data-thumb-idx="${index}" onclick="jumpToSpecificSlide(${index})" style="width: 75px; height: 50px; object-fit: cover; border-radius: 4px; cursor: pointer; opacity: ${index === 0 ? 1 : 0.5}; border: ${index === 0 ? '2px solid #cc8db3' : 'none'}; transition: all 0.2s;" alt="Thumbnail Ledger">
+    dataSet.images.forEach((name, i) => {
+        modalStructureHTML += `
+            <img src="${name}" class="thumb-node ${i === 0 ? 'active-thumb' : ''}" data-thumb-idx="${i}" onclick="jumpToSpecificSlide(${i})" style="width:70px; height:48px; object-fit:cover; border-radius:4px; cursor:pointer; opacity:${i === 0 ? 1 : 0.4}; border:${i === 0 ? '2px solid #cc8db3':'none'};" alt="Slide Preview Miniature">
         `;
     });
     
-    slideshowMarkup += `
+    modalStructureHTML += `
         </div>
-        <div class="modal-narrative-p" style="font-size: 0.95rem; color: #2c3e50; line-height: 1.6; background: #f8f9fa; padding: 16px; border-radius: 6px; max-height: 250px; overflow-y: auto; border-left: 4px solid #cc8db3;">${source.narrative}</div>
+        <div class="modal-narrative-p" style="font-size:0.95rem; color:#2c3e50; line-height:1.6; background:#f9f9f9; padding:15px; border-radius:6px; border-left:4px solid #cc8db3; max-height:220px; overflow-y:auto;">${dataSet.narrative}</div>
     `;
     
-    renderModalContentWrapper(slideshowMarkup);
+    injectAndTriggerUniversalModal(modalStructureHTML);
 }
 
 function openProject(key) {
-    const caseData = PROJECT_CASE_STUDIES[key];
-    if (!caseData) return;
+    const match = PROJECT_CASE_STUDIES[key];
+    if (!match) return;
     
-    let projectMarkup = `
-        <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; color: #111;"><i class="fa-solid fa-laptop-code"></i> ${caseData.title}</h2>
-        <h4 style="text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; color: #666; margin-bottom: 14px;">Technical Engineering Core Implementation Specs</h4>
-        <ul class="modal-list-node" style="padding-left: 20px; margin-bottom: 15px; text-align: left;">
+    let structureMarkup = `
+        <h2 style="font-size: 1.4rem; font-weight:800; margin-bottom:10px; color:#111; text-align:left;"><i class="fa-solid fa-folder-open"></i> ${match.title}</h2>
+        <div style="background:#f9f9f9; padding:15px; border-radius:6px; border-left:4px solid #447F98; text-align:left;">
+            <ul style="padding-left:18px; list-style-type:square; color:#333;">
     `;
     
-    caseData.bullets.forEach(sentence => {
-        projectMarkup += `<li style="margin-bottom: 8px; color: #333; font-size: 0.92rem; line-height: 1.5;">${sentence}</li>`;
+    match.bullets.forEach(b => {
+        structureMarkup += `<li style="margin-bottom:10px; font-size:0.95rem; line-height:1.5;">${b}</li>`;
     });
     
-    projectMarkup += `
-        </ul>
-        <p class="modal-narrative-p" style="font-size: 0.95rem; color: #2c3e50; line-height: 1.6; background: #f8f9fa; padding: 12px; border-radius: 6px;">This case study demonstrates robust compliance standards, relational transactional consistency, and production architecture rules designed under strict operational constraints.</p>
-    `;
-    
-    renderModalContentWrapper(projectMarkup);
-}
-
-function openSingleDocument(docPath) {
-    const structuralMarkup = `
-        <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 14px; color: #111;"><i class="fa-solid fa-file-invoice"></i> Verified Academic Document</h2>
-        <div style="width: 100%; border-radius: 6px; overflow: hidden; background: #111; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
-            <img src="${docPath}" style="max-width: 100%; max-height: 65vh; object-fit: contain; display: block; margin: 0 auto;" alt="Academic Verification Ledger">
-        </div>
-    `;
-    renderModalContentWrapper(structuralMarkup);
-}
-
-function openAchievementDeepDive() {
-    const achievementMarkup = `
-        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; color: #111;"><i class="fa-solid fa-trophy" style="color: #f1c40f;"></i> VTU Zonal Cricket Championship</h2>
-        <div style="width: 100%; border-radius: 6px; overflow: hidden; background: #111; text-align: center; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
-            <img src="35158.jpg" style="max-width: 100%; max-height: 45vh; object-fit: contain; display: block; margin: 0 auto;" alt="Cricket Achievement Trophy Media">
-        </div>
-        <div class="modal-narrative-p" style="text-align: left; font-size: 0.95rem; color: #2c3e50; line-height: 1.6; background: #f8f9fa; padding: 16px; border-radius: 6px;">
-            <p style="margin-bottom: 10px;"><strong>Operational Performance Review:</strong> Evaluating high-stress crisis parameters under intense competition variables.</p>
-            <ul class="modal-list-node" style="padding-left: 20px; color: #333;">
-                <li style="margin-bottom: 6px;"><strong>Dynamic Strategy Alignment:</strong> Engineered real-time adjustments based on delivery patterns to counter targeted attacks.</li>
-                <li style="margin-bottom: 6px;"><strong>Match-Winning Contribution:</strong> Scored an explosive, unbeaten 71* off 35 balls, driving calculated risks to chase down the benchmark under pressure.</li>
-                <li style="margin-bottom: 6px;"><strong>Leadership Matrix Execution:</strong> Guided and paced base-runners safely during defining over thresholds to secure the tournament trophy.</li>
+    structureMarkup += `
             </ul>
         </div>
     `;
-    renderModalContentWrapper(achievementMarkup);
+    injectAndTriggerUniversalModal(structureMarkup);
+}
+
+function openSingleDocument(path) {
+    const structuralLayout = `
+        <h2 style="font-size: 1.3rem; font-weight:800; margin-bottom:12px; color:#111; text-align:left;"><i class="fa-solid fa-file-invoice"></i> Verified Academic Document</h2>
+        <div style="width:100%; border-radius:6px; overflow:hidden; background:#111; padding:5px; box-shadow:0 4px 10px rgba(0,0,0,0.25);">
+            <img src="${path}" style="max-width:100%; max-height:65vh; object-fit:contain; display:block; margin:0 auto;" alt="Verification Document Screen">
+        </div>
+    `;
+    injectAndTriggerUniversalModal(structuralLayout);
+}
+
+function openAchievementDeepDive() {
+    const markup = `
+        <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; color: #111; text-align:left;"><i class="fa-solid fa-trophy" style="color:#f1c40f;"></i> VTU Zonal Cricket Tournament Log</h2>
+        <div style="width:100%; border-radius:6px; overflow:hidden; background:#111; text-align:center; margin-bottom:12px;">
+            <img src="35158.jpg" style="max-width:100%; max-height:45vh; object-fit:contain; display:block; margin:0 auto;" alt="Adarsh Tournament Trophy Presentation">
+        </div>
+        <div style="background:#f8f9fa; padding:14px; border-radius:6px; text-align:left; color:#222; font-size:0.93rem; line-height:1.5;">
+            <p style="margin-bottom:8px;"><strong>🏏 Tournament Summary:</strong> Selected across competitive selection pools to represent varsity layouts inside high-stakes matches.</p>
+            <p style="margin-bottom:8px;"><strong>🔥 Match Record Performance:</strong> Successfully engineered an aggressive match-winning innings of 71* runs off just 35 deliveries inside high-stress closing thresholds.</p>
+            <p><strong>💡 Operational Takeaway:</strong> Sharpened rapid focus, deep concentration under extreme group pressure, strategy formulation, and split-second precision planning.</p>
+        </div>
+    `;
+    injectAndTriggerUniversalModal(markup);
 }
 
 function openCertificationDocument() {
-    const certMarkup = `
-        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; color: #111;"><i class="fa-solid fa-certificate" style="color: #3498db;"></i> Enterprise Credentials Ledger</h2>
-        <div style="background: #f4f6f8; padding: 20px; border-radius: 8px; border: 1px dashed #ccc; text-align: center; margin-bottom: 14px;">
-            <i class="fa-brands fa-microsoft" style="font-size: 3rem; color: #00a4ef; margin-bottom: 10px;"></i>
-            <h3 style="font-size: 1.2rem; color: #222; font-weight: 700;">Microsoft Certified: Azure AI Fundamentals</h3>
-            <p style="font-size: 0.88rem; color: #555; margin-top: 4px; margin-bottom: 15px;">Credential Scope: Machine Learning Models, Cognitive Service Integrations, Neural Computations, & Automated Pipeline Controls.</p>
-            <div style="width: 100%; border-radius: 6px; overflow: hidden; background: #111; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
-                <img src="35161.jpg" style="max-width: 100%; max-height: 45vh; object-fit: contain; display: block; margin: 0 auto;" alt="Verified Azure AI Certification Image Display">
+    const designSnippet = `
+        <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; color: #111; text-align:left;"><i class="fa-solid fa-id-card-clip" style="color:#3498db;"></i> Verification Credentials Display</h2>
+        <div style="background:#f3f4f6; border:1px dashed #ccc; padding:15px; border-radius:8px; text-align:center; margin-bottom:12px;">
+            <h3 style="font-size:1.15rem; color:#111; margin-bottom:4px;">Microsoft Certified: Azure AI Fundamentals</h3>
+            <p style="font-size:0.85rem; color:#555; margin-bottom:12px;">Validates technical competency mapping AI workflows, neural computation modeling, and machine learning structures on cloud grids.</p>
+            <div style="width:100%; border-radius:6px; overflow:hidden; background:#111;">
+                <img src="35161.jpg" style="max-width:100%; max-height:45vh; object-fit:contain; display:block; margin:0 auto;" alt="Microsoft Cloud Azure AI Certificate Ledger Image">
             </div>
         </div>
-        <p class="modal-narrative-p" style="font-size: 0.95rem; color: #2c3e50; line-height: 1.6; background: #f8f9fa; padding: 12px; border-radius: 6px; text-align: left;">This credential verifies core competence in architecting production pipelines and mapping mathematical processes using Microsoft Azure enterprise cloud solutions.</p>
     `;
-    renderModalContentWrapper(certMarkup);
+    injectAndTriggerUniversalModal(designSnippet);
 }
 
-function renderModalContentWrapper(innerHtmlSnippet) {
-    const injector = document.getElementById("modal-injection-point");
+function injectAndTriggerUniversalModal(htmlCode) {
     const container = document.getElementById("universal-modal");
-    if (injector && container) {
-        injector.innerHTML = innerHtmlSnippet;
+    const targetDiv = document.getElementById("modal-injection-point");
+    if (container && targetDiv) {
+        targetDiv.innerHTML = htmlCode;
         container.classList.add("active-state");
     }
 }
@@ -363,237 +287,206 @@ function closeActiveModalWindow() {
     if (container) container.classList.remove("active-state");
 }
 
-function shiftSlideshowViewport(direction) {
+function shiftSlideshowViewport(step) {
     if (currentSlideshowImageCollection.length === 0) return;
-    let newIndex = currentModalSlideshowIndex + direction;
-    if (newIndex >= currentSlideshowImageCollection.length) newIndex = 0;
-    if (newIndex < 0) newIndex = currentSlideshowImageCollection.length - 1;
-    jumpToSpecificSlide(newIndex);
+    let nextIdx = currentModalSlideshowIndex + step;
+    if (nextIdx >= currentSlideshowImageCollection.length) nextIdx = 0;
+    if (nextIdx < 0) nextIdx = currentSlideshowImageCollection.length - 1;
+    jumpToSpecificSlide(nextIdx);
 }
 
-function jumpToSpecificSlide(targetIndex) {
-    currentModalSlideshowIndex = targetIndex;
+function jumpToSpecificSlide(idx) {
+    currentModalSlideshowIndex = idx;
+    const items = document.querySelectorAll(".picture-node");
+    const miniThumbs = document.querySelectorAll(".thumb-node");
     
-    const views = document.querySelectorAll(".picture-node");
-    const thumbs = document.querySelectorAll(".thumb-node");
-    
-    views.forEach(node => {
-        node.style.opacity = parseInt(node.getAttribute("data-slide-idx")) === targetIndex ? 1 : 0;
+    items.forEach(img => {
+        img.style.opacity = parseInt(img.getAttribute("data-slide-idx")) === idx ? 1 : 0;
     });
     
-    thumbs.forEach(thumb => {
-        if (parseInt(thumb.getAttribute("data-thumb-idx")) === targetIndex) {
-            thumb.style.opacity = 1;
-            thumb.style.border = "2px solid #cc8db3";
+    miniThumbs.forEach(t => {
+        if (parseInt(t.getAttribute("data-thumb-idx")) === idx) {
+            t.style.opacity = 1;
+            t.style.border = "2px solid #cc8db3";
         } else {
-            thumb.style.opacity = 0.5;
-            thumb.style.border = "none";
+            t.style.opacity = 0.4;
+            t.style.border = "none";
         }
     });
 }
 
-/* --- 5. Virtual AI Chatbot Engine Framework --- */
+/* --- 5. AI Chatbot Shell System --- */
 function toggleChatbotState() {
-    const frame = document.getElementById("chatbot-frame");
-    if (!frame) return;
-    
-    const isCurrentlyActive = frame.classList.contains("active-chat");
-    
-    if (isCurrentlyActive) {
-        const robotAvatar = document.getElementById("chatbot-trigger");
-        if (robotAvatar) {
-            robotAvatar.classList.add("animate-robo-thanks");
-            setTimeout(() => { robotAvatar.classList.remove("animate-robo-thanks"); }, 1200);
-        }
-        
-        appendMessageLogNode("🤖 Thank you for chatting with AVP engine! Have an amazing day! ✨👋", "incoming");
-        setTimeout(() => { frame.classList.remove("active-chat"); }, 1000);
-    } else {
-        frame.classList.add("active-chat");
-    }
+    const webBox = document.getElementById("chatbot-frame");
+    if (webBox) webBox.classList.toggle("active-chat");
 }
 
-function handleChatbotKeyPress(event) {
-    if (event.key === "Enter") {
-        executeChatbotQuery();
-    }
+function handleChatbotKeyPress(e) {
+    if (e.key === "Enter") executeChatbotQuery();
 }
 
-function executeChatbotQuery(forcedValue = null) {
-    const field = document.getElementById("chatbot-input-field");
-    if (!field) return;
+function executeChatbotQuery(presetValue = null) {
+    const bar = document.getElementById("chatbot-input-field");
+    if (!bar) return;
     
-    const inputString = forcedValue ? forcedValue.trim() : field.value.trim();
-    if (!inputString) return;
+    const value = presetValue ? presetValue.trim() : bar.value.trim();
+    if (!value) return;
     
-    appendMessageLogNode(inputString, "outgoing");
-    if (!forcedValue) field.value = "";
+    appendMessageLogNode(value, "outgoing");
+    if (!presetValue) bar.value = "";
     
-    const rippleElement = displayBotTypingRipple();
+    const loadingRipple = displayBotTypingRipple();
     
     setTimeout(() => {
-        removeBotTypingRipple(rippleElement);
-        routeQueryToIntentEngine(inputString.toLowerCase());
-    }, 900);
+        removeBotTypingRipple(loadingRipple);
+        routeQueryToIntentEngine(value.toLowerCase());
+    }, 850);
 }
 
 function displayBotTypingRipple() {
     const logs = document.getElementById("chatbot-logs");
     if (!logs) return null;
-    
-    const rippleChassis = document.createElement("div");
-    rippleChassis.className = "typing-ripple-wrapper";
-    rippleChassis.id = "active-engine-typing-ripple";
-    rippleChassis.innerHTML = `<span class="ripple-dot"></span><span class="ripple-dot"></span><span class="ripple-dot"></span>`;
-    
-    logs.appendChild(rippleChassis);
+    const ripple = document.createElement("div");
+    ripple.className = "typing-ripple-wrapper";
+    ripple.id = "active-engine-typing-ripple";
+    ripple.innerHTML = `<span class="ripple-dot"></span><span class="ripple-dot"></span><span class="ripple-dot"></span>`;
+    logs.appendChild(ripple);
     logs.scrollTop = logs.scrollHeight;
-    return rippleChassis;
+    return ripple;
 }
 
-function removeBotTypingRipple(element) {
-    if (element && element.parentNode) {
-        element.parentNode.removeChild(element);
-    }
+function removeBotTypingRipple(el) {
+    if (el && el.parentNode) el.parentNode.removeChild(el);
 }
 
-function appendMessageLogNode(textText, targetClass) {
-    const logs = document.getElementById("chatbot-logs");
-    if (!logs) return;
-    
-    const bubble = document.createElement("div");
-    bubble.className = `bot-bubble ${targetClass}`;
-    
-    if (textText.includes("<div") || textText.includes("<h5")) {
-        bubble.innerHTML = textText;
+function appendMessageLogNode(text, directionClass) {
+    const trackingBox = document.getElementById("chatbot-logs");
+    if (!trackingBox) return;
+    const segment = document.createElement("div");
+    segment.className = `bot-bubble ${directionClass}`;
+    if (text.includes("<div") || text.includes("<h5")) {
+        segment.innerHTML = text;
     } else {
-        bubble.innerText = textText;
+        segment.innerText = text;
     }
-    
-    logs.appendChild(bubble);
-    logs.scrollTop = logs.scrollHeight;
+    trackingBox.appendChild(segment);
+    trackingBox.scrollTop = trackingBox.scrollHeight;
 }
 
-/* --- 6. Interactive Directory Menu & Routing Engines --- */
-function routeQueryToIntentEngine(processedInput) {
-    const matchedIntentA = processedInput.includes("project") || processedInput.includes("case study") || processedInput.includes("portfolio");
-    const matchedIntentB = processedInput.includes("experience") || processedInput.includes("work") || processedInput.includes("history") || processedInput.includes("job") || processedInput.includes("tenure");
-    const matchedIntentC = processedInput.includes("skill") || processedInput.includes("tech") || processedInput.includes("matrix") || processedInput.includes("code");
-    const matchedIntentD = processedInput.includes("education") || processedInput.includes("academic") || processedInput.includes("college") || processedInput.includes("school") || processedInput.includes("vvs") || processedInput.includes("nie");
-    const matchedIntentE = processedInput.includes("deaf") || processedInput.includes("car") || processedInput.includes("chromosis") || processedInput.includes("hpe") || processedInput.includes("phonemax") || processedInput.includes("frontend") || processedInput.includes("backend") || processedInput.includes("analytics") || processedInput.includes("sports") || processedInput.includes("cricket") || processedInput.includes("achievement");
+/* --- 6. AI Routing Switch (Fixed Education Matching) --- */
+function routeQueryToIntentEngine(input) {
+    const matchProj = input.includes("project") || input.includes("case study") || input.includes("portfolio");
+    const matchExp = input.includes("experience") || input.includes("work") || input.includes("history") || input.includes("job") || input.includes("tenure") || input.includes("chromosis") || input.includes("hpe") || input.includes("phonemax");
+    const matchSkill = input.includes("skill") || input.includes("tech") || input.includes("matrix") || input.includes("code") || input.includes("frontend") || input.includes("backend") || input.includes("analytics");
+    const matchEdu = input.includes("education") || input.includes("academic") || input.includes("college") || input.includes("school") || input.includes("vvs") || input.includes("nie");
+    const matchAch = input.includes("sports") || input.includes("cricket") || input.includes("achievement") || input.includes("medal") || input.includes("trophy") || input.includes("azure") || input.includes("certification");
 
-    // CORE INTENT ROUTER GATES
-    if (matchedIntentA) {
-        appendMessageLogNode("🤖 Project Directory Access Granted. Please select an option below:", "incoming");
+    // PRIORITY 1: Broad Category Directory Triggers
+    if (matchEdu) {
+        appendMessageLogNode("🎓 Fetching Academic Progress Ledger Records:", "incoming");
         createInteractiveDirectoryMenu([
-            { label: "1. Two Way Communication System for Deaf People", query: "deaf project deepdive" },
-            { label: "2. Car Rental Management Platform", query: "car rental project deepdive" }
+            { label: "1. NIE Institute of Technology (B.E.)", query: "action_fetch_nie_records" },
+            { label: "2. VVS Golden Jubilee College (PUC)", query: "action_fetch_vvs_records" }
         ]);
         return;
     }
-    
-    if (matchedIntentB) {
-        appendMessageLogNode("🤖 Experience Records Hub. Select a tenure layer to fetch metrics:", "incoming");
+    if (matchProj) {
+        appendMessageLogNode("🤖 Project Directory Access Granted. Select an engineered layout:", "incoming");
         createInteractiveDirectoryMenu([
-            { label: "1. Chromosis Technologies (Internship)", query: "chromosis tenure overview" },
-            { label: "2. Hewlett Packard Enterprise (HPE Specialist)", query: "hpe tenure overview" },
-            { label: "3. PhoneMax (Digital Campaign Executive)", query: "phonemax tenure overview" }
+            { label: "1. Deaf Two-Way Communication System", query: "action_proj_deaf" },
+            { label: "2. Car Rental Management Platform", query: "action_proj_car" }
         ]);
         return;
     }
-
-    if (matchedIntentC) {
-        appendMessageLogNode("🤖 Select a technical domain matrix category:", "incoming");
+    if (matchExp) {
+        appendMessageLogNode("🤖 Experience Hub Active. Select an enterprise block:", "incoming");
         createInteractiveDirectoryMenu([
-            { label: "1. Frontend Frameworks & UI Systems", query: "frontend tech stack query" },
-            { label: "2. Backend & Relational Database Environments", query: "backend tech stack query" },
-            { label: "3. Analytics & Specialized Data Engineering", query: "analytics tech stack query" }
+            { label: "1. Chromosis Technologies Profile", query: "action_exp_chromosis" },
+            { label: "2. Hewlett Packard Enterprise Profile", query: "action_exp_hpe" },
+            { label: "3. PhoneMax Campaign Profile", query: "action_exp_phonemax" }
         ]);
         return;
     }
-
-    if (matchedIntentD) {
-        appendMessageLogNode("🎓 Fetching Academic Records Ledger:", "incoming");
+    if (matchSkill) {
+        appendMessageLogNode("🤖 Select technical competency tracking category:", "incoming");
         createInteractiveDirectoryMenu([
-            { label: "1. NIE Institute of Technology (B.E.)", query: "nie campus metrics" },
-            { label: "2. VVS Golden Jubilee College (PUC)", query: "vvs college metrics" }
+            { label: "1. Frontend UI Frameworks", query: "action_skill_front" },
+            { label: "2. Backend & Schema Databases", query: "action_skill_back" },
+            { label: "3. Cloud Ops & Azure Platforms", query: "action_skill_cloud" }
         ]);
         return;
     }
 
-    // Direct match response execution channels
-    if (processedInput.includes("nie campus")) {
-        appendMessageLogNode("🎓 NIE Institute of Technology: Completing Bachelor of Engineering in Computer Science (2021-2025) with a tracking benchmark score of 8.45 CGPA.", "incoming");
+    // PRIORITY 2: Direct Action Callbacks (Leaf Processors)
+    if (input.includes("nie_records")) {
+        appendMessageLogNode("🎓 NIE Institute of Technology: Completing Bachelor of Engineering in Computer Science (2021-2025) with an aggregate benchmark score of 8.45 CGPA.", "incoming");
         return;
-    } 
-    if (processedInput.includes("vvs college")) {
-        appendMessageLogNode("📜 VVS Golden Jubilee PU College: Completed Pre-University validation parameters scoring an aggregate performance rating of 88.5%.", "incoming");
+    }
+    if (input.includes("vvs_records")) {
+        appendMessageLogNode("📜 VVS Golden Jubilee PU College: Completed Pre-University validation layers, logging an aggregate score rating of 88.50%.", "incoming");
         return;
-    } 
-    if (processedInput.includes("deaf project")) {
-        appendMessageLogNode("🔊 Deaf Communication Project: High-speed gesture mapping calculation framework designed to parse structural actions cleanly into readouts.", "incoming");
+    }
+    if (input.includes("proj_deaf")) {
+        appendMessageLogNode("🔊 Deaf Communication Project: High-speed machine vision gesture translation structure configured to map physical movements into live text blocks.", "incoming");
         return;
-    } 
-    if (processedInput.includes("car rental")) {
-        appendMessageLogNode("🚗 Car Rental System: Enterprise asset coordination engine built to safeguard concurrency pipelines and resolve database lock contentions.", "incoming");
+    }
+    if (input.includes("proj_car")) {
+        appendMessageLogNode("🚗 Car Rental System: Structural transactional core designed to stop race conditions and manage concurrent rental distribution logs.", "incoming");
         return;
-    } 
-    if (processedInput.includes("chromosis")) {
-        appendMessageLogNode("🏢 Chromosis Technologies: Served as a Creative Design and Software Engineering Intern in Hubli, mapping layout blueprints and asset variables.", "incoming");
+    }
+    if (input.includes("exp_chromosis")) {
+        appendMessageLogNode("🏢 Chromosis Technologies: Software Engineering Intern in Hubli. Refined responsive front-end structures and resolved multi-viewport layouts.", "incoming");
         return;
-    } 
-    if (processedInput.includes("hpe")) {
-        appendMessageLogNode("💻 HPE Solutions: Served 4 months as a Technical Solutions Specialist in Bengaluru managing cloud operations and monitoring logs.", "incoming");
+    }
+    if (input.includes("exp_hpe")) {
+        appendMessageLogNode("💻 HPE Solutions: Served as a Technical Solutions Specialist in Bengaluru mapping server resource monitors and cloud system alerts.", "incoming");
         return;
-    } 
-    if (processedInput.includes("phonemax")) {
-        appendMessageLogNode("📈 PhoneMax Operations: 6 months tenure handling digital marketing infrastructure campaigns. Extended regional brand footprint cleanly.", "incoming");
+    }
+    if (input.includes("exp_phonemax")) {
+        appendMessageLogNode("📈 PhoneMax Operations: Processed audience telemetry tags and split-testing metrics to lift regional conversion ratios by 22%.", "incoming");
         return;
-    } 
-    if (processedInput.includes("frontend")) {
-        appendMessageLogNode("✨ Frontend Stack: Expert across HTML5, CSS3, JavaScript (ES6+), React.js layouts, and fluid responsive design methodologies.", "incoming");
+    }
+    if (input.includes("skill_front")) {
+        appendMessageLogNode("✨ Frontend Stack: Expert across HTML5, CSS3, JavaScript (ES6+), React.js layout trees, and responsive liquid wrappers.", "incoming");
         return;
-    } 
-    if (processedInput.includes("backend")) {
-        appendMessageLogNode("⚙️ Backend Core: Specialized in Node.js, Express structures, database schema operations, and writing atomic queries.", "incoming");
+    }
+    if (input.includes("skill_back")) {
+        appendMessageLogNode("⚙️ Backend Core: Capable across Node.js runtimes, Express endpoints, indexing relational workflows, and designing transaction locks.", "incoming");
         return;
-    } 
-    if (processedInput.includes("analytics")) {
-        appendMessageLogNode("📊 Analytics Hub: Competent in managing Microsoft Azure cloud setups, analytical model scoring, and telemetry tracking arrays.", "incoming");
+    }
+    if (input.includes("skill_cloud")) {
+        appendMessageLogNode("📊 Cloud Architecture: Certified across Microsoft Azure, enterprise logging pipelines, and custom cloud model tracking arrays.", "incoming");
         return;
-    } 
-    if (processedInput.includes("back") || processedInput.includes("exit")) {
+    }
+    if (input.includes("exit") || input.includes("close")) {
         toggleChatbotState();
         return;
     }
 
-    // FALLBACK RESTRICTION SHIELD
-    if (!matchedIntentA && !matchedIntentB && !matchedIntentC && !matchedIntentD && !matchedIntentE) {
-        const fallbackOopsHTMLBox = `
-            <div style="background: rgba(231, 76, 60, 0.12); border: 2px dashed #e74c3c; border-radius: 8px; padding: 14px; margin: 5px 0; text-align: left; width: 100%;">
-                <h5 style="color: #e74c3c; font-weight: 800; font-size: 1rem; margin-bottom: 6px; text-transform: uppercase;"><i class="fa-solid fa-ban"></i> oops!! Sorry</h5>
-                <p style="font-size: 0.85rem; color: #f4f4f4; line-height: 1.4; margin: 0;">Boss adarsh has restricted me over other things not to talk and waste the time of me as well as yours.</p>
+    // FALLBACK RESTRICTION BOX (Fires only if zero intents matched above)
+    if (!matchProj && !matchExp && !matchSkill && !matchEdu && !matchAch) {
+        const fallbackBox = `
+            <div style="background: rgba(231, 76, 60, 0.12); border: 2px dashed #e74c3c; border-radius: 8px; padding: 12px; margin: 5px 0; text-align: left; width: 100%;">
+                <h5 style="color: #e74c3c; font-weight: 800; font-size: 0.95rem; margin-bottom: 4px; text-transform: uppercase;"><i class="fa-solid fa-ban"></i> oops!! Sorry</h5>
+                <p style="font-size: 0.82rem; color: #f4f4f4; line-height: 1.4; margin: 0;">Boss adarsh has restricted me over other things not to talk and waste the time of me as well as yours.</p>
             </div>
         `;
-        appendMessageLogNode(fallbackOopsHTMLBox, "incoming");
+        appendMessageLogNode(fallbackBox, "incoming");
     }
 }
 
-function createInteractiveDirectoryMenu(menuOptionsArray) {
+function createInteractiveDirectoryMenu(array) {
     const logs = document.getElementById("chatbot-logs");
     if (!logs) return;
-    
-    const menuContainerChassis = document.createElement("div");
-    menuContainerChassis.className = "bot-menu-wrapper";
-    
-    menuOptionsArray.forEach(option => {
-        const optionButtonNode = document.createElement("button");
-        optionButtonNode.className = "bot-menu-option";
-        optionButtonNode.innerText = option.label;
-        optionButtonNode.onclick = () => { executeChatbotQuery(option.query); };
-        menuContainerChassis.appendChild(optionButtonNode);
+    const container = document.createElement("div");
+    container.className = "bot-menu-wrapper";
+    array.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.className = "bot-menu-option";
+        btn.innerText = opt.label;
+        btn.onclick = () => { executeChatbotQuery(opt.query); };
+        container.appendChild(btn);
     });
-    
-    logs.appendChild(menuContainerChassis);
+    logs.appendChild(container);
     logs.scrollTop = logs.scrollHeight;
-            }
+                }
