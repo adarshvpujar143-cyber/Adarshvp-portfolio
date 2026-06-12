@@ -1,273 +1,233 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adarsh V Pujar | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div id="loader">
-        <div class="spinner"></div>
-        <div class="loader-text">ADARSH V PUJAR</div>
+    <div id="loader-screen" class="loader-screen">
+        <div class="loader-element"></div>
+        <p class="loader-text">ENGINEERING EXPERIENCE</p>
     </div>
 
-    <header>
-        <div class="navbar">
-            <div class="logo">Adarsh.Dev</div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i> Theme</button></li>
-                </ul>
+    <div id="app-content" class="hidden-node">
+        
+        <header class="app-header">
+            <nav class="nav-bar">
+                <a href="#hero" class="nav-item active" title="Home"><i class="fa-solid fa-house-user"></i></a>
+                <a href="#experience" class="nav-item" title="Experience"><i class="fa-solid fa-briefcase"></i></a>
+                <a href="#projects" class="nav-item" title="Projects"><i class="fa-solid fa-code-branch"></i></a>
+                <a href="#education" class="nav-item" title="Education"><i class="fa-solid fa-user-graduate"></i></a>
+                <a href="#achievements" class="nav-item" title="Achievements"><i class="fa-solid fa-award"></i></a>
+                <a href="#certifications" class="nav-item" title="Certifications"><i class="fa-solid fa-stamp"></i></a>
             </nav>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <section id="home">
-            <div class="hero-text">
-                <h1>Hi, I am <span>Adarsh V Pujar</span></h1>
-                <h2>Full Stack Developer & Data Analyst</h2>
-                <p>Results-driven Information Science and Engineering graduate with hands-on experience in frontend development, full-stack web application development, and data analysis. Proficient in React.js, Node.js, Python, SQL, and modern web technologies.</p>
+        <section id="hero" class="theme-salmverse">
+            <div class="hero-container">
                 
-                <div class="social-icons">
-                    <a href="tel:+919886103154" title="Call Me"><i class="fas fa-phone"></i></a>
-                    <a href="mailto:adarshvpujar143@gmail.com" title="Email Me"><i class="fas fa-envelope"></i></a>
-                    <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                </div>
-                
-                <a href="#contact" class="btn-primary">Hire Me</a>
-            </div>
-            <div class="hero-image-container">
-                <img src="https://via.placeholder.com/320" alt="Adarsh V Pujar" class="profile-img">
-            </div>
-        </section>
-
-        <section id="skills">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3><i class="fas fa-laptop-code"></i> Frontend</h3>
-                    <ul class="skill-list">
-                        <li class="skill-badge">React.js</li>
-                        <li class="skill-badge">HTML5</li>
-                        <li class="skill-badge">CSS3</li>
-                        <li class="skill-badge">JavaScript (ES6+)</li>
-                        <li class="skill-badge">Bootstrap</li>
-                        <li class="skill-badge">Angular</li>
-                        <li class="skill-badge">Responsive Design</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-server"></i> Backend & DB</h3>
-                    <ul class="skill-list">
-                        <li class="skill-badge">Node.js</li>
-                        <li class="skill-badge">Express.js</li>
-                        <li class="skill-badge">PHP</li>
-                        <li class="skill-badge">Flask</li>
-                        <li class="skill-badge">REST API</li>
-                        <li class="skill-badge">MySQL</li>
-                        <li class="skill-badge">MongoDB</li>
-                        <li class="skill-badge">Firebase</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-code"></i> Languages</h3>
-                    <ul class="skill-list">
-                        <li class="skill-badge">Python</li>
-                        <li class="skill-badge">JavaScript</li>
-                        <li class="skill-badge">PHP</li>
-                        <li class="skill-badge">SQL</li>
-                        <li class="skill-badge">Java</li>
-                        <li class="skill-badge">C</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-chart-bar"></i> Tools & Cloud</h3>
-                    <ul class="skill-list">
-                        <li class="skill-badge">Microsoft Azure</li>
-                        <li class="skill-badge">Git / GitHub</li>
-                        <li class="skill-badge">Docker</li>
-                        <li class="skill-badge">Postman</li>
-                        <li class="skill-badge">Power BI</li>
-                        <li class="skill-badge">Agile/Scrum</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience">
-            <h2 class="section-title">Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-card">
-                    <img src="https://via.placeholder.com/70" alt="Chromosis" class="timeline-img">
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Full Stack Developer - Apprenticeship</h3>
-                            <span class="timeline-date">Dec 2025 - Present</span>
-                        </div>
-                        <h4>Chromosis Technologies Pvt Ltd | Hubli, Karnataka</h4>
-                        <ul>
-                            <li>Developing and maintaining full-stack web applications using modern frontend and backend technologies.</li>
-                            <li>Building responsive user interfaces and integrating RESTful APIs for seamless data communication.</li>
-                            <li>Managing relational and non-relational databases to ensure efficient data retrieval and application performance.</li>
-                            <li>Participating in end-to-end testing, debugging, and deployment pipelines.</li>
-                        </ul>
+                <div class="carousel-viewport" id="hero-carousel">
+                    <div class="carousel-track">
+                        <img src="profile.jpg" alt="Adarsh Profile" class="carousel-item">
+                        <img src="profile1.jpg" alt="Adarsh Profile 1" class="carousel-item">
+                        <img src="profile2.jpg" alt="Adarsh Profile 2" class="carousel-item">
+                        <img src="profile3.jpg" alt="Adarsh Profile 3" class="carousel-item">
+                        <img src="profile4.jpg" alt="Adarsh Profile 4" class="carousel-item">
+                        <img src="profile5.jpg" alt="Adarsh Profile 5" class="carousel-item">
+                        <img src="profile6.jpg" alt="Adarsh Profile 6" class="carousel-item">
+                        <img src="profile7.jpg" alt="Adarsh Profile 7" class="carousel-item">
+                        <img src="profile8.jpg" alt="Adarsh Profile 8" class="carousel-item">
+                        <img src="profile.jpg" alt="Adarsh Profile" class="carousel-item">
+                        <img src="profile1.jpg" alt="Adarsh Profile 1" class="carousel-item">
+                        <img src="profile2.jpg" alt="Adarsh Profile 2" class="carousel-item">
+                        <img src="profile3.jpg" alt="Adarsh Profile 3" class="carousel-item">
+                        <img src="profile4.jpg" alt="Adarsh Profile 4" class="carousel-item">
+                        <img src="profile5.jpg" alt="Adarsh Profile 5" class="carousel-item">
+                        <img src="profile6.jpg" alt="Adarsh Profile 6" class="carousel-item">
+                        <img src="profile7.jpg" alt="Adarsh Profile 7" class="carousel-item">
+                        <img src="profile8.jpg" alt="Adarsh Profile 8" class="carousel-item">
                     </div>
                 </div>
 
-                <div class="timeline-card">
-                    <img src="https://via.placeholder.com/70" alt="HPE" class="timeline-img">
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Frontend Developer Intern</h3>
-                            <span class="timeline-date">2024 (4 Months)</span>
-                        </div>
-                        <h4>Hewlett Packard Enterprise | Bengaluru, Karnataka</h4>
-                        <ul>
-                            <li>Developed responsive web applications using HTML, CSS, JavaScript, and React.js, improving UI consistency across platforms.</li>
-                            <li>Integrated REST APIs to connect frontend interfaces with backend services, reducing data fetch latency.</li>
-                            <li>Collaborated in Agile/Scrum teams, contributing to sprint planning, code reviews, and debugging sessions.</li>
-                            <li>Ensured cross-browser compatibility and mobile responsiveness across all delivered features.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-card">
-                    <img src="https://via.placeholder.com/70" alt="PhoneMax" class="timeline-img">
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Digital Marketing Executive</h3>
-                            <span class="timeline-date">2023 (6 Months)</span>
-                        </div>
-                        <h4>PhoneMax (S & S Co Inc) | Mysore, Karnataka</h4>
-                        <ul>
-                            <li>Increased regional sales by 25% through targeted promotional campaigns and strategic partnerships.</li>
-                            <li>Managed social media campaigns and online promotions, enhancing brand visibility and audience engagement.</li>
-                            <li>Analyzed campaign performance metrics to optimize marketing strategies and drive lead generation.</li>
-                        </ul>
+                <div class="hero-meta-block">
+                    <h1 class="hero-title">I am Adarsh V Pujar</h1>
+                    <div class="rolling-text-box">
+                        <span class="roll-node clear-node">Full-Stack Developer</span>
+                        <span class="roll-node clear-node">Data Analyst</span>
+                        <span class="roll-node clear-node">UI/UX Engineer</span>
+                        <span class="roll-node clear-node">Creative Technologist</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="education">
-            <h2 class="section-title">Education</h2>
-            <div class="timeline">
-                <div class="timeline-card">
-                    <img src="https://via.placeholder.com/70" alt="NIE" class="timeline-img">
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>NIE Institute of Technology</h3>
-                            <span class="timeline-date">2021 - 2025</span>
-                        </div>
-                        <h4>Bachelor of Engineering - Information Science and Engineering</h4>
-                        <p>Affiliated to Visvesvaraya Technological University (VTU) | <strong>CGPA: 8.3/10</strong></p>
-                    </div>
+        <section id="experience" class="theme-carnation">
+            <h2 class="block-heading"><i class="fa-solid fa-briefcase"></i> Professional Experiences</h2>
+            <div class="deck-grid">
+                <div class="deck-card" onclick="openGallery('chromosis')">
+                    <div class="deck-badge">Chromosis Company</div>
+                    <h3>Creative Design & Software Engineering Intern</h3>
+                    <p class="deck-teaser">Pioneering interface architectures, clean multi-palette systems, functional UI prototypes, and robust client side components.</p>
+                    <span class="deck-action-link">Explore Gallery & Memories <i class="fa-solid fa-arrow-right-long"></i></span>
                 </div>
-                <div class="timeline-card">
-                    <img src="https://via.placeholder.com/70" alt="College" class="timeline-img">
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>VVS Golden Jubilee PU College</h3>
-                            <span class="timeline-date">2019 - 2021</span>
-                        </div>
-                        <h4>Pre-University Certificate (PUC) - Science (PCMB)</h4>
-                        <p>Percentage: <strong>87.28%</strong></p>
-                    </div>
+                <div class="deck-card" onclick="openGallery('hpe')">
+                    <div class="deck-badge">HPE Company</div>
+                    <h3>Technical Solutions & Systems Specialist</h3>
+                    <p class="deck-teaser">Architecting optimized backend enterprise frameworks, data validation matrices, data analytics pipelines, and computing workflows.</p>
+                    <span class="deck-action-link">Explore Gallery & Memories <i class="fa-solid fa-arrow-right-long"></i></span>
                 </div>
             </div>
         </section>
 
-        <section id="projects">
-            <h2 class="section-title">Projects</h2>
+        <section id="projects" class="theme-clash">
+            <h2 class="block-heading"><i class="fa-solid fa-code-merge"></i> Engineering Case Studies</h2>
             <div class="projects-grid">
-                <div class="project-card" onclick="openProject('deaf-comm')">
-                    <img src="https://via.placeholder.com/400x200" alt="Communication Project" class="project-img">
-                    <div class="project-info">
-                        <h3>Two-Way Communication System for Deaf People</h3>
-                        <p>Real-time full-stack application leveraging computer vision pipelines to process sign language dynamically.</p>
-                        <div class="tap-more">Tap to view full details <i class="fas fa-arrow-right"></i></div>
+                <div class="project-box" onclick="openProject('deaf-comm')">
+                    <div class="img-container">
+                        <img src="project1.jpg" alt="Two way communication systems" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3>Two Way Communication Systems for Deaf People</h3>
+                        <p>Bridging hardware accessibility with fast natural language computation layers.</p>
+                        <span class="project-btn-tag">Launch Case Analysis <i class="fa-solid fa-circle-chevron-right"></i></span>
                     </div>
                 </div>
-                <div class="project-card" onclick="openProject('car-rental')">
-                    <img src="https://via.placeholder.com/400x200" alt="Car Rental Project" class="project-img">
-                    <div class="project-info">
-                        <h3>Car Rental Management System</h3>
-                        <p>Complete end-to-end transactional application featuring secure authorization control protocols.</p>
-                        <div class="tap-more">Tap to view full details <i class="fas fa-arrow-right"></i></div>
+                <div class="project-box" onclick="openProject('car-rental')">
+                    <div class="img-container">
+                        <img src="project2.jpg" alt="Car Rental Management Systems" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3>Car Rental Management Systems</h3>
+                        <p>Enterprise database distribution design for handling concurrent assets, vehicle logic tracking, and reservation logging pipelines.</p>
+                        <span class="project-btn-tag">Launch Case Analysis <i class="fa-solid fa-circle-chevron-right"></i></span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="certifications">
-            <h2 class="section-title">Certifications</h2>
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <h3>Microsoft Azure AI Engineer Associate</h3>
-                    <p>Issued by ICT Academy / Aligned with Microsoft Curriculum</p>
+        <section id="education" class="theme-candles">
+            <h2 class="block-heading"><i class="fa-solid fa-graduation-cap"></i> Educational Track</h2>
+            <div class="matrix-timeline">
+                <div class="matrix-item" onclick="openGallery('nieit')">
+                    <div class="matrix-bullet"></div>
+                    <div class="matrix-inner">
+                        <span class="matrix-timeline-span">Engineering Graduation</span>
+                        <h3>NIEIT College</h3>
+                        <p>Bachelor of Engineering Degree Core. Advanced algorithm structures, systemic data sorting, and production infrastructure design workflows.</p>
+                        <span class="deck-action-link"><i class="fa-solid fa-images"></i> Launch Campus Memories Slideshow</span>
+                    </div>
                 </div>
-                <div class="cert-card">
-                    <h3>Microsoft Certified: Azure AI Fundamentals (AI-900)</h3>
-                    <p>Issued by Microsoft (2024)</p>
+                <div class="matrix-item" onclick="openSingleDocument('vvs.jpg')">
+                    <div class="matrix-bullet"></div>
+                    <div class="matrix-inner">
+                        <span class="matrix-timeline-span">Pre-University Course (PUC)</span>
+                        <h3>VVS Golden Jubilee PU College</h3>
+                        <p>Scientific curriculum focus in Advanced Physics, Higher Mathematics, and analytical computation logic tracks.</p>
+                        <div class="file-tag"><i class="fa-solid fa-file-invoice-doll"></i> Attached Document: vvs.jpg</div>
+                    </div>
+                </div>
+                <div class="matrix-item">
+                    <div class="matrix-bullet"></div>
+                    <div class="matrix-inner">
+                        <span class="matrix-timeline-span">Secondary School Leaving Certificate (SSLC)</span>
+                        <h3>VVS Pandit Nehru High School</h3>
+                        <p>General Scientific methods, foundational arithmetic models, core logic design, and basic academic standards.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-box">
-                <p>Feel free to get in touch with me directly through any of the platforms listed below:</p>
-                <ul class="contact-list">
-                    <li><strong><i class="fas fa-envelope"></i> Email:</strong> <a href="mailto:adarshvpujar143@gmail.com">adarshvpujar143@gmail.com</a></li>
-                    <li><strong><i class="fas fa-phone"></i> Phone:</strong> <a href="tel:+919886103154">+91 9886103154</a></li>
-                    <li><strong><i class="fab fa-linkedin"></i> LinkedIn:</strong> <a href="https://linkedin.com" target="_blank">Connect on LinkedIn</a></li>
-                    <li><strong><i class="fab fa-github"></i> GitHub:</strong> <a href="https://github.com" target="_blank">Check repositories</a></li>
-                </ul>
+        <section id="achievements" class="theme-tealred">
+            <h2 class="block-heading"><i class="fa-solid fa-medal"></i> Leadership & High-Pressure Execution</h2>
+            <div class="athletics-banner" onclick="openAchievementDeepDive()">
+                <div class="athletics-content">
+                    <span class="gold-badge-node"><i class="fa-solid fa-trophy"></i> VTU State Level Player (All-Rounder)</span>
+                    <h3>Championship Final Allocation & Pressure Operations</h3>
+                    <p>Led our varsity line-up to the state final stage during a highly competitive season. In the critical, must-win Semi-Final matchup against the <strong>VidyaVikas Institute of Technology</strong>, stepped up under intense pressure to hit a match-winning, unbeaten knock of <strong>71* off just 35 balls</strong>.</p>
+                    <span class="analytics-cta">Review Executive Technical Performance Mapping <i class="fa-solid fa-chart-line"></i></span>
+                </div>
             </div>
         </section>
-    </main>
 
-    <div class="panel-overlay" id="panel-overlay" onclick="closeProject()"></div>
-    <div class="slide-panel" id="slide-panel">
-        <button class="close-panel-btn" onclick="closeProject()"><i class="fas fa-times"></i></button>
-        <div class="panel-content" id="panel-content"></div>
-    </div>
+        <section id="certifications" class="theme-minty">
+            <h2 class="block-heading"><i class="fa-solid fa-certificate"></i> Cloud Industry Certifications</h2>
+            <div class="certifications-row">
+                <div class="cert-card-container" onclick="openCertificationDocument()">
+                    <div class="cert-icon-wrapper"><i class="fa-brands fa-microsoft"></i></div>
+                    <div class="cert-txt-block">
+                        <h3>Microsoft Certified: Azure AI Fundamentals</h3>
+                        <p>Validation of cloud orchestration, cloud automation algorithms, machine learning model selection, and core cognitive intelligence system handling maps.</p>
+                    </div>
+                    <span class="verify-badge"><i class="fa-solid fa-shield-halved"></i> View ID Certification</span>
+                </div>
+            </div>
+        </section>
 
-    <div id="chat-widget">
-        <button class="chat-btn" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
-        <div class="chat-window" id="chat-window">
-            <div class="chat-header">
-                <span>Adarsh's Profile AI Assistant</span>
-                <button class="close-chat-btn" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+        <footer class="app-footer theme-tealred">
+            <div class="footer-core">
+                <div class="footer-statement">
+                    <h3>Let's Build Together</h3>
+                    <p>Clean architectures built with standard web parameters. Get in touch via any core gateway below.</p>
+                </div>
+                <div class="footer-icons-centered-block">
+                    <a href="mailto:your-email@domain.com" class="social-gateway email" target="_blank" title="Email Network"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://linkedin.com/in/yourusername" class="social-gateway linkedin" target="_blank" title="LinkedIn Professional Network"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/yourusername" class="social-gateway github" target="_blank" title="GitHub Repository Storage"><i class="fa-brands fa-github-alt"></i></a>
+                    <a href="https://telegram.me/yourusername" class="social-gateway telegram" target="_blank" title="Telegram Secure Pipeline"><i class="fa-brands fa-telegram"></i></a>
+                </div>
             </div>
-            <div class="chat-messages" id="chat-messages">
-                <div class="msg bot">Hello! I'm an AI designed exclusively to answer questions about Adarsh's portfolio. You can ask me about his Skills, Education, Experience, or Projects!</div>
+            <div class="footer-copyright-node">
+                &copy; 2026 Adarsh V Pujar. All systems operational.
             </div>
-            <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Ask about portfolio..." onkeypress="handleChatKey(event)">
-                <button class="chat-send-btn" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+        </footer>
+
+        <div class="bot-system-parent">
+            <div class="bot-window-frame" id="chatbot-frame">
+                <div class="bot-window-header">
+                    <div class="bot-avatar-wrapper">
+                        <i class="fa-solid fa-robot"></i>
+                        <span class="alive-indicator"></span>
+                    </div>
+                    <div>
+                        <h4>AVP Core Engine</h4>
+                        <span class="bot-sub">Automated Agent v2.6</span>
+                    </div>
+                    <button class="bot-close-btn" onclick="toggleChatbotState()"><i class="fa-solid fa-square-xmark"></i></button>
+                </div>
+                <div class="bot-window-logs" id="chatbot-logs">
+                    <div class="bot-bubble system">Engine online. Ask me about Adarsh's tech stack, corporate history, or his match-winning cricket innings.</div>
+                </div>
+                <div class="bot-window-inputs">
+                    <input type="text" id="chatbot-input-field" placeholder="Query project context, achievements..." onkeypress="handleChatbotKeyPress(event)">
+                    <button class="bot-submit-btn" onclick="executeChatbotQuery()"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+            <button class="bot-floating-trigger-node" id="chatbot-trigger" onclick="toggleChatbotState()" title="Deploy Core Virtual Assistant">
+                <div class="mechanical-head">
+                    <div class="mechanical-ears"></div>
+                    <div class="mechanical-face">
+                        <div class="mechanical-eyes">
+                            <span class="eye-lens left-eye"></span>
+                            <span class="eye-lens right-eye"></span>
+                        </div>
+                    </div>
+                </div>
+            </button>
+        </div>
+
+        <div id="universal-modal" class="modal-backdrop" onclick="closeActiveModalWindow()">
+            <div class="modal-box-body" onclick="event.stopPropagation()">
+                <button class="modal-close-trigger" onclick="closeActiveModalWindow()"><i class="fa-solid fa-circle-xmark"></i></button>
+                <div id="modal-injection-point"></div>
             </div>
         </div>
-    </div>
 
-    <footer>
-        <p>&copy; 2026 Adarsh V Pujar. All Rights Reserved.</p>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
-</html>
+                                                                                    </html>
