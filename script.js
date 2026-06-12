@@ -11,7 +11,7 @@ let profileTitleScrollInterval = null;
 let currentModalSlideshowIndex = 0;
 let currentSlideshowImageCollection = [];
 
-// Gallery mappings connected precisely to uploaded assets
+// GALLERY DATABASE: Maps data keys to available image portfolios
 const GALLERY_DATABASE = {
     chromosis: {
         title: "Chromosis Technologies Pvt Ltd",
@@ -60,9 +60,20 @@ const PROJECT_CASE_STUDIES = {
 
 /* --- 2. Initialization & Sequenced Message Preloader Controls --- */
 document.addEventListener("DOMContentLoaded", () => {
+    // Global Emergency Escape Hatch Override to prevent stuck loaders
+    setTimeout(() => {
+        const structuralLoaderMask = document.getElementById("loader-screen");
+        const primaryAppContentWrapper = document.getElementById("app-content");
+        if (structuralLoaderMask && !structuralLoaderMask.classList.contains("hidden-node")) {
+            console.warn("Emergency Override Event Fired: Removing preloader screen manually.");
+            structuralLoaderMask.classList.add("hidden-node");
+            if (primaryAppContentWrapper) primaryAppContentWrapper.classList.remove("hidden-node");
+            unveilRestOfPortfolioSystems();
+        }
+    }, 10000);
+
     executeSequencedWelcomePreloader();
 
-    // Event Bindings with ID fallback verification to prevent fatal crashes
     const themeBtn = document.getElementById("theme-swapper") || document.getElementById("theme-trigger-btn");
     if (themeBtn) {
         themeBtn.addEventListener("click", cycleNextApplicationPalette);
@@ -77,6 +88,7 @@ function executeSequencedWelcomePreloader() {
     if (!textHolder) {
         if (loaderScreen) loaderScreen.classList.add("hidden-node");
         if (mainContent) mainContent.classList.remove("hidden-node");
+        unveilRestOfPortfolioSystems();
         return;
     }
 
@@ -96,27 +108,28 @@ function executeSequencedWelcomePreloader() {
                 textHolder.style.transition = "opacity 0.6s ease";
                 textHolder.style.opacity = 1;
                 
-                // Read-time tracking delays (gives longer reading time to the descriptive final message)
-                let visibilityHoldTime = sequentialStepIndex === 2 ? 4000 : 2500;
+                let visibilityHoldTime = sequentialStepIndex === 2 ? 4500 : 2500;
                 sequentialStepIndex++;
                 
                 setTimeout(renderNextPreloaderTextChunk, visibilityHoldTime);
             }, 400);
         } else {
-            // Unveiling transition sequence
             if (loaderScreen) loaderScreen.classList.add("hidden-node");
             if (mainContent) mainContent.classList.remove("hidden-node");
-            
-            try {
-                initializeHeroScrollingAnimations();
-                initializeSectionNavigationIntersectionObservers();
-            } catch (err) {
-                console.warn("Secondary systems initialization skipped:", err);
-            }
+            unveilRestOfPortfolioSystems();
         }
     }
 
     renderNextPreloaderTextChunk();
+}
+
+function unveilRestOfPortfolioSystems() {
+    try {
+        initializeHeroScrollingAnimations();
+        initializeSectionNavigationIntersectionObservers();
+    } catch (err) {
+        console.warn("Secondary visualization systems skipped configuration:", err);
+    }
 }
 
 /* --- 3. UI Presentation Mechanics & Theme Engines --- */
@@ -136,6 +149,8 @@ function initializeHeroScrollingAnimations() {
     let activeIndex = 0;
     const rolls = document.querySelectorAll(".roll-node");
     if (rolls.length === 0) return;
+    
+    if (profileTitleScrollInterval) clearInterval(profileTitleScrollInterval);
     
     profileTitleScrollInterval = setInterval(() => {
         rolls[activeIndex].classList.remove("active");
@@ -177,43 +192,46 @@ function initializeSectionNavigationIntersectionObservers() {
     targets.forEach(section => navWatcher.observe(section));
 }
 
-/* --- 4. Interactive Modal Subsystem Controls --- */
+/* --- 4. Dynamic Interactive Modal Subsystem --- */
 function openGallery(key) {
     const source = GALLERY_DATABASE[key];
-    if (!source) return;
+    if (!source) {
+        console.error("Gallery key configuration fault encountered:", key);
+        return;
+    }
     
     currentModalSlideshowIndex = 0;
     currentSlideshowImageCollection = source.images;
     
     let slideshowMarkup = `
         <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 12px; color: #111;">${source.title}</h2>
-        <div class="slideshow-box">
+        <div class="slideshow-box" style="position: relative; width: 100%; height: 350px; background: #000; border-radius: 8px; overflow: hidden;">
     `;
     
     source.images.forEach((imgName, index) => {
         slideshowMarkup += `
-            <img src="${imgName}" class="picture-node ${index === 0 ? 'active-img' : ''}" data-slide-idx="${index}" alt="Gallery Element">
+            <img src="${imgName}" class="picture-node ${index === 0 ? 'active-img' : ''}" data-slide-idx="${index}" style="position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: ${index === 0 ? 1 : 0}; transition: opacity 0.4s ease;" alt="Gallery Media Matrix Asset">
         `;
     });
     
     slideshowMarkup += `
-            <div class="slideshow-nav-row">
-                <button class="nav-btn" onclick="shiftSlideshowViewport(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="nav-btn" onclick="shiftSlideshowViewport(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="slideshow-nav-row" style="position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10;">
+                <button class="nav-btn" onclick="shiftSlideshowViewport(-1)" style="background: rgba(255,255,255,0.9); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer;"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="nav-btn" onclick="shiftSlideshowViewport(1)" style="background: rgba(255,255,255,0.9); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer;"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
-        <div class="thumbs-row-container">
+        <div class="thumbs-row-container" style="display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; margin-bottom: 12px;">
     `;
     
     source.images.forEach((imgName, index) => {
         slideshowMarkup += `
-            <img src="${imgName}" class="thumb-node ${index === 0 ? 'active-thumb' : ''}" data-thumb-idx="${index}" onclick="jumpToSpecificSlide(${index})" alt="Thumbnail">
+            <img src="${imgName}" class="thumb-node ${index === 0 ? 'active-thumb' : ''}" data-thumb-idx="${index}" onclick="jumpToSpecificSlide(${index})" style="width: 75px; height: 50px; object-fit: cover; border-radius: 4px; cursor: pointer; opacity: ${index === 0 ? 1 : 0.5}; border: ${index === 0 ? '2px solid #cc8db3' : 'none'};" alt="Thumbnail Ledger">
         `;
     });
     
     slideshowMarkup += `
         </div>
-        <p class="modal-narrative-p">${source.narrative}</p>
+        <p class="modal-narrative-p" style="font-size: 0.95rem; color: #2c3e50; line-height: 1.6; background: #f8f9fa; padding: 12px; border-radius: 6px;">${source.narrative}</p>
     `;
     
     renderModalContentWrapper(slideshowMarkup);
@@ -226,16 +244,16 @@ function openProject(key) {
     let projectMarkup = `
         <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; color: #111;"><i class="fa-solid fa-laptop-code"></i> ${caseData.title}</h2>
         <h4 style="text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; color: #666; margin-bottom: 14px;">Technical Engineering Core Implementation Specs</h4>
-        <ul class="modal-list-node">
+        <ul class="modal-list-node" style="padding-left: 20px; margin-bottom: 15px;">
     `;
     
     caseData.bullets.forEach(sentence => {
-        projectMarkup += `<li>${sentence}</li>`;
+        projectMarkup += `<li style="margin-bottom: 8px; color: #333;">${sentence}</li>`;
     });
     
     projectMarkup += `
         </ul>
-        <p class="modal-narrative-p">This case study demonstrates robust compliance standards, relational transactional consistency, and production architecture rules designed under strict operational constraints.</p>
+        <p class="modal-narrative-p" style="font-size: 0.95rem; color: #2c3e50; line-height: 1.6; background: #f8f9fa; padding: 12px; border-radius: 6px;">This case study demonstrates robust compliance standards, relational transactional consistency, and production architecture rules designed under strict operational constraints.</p>
     `;
     
     renderModalContentWrapper(projectMarkup);
@@ -255,13 +273,13 @@ function openAchievementDeepDive() {
     const achievementMarkup = `
         <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; color: #111;"><i class="fa-solid fa-trophy"></i> VTU Zonal Cricket Championship</h2>
         <div style="width: 100%; border-radius: 6px; overflow: hidden; background: #000; text-align: center; margin-bottom: 14px;">
-            <img src="35158.jpg" style="max-width: 100%; max-height: 50vh; object-fit: contain; display: block; margin: 0 auto;" alt="Cricket Achievement Trophy Media">
+            <img src="35158.jpg" style="max-width: 100%; max-height: 45vh; object-fit: contain; display: block; margin: 0 auto;" alt="Cricket Achievement Trophy Media">
         </div>
-        <p class="modal-narrative-p" style="margin-bottom: 10px;"><strong>Operational Performance Review:</strong> Evaluating high-stress crisis parameters under intense competition variables.</p>
-        <ul class="modal-list-node">
-            <li><strong>Dynamic Strategy Alignment:</strong> Engineered real-time adjustments based on delivery patterns to counter targeted attacks.</li>
-            <li><strong>Match-Winning Contribution:</strong> Scored an explosive, unbeaten 71* off 35 balls, driving calculated risks to chase down the benchmark under pressure.</li>
-            <li><strong>Leadership Matrix Execution:</strong> Guided and paced base-runners safely during defining over thresholds to secure the tournament trophy.</li>
+        <p class="modal-narrative-p" style="margin-bottom: 10px; font-size: 0.95rem; color: #2c3e50; line-height: 1.6; background: #f8f9fa; padding: 12px; border-radius: 6px;"><strong>Operational Performance Review:</strong> Evaluating high-stress crisis parameters under intense competition variables.</p>
+        <ul class="modal-list-node" style="padding-left: 20px; color: #333;">
+            <li style="margin-bottom: 6px;"><strong>Dynamic Strategy Alignment:</strong> Engineered real-time adjustments based on delivery patterns to counter targeted attacks.</li>
+            <li style="margin-bottom: 6px;"><strong>Match-Winning Contribution:</strong> Scored an explosive, unbeaten 71* off 35 balls, driving calculated risks to chase down the benchmark under pressure.</li>
+            <li style="margin-bottom: 6px;"><strong>Leadership Matrix Execution:</strong> Guided and paced base-runners safely during defining over thresholds to secure the tournament trophy.</li>
         </ul>
     `;
     renderModalContentWrapper(achievementMarkup);
@@ -278,7 +296,7 @@ function openCertificationDocument() {
                 <img src="35161.jpg" style="max-width: 100%; max-height: 40vh; display: block; margin: 0 auto;" alt="Verified Azure AI Certification Image Display">
             </div>
         </div>
-        <p class="modal-narrative-p">This credential verifies core competence in architecting production pipelines and mapping mathematical processes using Microsoft Azure enterprise cloud solutions.</p>
+        <p class="modal-narrative-p" style="font-size: 0.95rem; color: #2c3e50; line-height: 1.6; background: #f8f9fa; padding: 12px; border-radius: 6px;">This credential verifies core competence in architecting production pipelines and mapping mathematical processes using Microsoft Azure enterprise cloud solutions.</p>
     `;
     renderModalContentWrapper(certMarkup);
 }
@@ -312,16 +330,16 @@ function jumpToSpecificSlide(targetIndex) {
     const thumbs = document.querySelectorAll(".thumb-node");
     
     views.forEach(node => {
-        node.classList.remove("active-img");
-        if (parseInt(node.getAttribute("data-slide-idx")) === targetIndex) {
-            node.classList.add("active-img");
-        }
+        node.style.opacity = parseInt(node.getAttribute("data-slide-idx")) === targetIndex ? 1 : 0;
     });
     
     thumbs.forEach(thumb => {
-        thumb.classList.remove("active-thumb");
         if (parseInt(thumb.getAttribute("data-thumb-idx")) === targetIndex) {
-            thumb.classList.add("active-thumb");
+            thumb.style.opacity = 1;
+            thumb.style.border = "2px solid #cc8db3";
+        } else {
+            thumb.style.opacity = 0.5;
+            thumb.style.border = "none";
         }
     });
 }
@@ -337,16 +355,11 @@ function toggleChatbotState() {
         const robotAvatar = document.getElementById("chatbot-trigger");
         if (robotAvatar) {
             robotAvatar.classList.add("animate-robo-thanks");
-            setTimeout(() => {
-                robotAvatar.classList.remove("animate-robo-thanks");
-            }, 1200);
+            setTimeout(() => { robotAvatar.classList.remove("animate-robo-thanks"); }, 1200);
         }
         
         appendMessageLogNode("🤖 Thank you for chatting with AVP engine! Have an amazing day! ✨👋", "incoming");
-        
-        setTimeout(() => {
-            frame.classList.remove("active-chat");
-        }, 1000);
+        setTimeout(() => { frame.classList.remove("active-chat"); }, 1000);
     } else {
         frame.classList.add("active-chat");
     }
@@ -383,12 +396,7 @@ function displayBotTypingRipple() {
     const rippleChassis = document.createElement("div");
     rippleChassis.className = "typing-ripple-wrapper";
     rippleChassis.id = "active-engine-typing-ripple";
-    
-    rippleChassis.innerHTML = `
-        <span class="ripple-dot"></span>
-        <span class="ripple-dot"></span>
-        <span class="ripple-dot"></span>
-    `;
+    rippleChassis.innerHTML = `<span class="ripple-dot"></span><span class="ripple-dot"></span><span class="ripple-dot"></span>`;
     
     logs.appendChild(rippleChassis);
     logs.scrollTop = logs.scrollHeight;
@@ -420,25 +428,14 @@ function appendMessageLogNode(textText, targetClass) {
 
 /* --- 6. Interactive Directory Menu & Routing Engines --- */
 function routeQueryToIntentEngine(processedInput) {
-    // Structural intent check pools
+    // Exact intent definition matrices
     const matchedIntentA = processedInput.includes("project") || processedInput.includes("case study") || processedInput.includes("portfolio");
     const matchedIntentB = processedInput.includes("experience") || processedInput.includes("work") || processedInput.includes("history") || processedInput.includes("job") || processedInput.includes("tenure");
     const matchedIntentC = processedInput.includes("skill") || processedInput.includes("tech") || processedInput.includes("matrix") || processedInput.includes("code");
     const matchedIntentD = processedInput.includes("education") || processedInput.includes("academic") || processedInput.includes("college") || processedInput.includes("school") || processedInput.includes("vvs") || processedInput.includes("nie");
-    const matchedIntentE = processedInput.includes("deaf") || processedInput.includes("car") || processedInput.includes("chromosis") || processedInput.includes("hpe") || processedInput.includes("phonemax") || processedInput.includes("frontend") || processedInput.includes("backend") || processedInput.includes("analytics");
+    const matchedIntentE = processedInput.includes("deaf") || processedInput.includes("car") || processedInput.includes("chromosis") || processedInput.includes("hpe") || processedInput.includes("phonemax") || processedInput.includes("frontend") || processedInput.includes("backend") || processedInput.includes("analytics") || processedInput.includes("sports") || processedInput.includes("cricket") || processedInput.includes("achievement");
 
-     // Boundary Filtering Check: Catch out-of-portfolio inputs
-    if (!matchedIntentA && !matchedIntentB && !matchedIntentC && !matchedIntentD && !matchedIntentE && !processedInput.includes("back") && !processedInput.includes("exit")) {
-        const fallbackOopsHTMLBox = `
-            <div style="background: rgba(231, 76, 60, 0.12); border: 2px dashed #e74c3c; border-radius: 8px; padding: 14px; margin: 5px 0; text-align: left; width: 100%;">
-                <h5 style="color: #e74c3c; font-weight: 800; font-size: 1rem; margin-bottom: 6px; text-transform: uppercase;"><i class="fa-solid fa-ban"></i> oops!! Sorry</h5>
-                <p style="font-size: 0.85rem; color: #f4f4f4; line-height: 1.4; margin: 0;">Boss adarsh has restricted me over other things not to talk and waste the time of me as well as yours.</p>
-            </div>
-        `;
-        appendMessageLogNode(fallbackOopsHTMLBox, "incoming");
-        return;
-    }
-
+    // CORE ROUTING SWITCH: Priority gates execute before checking the fallback restriction guard rail
     if (matchedIntentA) {
         appendMessageLogNode("🤖 Project Directory Access Granted. Please select an option below:", "incoming");
         createInteractiveDirectoryMenu([
@@ -477,29 +474,71 @@ function routeQueryToIntentEngine(processedInput) {
         return;
     }
 
-    // Leaf nodes handler answers
+    // Direct string matches (Leaf node processors)
     if (processedInput.includes("nie campus")) {
         appendMessageLogNode("🎓 NIE Institute of Technology: Completing Bachelor of Engineering in Computer Science (2021-2025) with a tracking benchmark score of 8.45 CGPA.", "incoming");
-    } else if (processedInput.includes("vvs college")) {
+        return;
+    } 
+    
+    if (processedInput.includes("vvs college")) {
         appendMessageLogNode("📜 VVS Golden Jubilee PU College: Completed Pre-University validation parameters scoring an aggregate performance rating of 88.5%.", "incoming");
-    } else if (processedInput.includes("deaf project")) {
+        return;
+    } 
+    
+    if (processedInput.includes("deaf project")) {
         appendMessageLogNode("🔊 Deaf Communication Project: High-speed gesture mapping calculation framework designed to parse structural actions cleanly into readouts.", "incoming");
-    } else if (processedInput.includes("car rental")) {
+        return;
+    } 
+    
+    if (processedInput.includes("car rental")) {
         appendMessageLogNode("🚗 Car Rental System: Enterprise asset coordination engine built to safeguard concurrency pipelines and resolve database lock contentions.", "incoming");
-    } else if (processedInput.includes("chromosis")) {
+        return;
+    } 
+    
+    if (processedInput.includes("chromosis")) {
         appendMessageLogNode("🏢 Chromosis Technologies: Served as a Creative Design and Software Engineering Intern in Hubli, mapping layout blueprints and asset variables.", "incoming");
-    } else if (processedInput.includes("hpe")) {
+        return;
+    } 
+    
+    if (processedInput.includes("hpe")) {
         appendMessageLogNode("💻 HPE Solutions: Served 4 months as a Technical Solutions Specialist in Bengaluru managing cloud operations and monitoring logs.", "incoming");
-    } else if (processedInput.includes("phonemax")) {
+        return;
+    } 
+    
+    if (processedInput.includes("phonemax")) {
         appendMessageLogNode("📈 PhoneMax Operations: 6 months tenure handling digital marketing infrastructure campaigns. Extended regional brand footprint and user metrics cleanly.", "incoming");
-    } else if (processedInput.includes("frontend")) {
+        return;
+    } 
+    
+    if (processedInput.includes("frontend")) {
         appendMessageLogNode("✨ Frontend Stack: Expert across HTML5, CSS3, JavaScript (ES6+), React.js layouts, and fluid responsive design methodologies.", "incoming");
-    } else if (processedInput.includes("backend")) {
+        return;
+    } 
+    
+    if (processedInput.includes("backend")) {
         appendMessageLogNode("⚙️ Backend Core: Specialized in Node.js, Express structures, database schema operations, and writing atomic queries.", "incoming");
-    } else if (processedInput.includes("analytics")) {
+        return;
+    } 
+    
+    if (processedInput.includes("analytics")) {
         appendMessageLogNode("📊 Analytics Hub: Competent in managing Microsoft Azure cloud setups, analytical model scoring, and telemetry tracking arrays.", "incoming");
-    } else if (processedInput.includes("back") || processedInput.includes("exit")) {
+        return;
+    } 
+    
+    if (processedInput.includes("back") || processedInput.includes("exit")) {
         toggleChatbotState();
+        return;
+    }
+
+    // FALLBACK OVERRIDE: Fired ONLY if absolutely no valid target index terms match above
+    if (!matchedIntentA && !matchedIntentB && !matchedIntentC && !matchedIntentD && !matchedIntentE) {
+        const fallbackOopsHTMLBox = `
+            <div style="background: rgba(231, 76, 60, 0.12); border: 2px dashed #e74c3c; border-radius: 8px; padding: 14px; margin: 5px 0; text-align: left; width: 100%;">
+                <h5 style="color: #e74c3c; font-weight: 800; font-size: 1rem; margin-bottom: 6px; text-transform: uppercase;"><i class="fa-solid fa-ban"></i> oops!! Sorry</h5>
+                <p style="font-size: 0.85rem; color: #f4f4f4; line-height: 1.4; margin: 0;">Boss adarsh has restricted me over other things not to talk and waste the time of me as well as yours.</p>
+            </div>
+        `;
+        appendMessageLogNode(fallbackOopsHTMLBox, "incoming");
     }
 }
 
