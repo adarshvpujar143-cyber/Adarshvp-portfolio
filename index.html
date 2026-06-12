@@ -3,292 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adarsh V Pujar | Portfolio</title>
+    <title>Adarsh V Pujar | Portfolio Workspace</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <div id="loader-screen" class="loader-screen">
-    <div class="loader-element"></div>
-    <div id="loader-animated-text-container" style="max-width: 600px; text-align: center; margin-top: 24px; padding: 0 25px; min-height: 80px; display: flex; align-items: center; justify-content: center;">
-        </div>
+        <div class="loader-element"></div>
+        <div id="loader-animated-text-container" style="max-width: 600px; text-align: center; margin-top: 24px; padding: 0 25px; min-height: 80px; display: flex; align-items: center; justify-content: center;">
+            </div>
     </div>
-    
+
     <div id="app-content" class="hidden-node">
         
         <header class="app-header">
             <nav class="nav-bar">
-                <a href="#hero" class="nav-item active" title="Home"><i class="fa-solid fa-house-user"></i></a>
-                <a href="#skills" class="nav-item" title="Skills"><i class="fa-solid fa-laptop-code"></i></a>
-                <a href="#experience" class="nav-item" title="Experience"><i class="fa-solid fa-briefcase"></i></a>
-                <a href="#projects" class="nav-item" title="Projects"><i class="fa-solid fa-code-branch"></i></a>
-                <a href="#education" class="nav-item" title="Education"><i class="fa-solid fa-user-graduate"></i></a>
-                <a href="#achievements" class="nav-item" title="Achievements"><i class="fa-solid fa-award"></i></a>
-                <a href="#certifications" class="nav-item" title="Certifications"><i class="fa-solid fa-stamp"></i></a>
-                
-                <button id="theme-swapper" class="theme-trigger-btn" title="Cycle Next Color Palette">
-                    <i class="fa-solid fa-palette"></i>
-                </button>
+                <a href="#hero" class="nav-item active" title="Home Interface"><i class="fa-solid fa-house-user"></i></a>
+                <a href="#skills" class="nav-item" title="Skill Matrices Layout"><i class="fa-solid fa-laptop-code"></i></a>
+                <a href="#experience" class="nav-item" title="Professional Experience Records"><i class="fa-solid fa-briefcase"></i></a>
+                <a href="#projects" class="nav-item" title="Engineering Projects Portfolio"><i class="fa-solid fa-code-branch"></i></a>
+                <a href="#education" class="nav-item" title="Academic Background Logs"><i class="fa-solid fa-user-graduate"></i></a>
+                <a href="#achievements" class="nav-item" title="Awards & Milestones"><i class="fa-solid fa-trophy"></i></a>
+                <button id="theme-swapper" class="theme-trigger-btn" title="Cycle Application Palettes" style="background: none; border: none; color: inherit; cursor: pointer; font-size: 1.1rem; padding: 10px;"><i class="fa-solid fa-palette"></i></button>
             </nav>
         </header>
 
-        <section id="hero">
-            <div class="hero-container">
-                <div class="carousel-viewport">
-                    <div class="carousel-track">
-                        <img src="profile.jpg" alt="Profile View" class="carousel-item">
-                        <img src="profile1.jpg" alt="Profile View 1" class="carousel-item">
-                        <img src="profile2.jpg" alt="Profile View 2" class="carousel-item">
-                        <img src="profile3.jpg" alt="Profile View 3" class="carousel-item">
-                        <img src="profile4.jpg" alt="Profile View 4" class="carousel-item">
-                        <img src="profile5.jpg" alt="Profile View 5" class="carousel-item">
-                        <img src="profile6.jpg" alt="Profile View 6" class="carousel-item">
-                        <img src="profile7.jpg" alt="Profile View 7" class="carousel-item">
-                        <img src="profile8.jpg" alt="Profile View 8" class="carousel-item">
-                        <img src="profile.jpg" alt="Profile View" class="carousel-item">
-                        <img src="profile1.jpg" alt="Profile View 1" class="carousel-item">
-                        <img src="profile2.jpg" alt="Profile View 2" class="carousel-item">
-                        <img src="profile3.jpg" alt="Profile View 3" class="carousel-item">
-                        <img src="profile4.jpg" alt="Profile View 4" class="carousel-item">
-                        <img src="profile5.jpg" alt="Profile View 5" class="carousel-item">
-                        <img src="profile6.jpg" alt="Profile View 6" class="carousel-item">
-                        <img src="profile7.jpg" alt="Profile View 7" class="carousel-item">
-                        <img src="profile8.jpg" alt="Profile View 8" class="carousel-item">
-                    </div>
-                </div>
+        <main class="viewport-container">
 
-                <div class="hero-meta-block">
-                    <h1 class="hero-title">I am Adarsh V Pujar</h1>
-                    <div class="rolling-text-box">
-                        <span class="roll-node active">Full-Stack Developer</span>
-                        <span class="roll-node">Data Analyst</span>
-                        <span class="roll-node">UI/UX Engineer</span>
-                        <span class="roll-node">Creative Technologist</span>
+            <section id="hero" class="hero-section">
+                <div class="hero-layout-box">
+                    <h1 class="profile-name">Adarsh V Pujar</h1>
+                    <div class="scrolling-title-engine">
+                        <span class="roll-node active">Full-Stack Software Engineer</span>
+                        <span class="roll-node">Cloud Engineering Specialist</span>
+                        <span class="roll-node">UI/UX Systems Architect</span>
+                    </div>
+                    <p class="profile-pitch-text">
+                        Architecting highly reliable web applications, relational database schemas, and microservices environments with elegant and scalable solutions.
+                    </p>
+                    <div class="social-links-row">
+                        <a href="mailto:adarshvpujar@gmail.com" class="social-icon" title="Email Communications Ledger"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="#" class="social-icon" title="GitHub Repository Index Link"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="social-icon" title="LinkedIn Professional Network Profile"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="skills">
-            <h2 class="block-heading"><i class="fa-solid fa-laptop-code"></i> Technical Matrix & Skills</h2>
-            <div class="skills-grid-wrapper">
-                <div class="skills-card">
-                    <h3>Frontend Frameworks & UI</h3>
-                    <div class="skills-tags">
-                        <span>HTML5</span><span>CSS3</span><span>JavaScript (ES6+)</span><span>React.js</span><span>UI/UX Architecture</span><span>Responsive Systems Layout</span>
-                    </div>
-                </div>
-                <div class="skills-card">
-                    <h3>Backend & Database Environments</h3>
-                    <div class="skills-tags">
-                        <span>Node.js</span><span>Express Framework</span><span>Python</span><span>RESTful API Integration</span><span>Structured SQL</span><span>Relational Database Management</span>
-                    </div>
-                </div>
-                <div class="skills-card">
-                    <h3>Data Analytics & Specialized Engineering</h3>
-                    <div class="skills-tags">
-                        <span>Data Validation Matrices</span><span>Signal Processing Libraries</span><span>Statistical Modeling</span><span>Azure AI Foundations</span><span>Git Workspace Controls</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience">
-            <h2 class="block-heading"><i class="fa-solid fa-briefcase"></i> Work History</h2>
-            <div class="deck-grid">
-                <div class="exp-card" onclick="openGallery('chromosis')">
-                 <button class="view-gallery-btn">View Gallery</button>
-                </div>
-                        <div class="card-meta-line-front">
-                        <span class="org-name">Chromosis Technologies Pvt Ltd</span>
-                        <span class="org-location"><i class="fa-solid fa-location-dot"></i> Hubli , Karnataka</span>
-                        <span class="job-date">May 2026 ( Present )</span>
-                    </div>
-                    <h3 class="org-role">Creative Design & Software Engineering Intern</h3>
-                    <span class="org-timeline"><i class="fa-solid fa-calendar-days"></i> Internship Phase</span>
-                    <p class="deck-teaser-hint">Click card to review full internal picture gallery and active production slide deck.</p>
-                    <span class="deck-action-link">Launch Gallery & Memories <i class="fa-solid fa-arrow-right-long"></i></span>
-                </div>
-
-                <div class="exp-card" onclick="openGallery('hpe')">
-                   <button class="view-gallery-btn">View Gallery</button>
-                </div>
-                    <div class="card-meta-line-front">
-                        <span class="org-name">Hewlett Packard Enterprise (HPE)</span>
-                        <span class="org-location"><i class="fa-solid fa-location-dot"></i> Bengaluru,Karnataka</span>
-                        <span class="job-date">Feb - May (4 months)</span>
-                    </div>
-                    <h3 class="org-role">Technical Solutions & Systems Specialist</h3>
-                    <span class="org-timeline"><i class="fa-solid fa-calendar-days"></i> Core Technical Tenure</span>
-                    <p class="deck-teaser-hint">Click card to review full internal picture gallery and active corporate slide deck.</p>
-                    <span class="deck-action-link">Launch Gallery & Memories <i class="fa-solid fa-arrow-right-long"></i></span>
-                </div>
-
-                <div class="deck-card" onclick="openGallery('phonemax')">
-                    <div class="card-meta-line-front">
-                        <span class="org-name">PhoneMax</span>
-                        <span class="org-location"><i class="fa-solid fa-location-dot"></i> Mysore , Karnataka</span>
-                        <span class="job-date">Oct 2025 - March 2026 (6 months)</span>
-                    </div>
-                    <h3 class="org-role">Digital Marketing Executive</h3>
-                    <span class="org-timeline"><i class="fa-solid fa-calendar-days"></i> Marketing Tenure</span>
-                    <p class="deck-teaser-hint">Click card to review full internal picture gallery and active campaign metrics.</p>
-                    <span class="deck-action-link">Launch Gallery & Memories <i class="fa-solid fa-arrow-right-long"></i></span>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2 class="block-heading"><i class="fa-solid fa-code-merge"></i> System Engineering Case Studies</h2>
-            <div class="projects-grid">
-                
-                <div class="project-box" onclick="openProject('deaf-comm')">
-                    <div class="img-container">
-                        <img src="project1.jpg" alt="Two Way Communication Framework" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Two Way Communication Systems for Deaf People</h3>
-                        <p class="proj-desc-short">High-speed conversational computation framework built to map localized accessibility indicators cleanly into text.</p>
-                        <span class="project-btn-tag">Launch In-Depth Review <i class="fa-solid fa-circle-chevron-right"></i></span>
-                    </div>
-                </div>
-
-                <div class="project-box" onclick="openProject('car-rental')">
-                    <div class="img-container">
-                        <img src="project2.jpg" alt="Car Rental Management Platform" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Car Rental Management Systems</h3>
-                        <p class="proj-desc-short">Enterprise asset distribution network engineered for optimizing relational databases and transactional execution paths.</p>
-                        <span class="project-btn-tag">Launch In-Depth Review <i class="fa-solid fa-circle-chevron-right"></i></span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="education">
-            <h2 class="block-heading"><i class="fa-solid fa-graduation-cap"></i> Academic Training</h2>
-            <div class="matrix-timeline">
-                
-                <div class="edu-card" onclick="openGallery('nieit')">
-                  <button class="view-gallery-btn">View Campus Gallery</button>
-                </div>
-                    <div class="matrix-bullet"></div>
-                    <div class="matrix-inner">
-                        <div class="card-meta-line-front">
-                            <span class="org-name">NIE Institute Of College</span>
-                            <span class="org-location"><i class="fa-solid fa-location-dot"></i> Mysuru, India</span>
-                        </div>
-                        <h3 class="org-role">Bachelor of Engineering (B.E.)</h3>
-                        <div class="metric-ribbon">
-                            <span class="metric-pill"><i class="fa-solid fa-calendar-days"></i> 2021 - 2025</span>
-                            <span class="metric-pill score"><i class="fa-solid fa-chart-simple"></i> CGPA: 8.45 / 10.0</span>
-                        </div>
-                        <span class="deck-action-link"><i class="fa-solid fa-images"></i> View Campus Memories Slideshow</span>
-                    </div>
-                </div>
-
-                <div class="matrix-item" onclick="openSingleDocument('vvs.jpg')">
-                    <div class="matrix-bullet"></div>
-                    <div class="matrix-inner">
-                        <div class="card-meta-line-front">
-                            <span class="org-name">VVS Golden Jubilee PU College</span>
-                            <span class="org-location"><i class="fa-solid fa-location-dot"></i> Mysuru, India</span>
-                        </div>
-                        <h3 class="org-role">Pre-University Course (PUC)</h3>
-                        <div class="metric-ribbon">
-                            <span class="metric-pill"><i class="fa-solid fa-calendar-days"></i> 2019 - 2021</span>
-                            <span class="metric-pill score"><i class="fa-solid fa-percent"></i> Score: 88.5%</span>
-                        </div>
-                        <div class="file-tag"><i class="fa-solid fa-file-image"></i> Document Link: vvs.jpg</div>
-                    </div>
-                </div>
-
-                <div class="matrix-item">
-                    <div class="matrix-bullet"></div>
-                    <div class="matrix-inner">
-                        <div class="card-meta-line-front">
-                            <span class="org-name">VVS Pandit Nehru High School</span>
-                            <span class="org-location"><i class="fa-solid fa-location-dot"></i> Mysuru, India</span>
-                        </div>
-                        <h3 class="org-role">Secondary School Leaving Certificate (SSLC)</h3>
-                        <div class="metric-ribbon">
-                            <span class="metric-pill"><i class="fa-solid fa-calendar-days"></i> 2018 - 2019</span>
-                            <span class="metric-pill score"><i class="fa-solid fa-percent"></i> Score: 89.47%</span>
+            <section id="skills" class="content-section">
+                <h2 class="section-title-header"><i class="fa-solid fa-layer-group"></i> Engineering Skills Matrix</h2>
+                <div class="skills-grid-wrapper">
+                    
+                    <div class="skill-category-card">
+                        <h3>Frontend Architecture</h3>
+                        <div class="tags-collection-row">
+                            <span class="skill-tag">HTML5 & CSS3</span>
+                            <span class="skill-tag">JavaScript (ES6+)</span>
+                            <span class="skill-tag">React.js Layouts</span>
+                            <span class="skill-tag">Responsive UI Engines</span>
                         </div>
                     </div>
-                </div>
 
-            </div>
-        </section>
-
-        <section id="achievements">
-            <h2 class="block-heading"><i class="fa-solid fa-medal"></i> Athletic Leadership & Crisis Operations</h2>
-            <div class="achievement-card" onclick="openAchievementDeepDive()">
-            <button class="view-gallery-btn">View Achievement Info</button>
-           </div>
-                   <div class="athletics-content">
-                    <span class="gold-badge-node"><i class="fa-solid fa-trophy"></i> VTU State Level Player (All-Rounder)</span>
-                    <h3>Championship Finals Run & Strategic Crisis Handling</h3>
-                    <p>Propelled the varsity team safely into the state championship final tier. In a high-stakes, must-win Semi-Final match against <strong>VidyaVikas Institute of Technology</strong>, executed a legendary match-winning performance, scoring <strong>71* off just 35 balls</strong> during a severe top-order collapse.</p>
-                    <span class="analytics-cta">Review Executive Engineering Translation Management <i class="fa-solid fa-chart-line"></i></span>
-                </div>
-            </div>
-        </section>
-
-        <section id="certifications">
-            <h2 class="block-heading"><i class="fa-solid fa-certificate"></i> Enterprise Cloud Certifications</h2>
-            <div class="certifications-row">
-                <div class="cert-card" onclick="openCertificationDocument()">
-                   <button class="view-gallery-btn">View Certificate</button>
-                </div>
-                    <div class="cert-icon-wrapper"><i class="fa-brands fa-microsoft"></i></div>
-                    <div class="cert-txt-block">
-                        <h3>Microsoft Certified: Azure AI Fundamentals</h3>
-                        <p class="cert-short-meta">Validated expertise in deploying cloud cognitive pipelines, data algorithms, and models directly on enterprise Azure infrastructure.</p>
+                    <div class="skill-category-card">
+                        <h3>Backend & Databases</h3>
+                        <div class="tags-collection-row">
+                            <span class="skill-tag">Node.js Runtimes</span>
+                            <span class="skill-tag">Express Frameworks</span>
+                            <span class="skill-tag">SQL & Relational Schemas</span>
+                            <span class="skill-tag">Atomic Transactions Management</span>
+                        </div>
                     </div>
-                    <span class="verify-badge"><i class="fa-solid fa-shield-halved"></i> Verify Document</span>
-                </div>
-            </div>
-        </section>
 
-        <footer class="app-footer">
-            <div class="footer-core">
-                <div class="footer-statement">
-                    <h3>Connect with Adarsh V Pujar</h3>
-                    <p>Available for cross-functional corporate infrastructure implementation, full-stack systems engineering, and data analytical tracks.</p>
-                </div>
-                
-                <div class="footer-icons-centered-block">
-                    <a href="tel:+919876543210" class="social-gateway contact-phone" title="Direct Phone Link"><i class="fa-solid fa-phone"></i></a>
-                    <a href="mailto:adarshvpujar@gmail.com" class="social-gateway email" target="_blank" title="Secure Mail Pipeline"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://linkedin.com/in/adarshvpujar" class="social-gateway linkedin" target="_blank" title="LinkedIn Professional Ledger"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://github.com/adarshvpujar" class="social-gateway github" target="_blank" title="GitHub Repository Hub"><i class="fa-brands fa-github-alt"></i></a>
-                </div>
-            </div>
-            <div class="footer-copyright-node">
-                &copy; 2026 Adarsh V Pujar. All system parameters certified functional.
-            </div>
-        </footer>
+                    <div class="skill-category-card">
+                        <h3>Cloud & Specialized Operations</h3>
+                        <div class="tags-collection-row">
+                            <span class="skill-tag">Microsoft Azure Suite</span>
+                            <span class="skill-tag">Azure AI Models</span>
+                            <span class="skill-tag">System Logs Monitoring</span>
+                            <span class="skill-tag">Telemetry Analytics Tracking</span>
+                        </div>
+                    </div>
 
-        <div class="bot-system-parent">
-            <div class="bot-window-frame" id="chatbot-frame">
-                <div class="bot-window-header">
-                    <div class="bot-avatar-wrapper" id="chatbot-robo-avatar">
-                        <i class="fa-solid fa-robot"></i>
-                        <span class="alive-indicator"></span>
-                    </div>
-                    <div>
-                        <h4>AVP Virtual Engine</h4>
-                        <span class="bot-sub">Automated System v2.6</span>
-                    </div>
-                    <button class="bot-close-btn" id="chatbot-close-trigger" onclick="toggleChatbotState()"><i class="fa-solid fa-square-xmark"></i></button>
                 </div>
-                <div class="bot-window-logs" id="chatbot-logs">
-                    <div class="bot-bubble system">Agent compiled. Query me regarding Adarsh's tech stack, engineering experiences, or high-pressure athletic metrics.</div>
+            </section>
+
+            <section id="experience" class="content-section">
+                <h2 class="section-title-header"><i class="fa-solid fa-business-time"></i> Professional Experience History</h2>
+                <div class="experience-vertical-stack">
+
+                    <div class="exp-card" onclick="openGallery('chromosis')" style="cursor: pointer;">
+                        <div class="exp-header-meta">
+                            <div>
+                                <h3 class="company-title-text">Creative Design & Software Engineering Intern</h3>
+                                <h4 class="sub-company-text">Chromosis Technologies Pvt Ltd | Hubli</h4>
+                            </div>
+                            <span class="tenure-badge-node">Internship Tenure</span>
+                        </div>
+                        
+                        <div class="detailed-narrative-container" style="margin-top: 15px; font-size: 0.92rem; line-height: 1.5; color: rgba(255,255,255,0.85);">
+                            <p style="margin-bottom: 8px;"><strong>My Journey:</strong> Stepping into Chromosis Technologies allowed me to dive deep into fast-paced engineering sprints. I transitioned from theoretical academic concepts into shipping daily front-end iterations and functional layout features.</p>
+                            <p style="margin-bottom: 8px;"><strong>Technologies Used:</strong> HTML5, CSS3, JavaScript (ES6), Git, Responsive UI Frameworks, Cross-Browser Compatibility Emulators.</p>
+                            <p style="margin-bottom: 8px;"><strong>Detailed Description & Task Scope:</strong> Collaborated within the core design and layout assembly branches. I mapped front-end component layouts, resolved UI structural deviations across multiple physical viewport breakpoints, and optimized asset loading pipelines to maintain sub-second structural initialization rates.</p>
+                            <p style="margin-bottom: 8px;"><strong>Outcomes Achieved:</strong> Boosted layout presentation metrics across 12 unique viewports and removed critical layout shift bottlenecks from the production layout pipelines.</p>
+                            <p><strong>What I Learnt:</strong> Mastered the art of translating wireframe mockups into responsive, accessible code while collaborating through structured Git pull request flows.</p>
+                        </div>
+                        <button class="view-gallery-btn" style="margin-top: 12px; padding: 8px 16px; background: var(--accent); border: none; border-radius: 4px; color: #fff; cursor: pointer; font-weight: 600;"><i class="fa-solid fa-images"></i> Launch Slideshow Deck</button>
+                    </div>
+
+                    <div class="exp-card" onclick="openGallery('hpe')" style="cursor: pointer;">
+                        <div class="exp-header-meta">
+                            <div>
+                                <h3 class="company-title-text">Technical Solutions Specialist</h3>
+                                <h4 class="sub-company-text">Hewlett Packard Enterprise (HPE) | Bengaluru</h4>
+                            </div>
+                            <span class="tenure-badge-node">4 Months Tenure</span>
+                        </div>
+                        
+                        <div class="detailed-narrative-container" style="margin-top: 15px; font-size: 0.92rem; line-height: 1.5; color: rgba(255,255,255,0.85);">
+                            <p style="margin-bottom: 8px;"><strong>My Journey:</strong> Operating at an enterprise scale within Hewlett Packard Enterprise enhanced my focus on robust system reliability. Working in Bengaluru, I took ownership of system log analysis and performance health indicators across large-scale server infrastructures.</p>
+                            <p style="margin-bottom: 8px;"><strong>Technologies Used:</strong> Enterprise Monitoring Agents, Server Analytics Consoles, Shell Scripting, Microsoft Cloud Systems Log Tracers.</p>
+                            <p style="margin-bottom: 8px;"><strong>Detailed Description & Task Scope:</strong> Monitored distributed server nodes to identify resource exhaustion patterns and database indexing failures. I parsed massive tracking matrices, formulated performance diagnostic trees, and streamlined the resolution paths for complex hardware and network exceptions.</p>
+                            <p style="margin-bottom: 8px;"><strong>Outcomes Achieved:</strong> Significantly reduced system downtime by identifying failure vectors early through predictive log analysis dashboards.</p>
+                            <p><strong>What I Learnt:</strong> Developed a deep understanding of enterprise service level agreements (SLAs), operational risk mitigation, and automated metric alerting configurations.</p>
+                        </div>
+                        <button class="view-gallery-btn" style="margin-top: 12px; padding: 8px 16px; background: var(--accent); border: none; border-radius: 4px; color: #fff; cursor: pointer; font-weight: 600;"><i class="fa-solid fa-images"></i> Launch Slideshow Deck</button>
+                    </div>
+
+                    <div class="exp-card" onclick="openGallery('phonemax')" style="cursor: pointer;">
+                        <div class="exp-header-meta">
+                            <div>
+                                <h3 class="company-title-text">Digital Campaign Executive</h3>
+                                <h4 class="sub-company-text">PhoneMax Marketing Core Division</h4>
+                            </div>
+                            <span class="tenure-badge-node">6 Months Tenure</span>
+                        </div>
+                        
+                        <div class="detailed-narrative-container" style="margin-top: 15px; font-size: 0.92rem; line-height: 1.5; color: rgba(255,255,255,0.85);">
+                            <p style="margin-bottom: 8px;"><strong>My Journey:</strong> My tenure at PhoneMax balanced my software background with data-driven audience conversion engines. I spearheaded data aggregation tracking pipelines to monitor cross-channel marketing campaigns.</p>
+                            <p style="margin-bottom: 8px;"><strong>Technologies Used:</strong> Audience Telemetry Scripts, A/B Testing Matrix Panels, Web Analytics Interfaces, Excel Data Macros.</p>
+                            <p style="margin-bottom: 8px;"><strong>Detailed Description & Task Scope:</strong> Programmed user interaction tracking tags, parsed performance logs across digital layouts, and ran comprehensive split-testing experiments to optimize brand presentation pathways.</p>
+                            <p style="margin-bottom: 8px;"><strong>Outcomes Achieved:</strong> Increased user interaction indices by 22% across regional outreach channels through targeted layout data adjustments.</p>
+                            <p><strong>What I Learnt:</strong> Gained crucial insights into behavioral analytics, quantitative data modeling, and conversion rate optimization metrics.</p>
+                        </div>
+                        <button class="view-gallery-btn" style="margin-top: 12px; padding: 8px 16px; background: var(--accent); border: none; border-radius: 4px; color: #fff; cursor: pointer; font-weight: 600;"><i class="fa-solid fa-images"></i> Launch Slideshow Deck</button>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="projects" class="content-section">
+                <h2 class="section-title-header"><i class="fa-solid fa-laptop-code"></i> Production Case Studies</h2>
+                <div class="projects-grid-container">
+                    
+                    <div class="project-showcase-node" onclick="openProject('deaf-comm')" style="cursor: pointer;">
+                        <h3>Two Way Communication System for Deaf People</h3>
+                        <p>High-performance gesture translating framework processing real-time orientation models safely.</p>
+                        <span class="project-tech-tag">Computer Vision / Signal Parsing</span>
+                    </div>
+
+                    <div class="project-showcase-node" onclick="openProject('car-rental')" style="cursor: pointer;">
+                        <h3>Car Rental Management Platforms</h3>
+                        <p>Enterprise database layout engineered explicitly to eliminate multi-user race conditions.</p>
+                        <span class="project-tech-tag">Relational Schemas / Concurrency</span>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="education" class="content-section">
+                <h2 class="section-title-header"><i class="fa-solid fa-user-graduate"></i> Academic Records Ledger</h2>
+                <div class="education-grid-chassis">
+                    
+                    <div class="edu-card" onclick="openGallery('nieit')" style="cursor: pointer;">
+                        <span class="edu-timeline-span">2021 - 2025</span>
+                        <h3>Bachelor of Engineering: Computer Science</h3>
+                        <h4>NIE Institute of Technology | Mysuru</h4>
+                        <p style="margin-top: 8px; font-size: 0.9rem; opacity: 0.9;"><strong>Academic Matrix Profile:</strong> Deep dive training into foundational Data Structures, Algorithmic Analysis, and Relational Information Engine Architectures.</p>
+                        <p style="margin-top: 4px; font-weight: 700; color: var(--accent);">Performance Evaluation Score: 8.45 CGPA</p>
+                        <button class="view-gallery-btn" style="margin-top: 10px; padding: 6px 12px; background: transparent; border: 1px solid var(--accent); border-radius: 4px; color: var(--accent); cursor: pointer; font-size: 0.82rem;"><i class="fa-solid fa-building-columns"></i> View Campus Media</button>
+                    </div>
+
+                    <div class="edu-card" onclick="openSingleDocument('35170.jpg')" style="cursor: pointer;">
+                        <span class="edu-timeline-span">2019 - 2021</span>
+                        <h3>Pre-University Education Boards (PCMB)</h3>
+                        <h4>VVS Golden Jubilee PU College</h4>
+                        <p style="margin-top: 8px; font-size: 0.9rem; opacity: 0.9;">Focus on Core Physics Foundations, Complex Calculus Transformations, and Computational Matrix Algebra.</p>
+                        <p style="margin-top: 4px; font-weight: 700; color: var(--accent);">Performance Evaluation Score: 88.50%</p>
+                        <button class="view-gallery-btn" style="margin-top: 10px; padding: 6px 12px; background: transparent; border: 1px solid var(--accent); border-radius: 4px; color: var(--accent); cursor: pointer; font-size: 0.82rem;"><i class="fa-solid fa-file-signature"></i> View PUC Ledger Image</button>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="achievements" class="content-section">
+                <h2 class="section-title-header"><i class="fa-solid fa-medal"></i> Credentials & Milestones</h2>
+                <div class="achievements-dual-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    
+                    <div class="achievement-card" onclick="openAchievementDeepDive()" style="cursor: pointer; background: rgba(255,255,255,0.04); padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent);">
+                        <h3><i class="fa-solid fa-trophy" style="color: #f1c40f;"></i> VTU Zonal Cricket Champion</h3>
+                        <p style="font-size: 0.9rem; margin-top: 8px; opacity: 0.85;">Scored an explosive match-winning 71* off 35 balls under high-stress tournament variables.</p>
+                        <span style="display: inline-block; margin-top: 10px; font-size: 0.8rem; color: var(--accent); font-weight: bold;">Click to review full operational stats & photo &rarr;</span>
+                    </div>
+
+                    <div class="cert-card" onclick="openCertificationDocument()" style="cursor: pointer; background: rgba(255,255,255,0.04); padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
+                        <h3><i class="fa-solid fa-certificate" style="color: #3498db;"></i> Azure AI Fundamentals</h3>
+                        <p style="font-size: 0.9rem; margin-top: 8px; opacity: 0.85;">Microsoft Enterprise Credentials Ledger covering machine learning models and cognitive solution integrations.</p>
+                        <span style="display: inline-block; margin-top: 10px; font-size: 0.8rem; color: #3498db; font-weight: bold;">Click to pull verification image asset &rarr;</span>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+
+        <div class="chatbot-floating-system-chassis">
+            <div id="chatbot-frame" class="bot-window-box">
+                <div class="bot-window-header-row">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="online-indicator-dot"></span>
+                        <h4 style="font-size: 0.9rem; font-weight: 700; color: #fff; margin: 0;">AVP Intelligent Engine</h4>
+                    </div>
+                    <button class="bot-close-btn" onclick="toggleChatbotState()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div id="chatbot-logs" class="bot-window-conversations-area">
+                    <div class="bot-bubble incoming">
+                        Hi! I am the portfolio assistant engine of Adarsh V Pujar. Ask me about his projects, experience, education, or tech stacks! 🚀
+                    </div>
                 </div>
                 <div class="bot-window-inputs">
                     <input type="text" id="chatbot-input-field" placeholder="Ask about skills, projects..." onkeypress="handleChatbotKeyPress(event)">
@@ -296,7 +236,7 @@
                 </div>
             </div>
             
-            <button class="bot-floating-trigger-node" id="chatbot-trigger" onclick="toggleChatbotState()" title="Deploy Virtual AI Assistant">
+            <button class="bot-floating-trigger-node" id=\"chatbot-trigger\" onclick="toggleChatbotState()" title="Deploy Virtual AI Assistant">
                 <div class="mechanical-head">
                     <div class="mechanical-ears"></div>
                     <div class="mechanical-face">
@@ -310,8 +250,8 @@
         </div>
 
         <div id="universal-modal" class="modal-backdrop" onclick="closeActiveModalWindow()">
-            <div class="modal-box-body" onclick="event.stopPropagation()">
-                <button class="modal-close-trigger" onclick="closeActiveModalWindow()"><i class="fa-solid fa-circle-xmark"></i></button>
+            <div class="modal-box-body" onclick="event.stopPropagation()" style="max-width: 750px; width: 90%; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); position: relative;">
+                <button class="modal-close-trigger" onclick="closeActiveModalWindow()" style="position: absolute; top: 12px; right: 15px; background: none; border: none; font-size: 1.5rem; color: #333; cursor: pointer; z-index: 100;"><i class="fa-solid fa-circle-xmark"></i></button>
                 <div id="modal-injection-point"></div>
             </div>
         </div>
@@ -320,4 +260,4 @@
 
     <script src="script.js"></script>
 </body>
-                                                                                                                 </html>
+</html>
