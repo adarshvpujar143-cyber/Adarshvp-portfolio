@@ -7,7 +7,6 @@ const GLOBAL_PALETTES = [
 ];
 
 let activePaletteIndex = 0;
-let portfolioCarouselInterval = null;
 let profileTitleScrollInterval = null;
 let currentModalSlideshowIndex = 0;
 let currentSlideshowImageCollection = [];
@@ -61,19 +60,26 @@ const PROJECT_CASE_STUDIES = {
 
 /* --- 2. Initialization & Boot Sequence Event Handlers --- */
 document.addEventListener("DOMContentLoaded", () => {
-    // Phase 1: Boot Animation Sequencing
+    
+    // Safety Switch: Ensure the loader clears no matter what happens
+    const loader = document.getElementById("loader-screen");
+    const mainContent = document.getElementById("app-content");
+    
     setTimeout(() => {
-        const loader = document.getElementById("loader-screen");
-        const mainContent = document.getElementById("app-content");
         if (loader) loader.classList.add("hidden-node");
         if (mainContent) mainContent.classList.remove("hidden-node");
         
-        initializeHeroScrollingAnimations();
-        initializeSectionNavigationIntersectionObservers();
-    }, 1800);
+        // Boot up secondary dynamic display enhancements safely
+        try {
+            initializeHeroScrollingAnimations();
+            initializeSectionNavigationIntersectionObservers();
+        } catch (err) {
+            console.warn("Secondary display features initialization skipped:", err);
+        }
+    }, 1500);
 
-    // Phase 2: Core Event Bindings
-    const themeBtn = document.getElementById("theme-swapper");
+    // Event Bindings with ID fallback verification to prevent fatal crashes
+    const themeBtn = document.getElementById("theme-swapper") || document.getElementById("theme-trigger-btn");
     if (themeBtn) {
         themeBtn.addEventListener("click", cycleNextApplicationPalette);
     }
@@ -95,9 +101,9 @@ function cycleNextApplicationPalette() {
 function initializeHeroScrollingAnimations() {
     let activeIndex = 0;
     const rolls = document.querySelectorAll(".roll-node");
+    if (rolls.length === 0) return;
     
     profileTitleScrollInterval = setInterval(() => {
-        if (rolls.length === 0) return;
         rolls[activeIndex].classList.remove("active");
         rolls[activeIndex].classList.add("exit");
         
@@ -116,6 +122,7 @@ function initializeHeroScrollingAnimations() {
 function initializeSectionNavigationIntersectionObservers() {
     const targets = document.querySelectorAll("section");
     const navItems = document.querySelectorAll(".nav-item");
+    if (targets.length === 0 || navItems.length === 0) return;
     
     const config = { root: null, rootMargin: "-30% 0px -60% 0px", threshold: 0 };
     
@@ -287,7 +294,6 @@ function toggleChatbotState() {
     const isCurrentlyActive = frame.classList.contains("active-chat");
     
     if (isCurrentlyActive) {
-        // Trigger exit sequence: Apply robot animation and say thank you before closing
         const robotAvatar = document.getElementById("chatbot-trigger");
         if (robotAvatar) {
             robotAvatar.classList.add("animate-robo-thanks");
@@ -298,7 +304,6 @@ function toggleChatbotState() {
         
         appendMessageLogNode("🤖 Thank you for chatting with AVP engine! Have an amazing day! ✨👋", "incoming");
         
-        // Let user see the thank you message briefly, then collapse window
         setTimeout(() => {
             frame.classList.remove("active-chat");
         }, 1000);
@@ -320,14 +325,11 @@ function executeChatbotQuery(forcedValue = null) {
     const inputString = forcedValue ? forcedValue.trim() : field.value.trim();
     if (!inputString) return;
     
-    // Append human question bubble
     appendMessageLogNode(inputString, "outgoing");
     if (!forcedValue) field.value = "";
     
-    // Display flowing animated dot typing ripple
     const rippleElement = displayBotTypingRipple();
     
-    // Process input text and select routing path after a tiny processing layout delay
     setTimeout(() => {
         removeBotTypingRipple(rippleElement);
         routeQueryToIntentEngine(inputString.toLowerCase());
@@ -371,9 +373,8 @@ function appendMessageLogNode(textText, targetClass) {
     logs.scrollTop = logs.scrollHeight;
 }
 
-/* --- NEW: Interactive Directory Menu & Routing Engines --- */
+/* --- 6. Interactive Directory Menu & Routing Engines --- */
 function routeQueryToIntentEngine(processedInput) {
-    // Intent Path A: Projects Selection Menu requested
     if (processedInput.includes("project") || processedInput.includes("case study") || processedInput.includes("portfolio")) {
         appendMessageLogNode("🤖 Project Directory Access Granted. Please select an option below:", "incoming");
         createInteractiveDirectoryMenu([
@@ -383,29 +384,26 @@ function routeQueryToIntentEngine(processedInput) {
         return;
     }
     
-    // Intent Path B: Work Experience Selection Menu requested
     if (processedInput.includes("experience") || processedInput.includes("work") || processedInput.includes("history") || processedInput.includes("job")) {
         appendMessageLogNode("🤖 Experience Records Hub. Select a tenure layer to fetch metrics:", "incoming");
         createInteractiveDirectoryMenu([
             { label: "1. Chromosis Technologies (Internship)", query: "chromosis tenure overview" },
             { label: "2. Hewlett Packard Enterprise (HPE Specialist)", query: "hpe tenure overview" },
-            { label: "3. PhoneMax (Digital Campaign Executive - Gallery Added!)", query: "phonemax tenure overview" }
+            { label: "3. PhoneMax (Digital Campaign Executive)", query: "phonemax tenure overview" }
         ]);
         return;
     }
 
-    // Intent Path C: Technical Skill Sets Index Menu requested
     if (processedInput.includes("skill") || processedInput.includes("tech") || processedInput.includes("matrix") || processedInput.includes("code")) {
         appendMessageLogNode("🤖 Select a technical domain matrix category:", "incoming");
         createInteractiveDirectoryMenu([
-            { label: "1. Frontend Frameworks & UI UI/UX Systems", query: "frontend tech stack query" },
+            { label: "1. Frontend Frameworks & UI Systems", query: "frontend tech stack query" },
             { label: "2. Backend & Relational Database Environments", query: "backend tech stack query" },
             { label: "3. Analytics & Specialized Data Engineering", query: "analytics tech stack query" }
         ]);
         return;
     }
 
-    // Secondary Leaf Nodes Router Fallbacks
     if (processedInput.includes("deaf project")) {
         appendMessageLogNode("🔊 Deaf Communication Project: High-speed gesture mapping calculation framework designed to parse structural actions cleanly into readouts.", "incoming");
     } else if (processedInput.includes("car rental")) {
@@ -420,86 +418,34 @@ function routeQueryToIntentEngine(processedInput) {
         appendMessageLogNode("✨ Frontend Stack: Expert across HTML5, CSS3, JavaScript (ES6+), React.js layout architectures, and fluent responsive system patterns.", "incoming");
     } else if (processedInput.includes("backend")) {
         appendMessageLogNode("⚙️ Backend Core: Specialized in Node.js, Express Frameworks, Python scripting infrastructure, and production SQL database routines.", "incoming");
-    } else if (proc
-
-// --- 5. Slideshow Transition Logic Subroutines ---
-function jumpToSlide(idx) {
-    const images = document.querySelectorAll('.picture-node');
-    const thumbs = document.querySelectorAll('.thumb-node');
-    if (!images.length) return;
-
-    images.forEach(img => img.classList.remove('active-img'));
-    thumbs.forEach(t => t.classList.remove('active-thumb'));
-
-    images[idx].classList.add('active-img');
-    thumbs[idx].classList.add('active-thumb');
+    } else if (processedInput.includes("analytics")) {
+        appendMessageLogNode("📊 Analytics Hub: Trained in Azure AI Framework loops, signal matrix validation blocks, and statistical forecasting tracks.", "incoming");
+    } else if (processedInput.includes("back") || processedInput.includes("exit") || processedInput.includes("quit") || processedInput.includes("thank")) {
+        toggleChatbotState();
+    } else {
+        appendMessageLogNode("🤖 Parameter parsed successfully. For streamlined directory lookups, try prompting me with keywords like 'Projects', 'Experience', or 'Skills' directly.", "incoming");
+    }
 }
 
-function shiftSlide(direction) {
-    const images = document.querySelectorAll('.picture-node');
-    if (!images.length) return;
-    let currentlyActive = Array.from(images).findIndex(img => img.classList.contains('active-img'));
-    let computeNextIdx = (currentlyActive + direction + images.length) % images.length;
-    jumpToSlide(computeNextIdx);
-}
-
-function startSlideshowAutoplay() {
-    slideshowTimerInstance = setInterval(() => { shiftSlide(1); }, 3000);
-}
-
-// --- 6. Intelligent Robot AI Agent System Interaction Logic ---
-function toggleChatbotState() {
-    document.getElementById('chatbot-frame').classList.toggle('active-chat');
-}
-
-function handleChatbotKeyPress(evt) {
-    if (evt.key === 'Enter') executeChatbotQuery();
-}
-
-function executeChatbotQuery() {
-    const field = document.getElementById('chatbot-input-field');
-    const panel = document.getElementById('chatbot-logs');
-    const promptValue = field.value.trim();
-    if (!promptValue) return;
-
-    panel.innerHTML += `<div class="bot-bubble outgoing">${promptValue}</div>`;
-    field.value = '';
-    panel.scrollTop = panel.scrollHeight;
-
-    setTimeout(() => {
-        let cleanText = promptValue.toLowerCase();
-        let fallbackMsg = "Query registered. Please utilize the phone or email gateways in the footer alignment section for direct correspondence channels.";
-
-        if (cleanText.includes('cricket') || cleanText.includes('leadership') || cleanText.includes('71') || cleanText.includes('vidyavikas')) {
-            fallbackMsg = "Adarsh scored 71* off 35 balls in the critical VTU Semi-Final against VidyaVikas IT. This demonstrates exceptional pressure management and critical execution capacities.";
-        } else if (cleanText.includes('project') || cleanText.includes('deaf') || cleanText.includes('car')) {
-            fallbackMsg = "Adarsh's major projects include an accessibility-focused Two-Way Communication System for Deaf People and an enterprise-scale Car Rental Management System.";
-        } else if (cleanText.includes('hpe') || cleanText.includes('chromosis') || cleanText.includes('experience')) {
-            fallbackMsg = "Adarsh has verified industry exposure at Chromosis (modular layout systems, engineering wireframes) and Hewlett Packard Enterprise (data validation matrices, data tracking).";
-        } else if (cleanText.includes('skill') || cleanText.includes('languages') || cleanText.includes('tech')) {
-            fallbackMsg = "Adarsh is proficient in React.js, Node.js, Express, SQL, Python, UI/UX Architecture, and cloud data configurations.";
-        } else if (cleanText.includes('education') || cleanText.includes('gpa') || cleanText.includes('college')) {
-            fallbackMsg = "Adarsh holds a B.E. from NIEIT (8.45 CGPA), Pre-University training from VVS PU College (88.5%), and secondary schooling from VVS Pandit Nehru High School (91.2%).";
-        }
-
-        panel.innerHTML += `<div class="bot-bubble incoming">${fallbackMsg}</div>`;
-        panel.scrollTop = panel.scrollHeight;
-    }, 450);
-}
-
-// --- 7. Single-Page Interactive Active Navigation Intersection Matrix Observer ---
-const targetViews = document.querySelectorAll('section');
-const links = document.querySelectorAll('.nav-item');
-
-window.addEventListener('scroll', () => {
-    let activeSectionId = "";
-    targetViews.forEach(sect => {
-        const topBound = sect.offsetTop - 120;
-        if (window.scrollY >= topBound) { activeSectionId = sect.getAttribute('id'); }
+function createInteractiveDirectoryMenu(menuOptionsArray) {
+    const logs = document.getElementById("chatbot-logs");
+    if (!logs) return;
+    
+    const menuContainerChassis = document.createElement("div");
+    menuContainerChassis.className = "bot-menu-wrapper";
+    
+    menuOptionsArray.forEach(option => {
+        const optionButtonNode = document.createElement("button");
+        optionButtonNode.className = "bot-menu-option";
+        optionButtonNode.innerText = option.label;
+        
+        optionButtonNode.onclick = () => {
+            executeChatbotQuery(option.query);
+        };
+        
+        menuContainerChassis.appendChild(optionButtonNode);
     });
-
-    links.forEach(lnk => {
-        lnk.classList.remove('active');
-        if (lnk.getAttribute('href') === `#${activeSectionId}`) { lnk.classList.add('active'); }
-    });
-});
+    
+    logs.appendChild(menuContainerChassis);
+    logs.scrollTop = logs.scrollHeight;
+}
