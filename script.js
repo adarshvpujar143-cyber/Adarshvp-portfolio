@@ -11,17 +11,17 @@ let profileTitleScrollInterval = null;
 let currentModalSlideshowIndex = 0;
 let currentSlideshowImageCollection = [];
 
-// Image database including PhoneMax Gallery Configuration
+// Gallery mappings connected precisely to uploaded assets
 const GALLERY_DATABASE = {
     chromosis: {
         title: "Chromosis Technologies Pvt Ltd",
         narrative: "An active chronicle detailing UI experimentation blueprints, cross-device verification phases, production layout parameters, and continuous collaboration sprint reviews conducted inside the engineering department.",
-        images: ["chromosis1.jpg", "chromosis2.jpg", "chromosis3.jpg", "chromosis4.jpg"]
+        images: ["35159.jpg", "35160.jpg"]
     },
     hpe: {
         title: "Hewlett Packard Enterprise (HPE)",
         narrative: "Corporate architecture parameters and technical systems monitoring log workflows. This deck represents active enterprise software engineering solutions and analytical tracking parameters deployed across production server lines.",
-        images: ["hpe1.jpg", "hpe2.jpg", "hpe3.jpg"]
+        images: ["35161.jpg", "35162.jpg"]
     },
     phonemax: {
         title: "PhoneMax Campaign Gallery",
@@ -34,7 +34,7 @@ const GALLERY_DATABASE = {
     nieit: {
         title: "NIE Institute Campus Memories",
         narrative: "Academic research sessions, engineering project milestone presentations, cultural networking initiatives, and varsity leadership memory logs compiled throughout the computer science and systems training periods.",
-        images: ["nieit1.jpg", "nieit2.jpg", "nieit3.jpg"]
+        images: ["35163.jpg", "35164.jpg", "35158.jpg"]
     }
 };
 
@@ -58,25 +58,9 @@ const PROJECT_CASE_STUDIES = {
     }
 };
 
-/* --- 2. Initialization & Boot Sequence Event Handlers --- */
+/* --- 2. Initialization & Sequenced Message Preloader Controls --- */
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // Safety Switch: Ensure the loader clears no matter what happens
-    const loader = document.getElementById("loader-screen");
-    const mainContent = document.getElementById("app-content");
-    
-    setTimeout(() => {
-        if (loader) loader.classList.add("hidden-node");
-        if (mainContent) mainContent.classList.remove("hidden-node");
-        
-        // Boot up secondary dynamic display enhancements safely
-        try {
-            initializeHeroScrollingAnimations();
-            initializeSectionNavigationIntersectionObservers();
-        } catch (err) {
-            console.warn("Secondary display features initialization skipped:", err);
-        }
-    }, 1500);
+    executeSequencedWelcomePreloader();
 
     // Event Bindings with ID fallback verification to prevent fatal crashes
     const themeBtn = document.getElementById("theme-swapper") || document.getElementById("theme-trigger-btn");
@@ -84,6 +68,56 @@ document.addEventListener("DOMContentLoaded", () => {
         themeBtn.addEventListener("click", cycleNextApplicationPalette);
     }
 });
+
+function executeSequencedWelcomePreloader() {
+    const textHolder = document.getElementById("loader-animated-text-container");
+    const loaderScreen = document.getElementById("loader-screen");
+    const mainContent = document.getElementById("app-content");
+
+    if (!textHolder) {
+        if (loaderScreen) loaderScreen.classList.add("hidden-node");
+        if (mainContent) mainContent.classList.remove("hidden-node");
+        return;
+    }
+
+    const preloaderMessagesPool = [
+        { text: "INITIALIZING PORTFOLIO METRICS...", style: "font-size: 11px; letter-spacing: 0.35em; color: #e2b662; font-weight: 700;" },
+        { text: '"While you\'re generating queries, I\'m generating solutions."', style: "font-size: 1.15rem; font-style: italic; font-weight: 600; color: #cc8db3; line-height: 1.4;" },
+        { text: "You're viewing more than a portfolio—you're exploring the work of a developer committed to building reliable, scalable, and user-focused solutions. Welcome to the digital workspace of Adarsh V Pujar. 🚀", style: "font-size: 1rem; font-weight: 500; color: #f7c2ca; line-height: 1.6;" }
+    ];
+
+    let sequentialStepIndex = 0;
+
+    function renderNextPreloaderTextChunk() {
+        if (sequentialStepIndex < preloaderMessagesPool.length) {
+            textHolder.style.opacity = 0;
+            setTimeout(() => {
+                textHolder.innerHTML = `<p style="${preloaderMessagesPool[sequentialStepIndex].style}">${preloaderMessagesPool[sequentialStepIndex].text}</p>`;
+                textHolder.style.transition = "opacity 0.6s ease";
+                textHolder.style.opacity = 1;
+                
+                // Read-time tracking delays (gives longer reading time to the descriptive final message)
+                let visibilityHoldTime = sequentialStepIndex === 2 ? 4000 : 2500;
+                sequentialStepIndex++;
+                
+                setTimeout(renderNextPreloaderTextChunk, visibilityHoldTime);
+            }, 400);
+        } else {
+            // Unveiling transition sequence
+            if (loaderScreen) loaderScreen.classList.add("hidden-node");
+            if (mainContent) mainContent.classList.remove("hidden-node");
+            
+            try {
+                initializeHeroScrollingAnimations();
+                initializeSectionNavigationIntersectionObservers();
+            } catch (err) {
+                console.warn("Secondary systems initialization skipped:", err);
+            }
+        }
+    }
+
+    renderNextPreloaderTextChunk();
+}
 
 /* --- 3. UI Presentation Mechanics & Theme Engines --- */
 function cycleNextApplicationPalette() {
@@ -219,12 +253,15 @@ function openSingleDocument(docPath) {
 
 function openAchievementDeepDive() {
     const achievementMarkup = `
-        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; color: #111;"><i class="fa-solid fa-trophy"></i> VTU Championship Operational Review</h2>
-        <p class="modal-narrative-p" style="margin-bottom: 14px;">Evaluating athletic performance variables through high-stress crisis management matrices.</p>
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; color: #111;"><i class="fa-solid fa-trophy"></i> VTU Zonal Cricket Championship</h2>
+        <div style="width: 100%; border-radius: 6px; overflow: hidden; background: #000; text-align: center; margin-bottom: 14px;">
+            <img src="35158.jpg" style="max-width: 100%; max-height: 50vh; object-fit: contain; display: block; margin: 0 auto;" alt="Cricket Achievement Trophy Media">
+        </div>
+        <p class="modal-narrative-p" style="margin-bottom: 10px;"><strong>Operational Performance Review:</strong> Evaluating high-stress crisis parameters under intense competition variables.</p>
         <ul class="modal-list-node">
-            <li><strong>Dynamic Variable Calibration:</strong> Handled a high-pressure collapse situation, altering hitting strategies instantly according to ball delivery analytics.</li>
-            <li><strong>Strategic Pacing Matrix:</strong> Scored an unbeaten 71* off 35 deliveries, engineering risk paths to clear target numbers efficiently.</li>
-            <li><strong>Team Execution Control:</strong> Coordinated base runners during critical phases, leading the university squad safely across qualification milestones.</li>
+            <li><strong>Dynamic Strategy Alignment:</strong> Engineered real-time adjustments based on delivery patterns to counter targeted attacks.</li>
+            <li><strong>Match-Winning Contribution:</strong> Scored an explosive, unbeaten 71* off 35 balls, driving calculated risks to chase down the benchmark under pressure.</li>
+            <li><strong>Leadership Matrix Execution:</strong> Guided and paced base-runners safely during defining over thresholds to secure the tournament trophy.</li>
         </ul>
     `;
     renderModalContentWrapper(achievementMarkup);
@@ -236,7 +273,10 @@ function openCertificationDocument() {
         <div style="background: #f4f6f8; padding: 20px; border-radius: 8px; border: 1px dashed #ccc; text-align: center; margin-bottom: 14px;">
             <i class="fa-brands fa-microsoft" style="font-size: 3.5rem; color: #00a4ef; margin-bottom: 10px;"></i>
             <h3 style="font-size: 1.2rem; color: #222; font-weight: 700;">Microsoft Certified: Azure AI Fundamentals</h3>
-            <p style="font-size: 0.88rem; color: #555; margin-top: 4px;">Credential Scope: Machine Learning Models, Cognitive Service Integrations, Neural Computations, & Automated Pipeline Controls.</p>
+            <p style="font-size: 0.88rem; color: #555; margin-top: 4px; margin-bottom: 15px;">Credential Scope: Machine Learning Models, Cognitive Service Integrations, Neural Computations, & Automated Pipeline Controls.</p>
+            <div style="width: 100%; border-radius: 6px; overflow: hidden; background: #000;">
+                <img src="35161.jpg" style="max-width: 100%; max-height: 40vh; display: block; margin: 0 auto;" alt="Verified Azure AI Certification Image Display">
+            </div>
         </div>
         <p class="modal-narrative-p">This credential verifies core competence in architecting production pipelines and mapping mathematical processes using Microsoft Azure enterprise cloud solutions.</p>
     `;
@@ -367,7 +407,12 @@ function appendMessageLogNode(textText, targetClass) {
     
     const bubble = document.createElement("div");
     bubble.className = `bot-bubble ${targetClass}`;
-    bubble.innerText = textText;
+    
+    if (textText.includes("<div") || textText.includes("<h5")) {
+        bubble.innerHTML = textText;
+    } else {
+        bubble.innerText = textText;
+    }
     
     logs.appendChild(bubble);
     logs.scrollTop = logs.scrollHeight;
@@ -375,7 +420,26 @@ function appendMessageLogNode(textText, targetClass) {
 
 /* --- 6. Interactive Directory Menu & Routing Engines --- */
 function routeQueryToIntentEngine(processedInput) {
-    if (processedInput.includes("project") || processedInput.includes("case study") || processedInput.includes("portfolio")) {
+    // Structural intent check pools
+    const matchedIntentA = processedInput.includes("project") || processedInput.includes("case study") || processedInput.includes("portfolio");
+    const matchedIntentB = processedInput.includes("experience") || processedInput.includes("work") || processedInput.includes("history") || processedInput.includes("job") || processedInput.includes("tenure");
+    const matchedIntentC = processedInput.includes("skill") || processedInput.includes("tech") || processedInput.includes("matrix") || processedInput.includes("code");
+    const matchedIntentD = processedInput.includes("education") || processedInput.includes("academic") || processedInput.includes("college") || processedInput.includes("school") || processedInput.includes("vvs") || processedInput.includes("nie");
+    const matchedIntentE = processedInput.includes("deaf") || processedInput.includes("car") || processedInput.includes("chromosis") || processedInput.includes("hpe") || processedInput.includes("phonemax") || processedInput.includes("frontend") || processedInput.includes("backend") || processedInput.includes("analytics");
+
+     // Boundary Filtering Check: Catch out-of-portfolio inputs
+    if (!matchedIntentA && !matchedIntentB && !matchedIntentC && !matchedIntentD && !matchedIntentE && !processedInput.includes("back") && !processedInput.includes("exit")) {
+        const fallbackOopsHTMLBox = `
+            <div style="background: rgba(231, 76, 60, 0.12); border: 2px dashed #e74c3c; border-radius: 8px; padding: 14px; margin: 5px 0; text-align: left; width: 100%;">
+                <h5 style="color: #e74c3c; font-weight: 800; font-size: 1rem; margin-bottom: 6px; text-transform: uppercase;"><i class="fa-solid fa-ban"></i> oops!! Sorry</h5>
+                <p style="font-size: 0.85rem; color: #f4f4f4; line-height: 1.4; margin: 0;">Boss adarsh has restricted me over other things not to talk and waste the time of me as well as yours.</p>
+            </div>
+        `;
+        appendMessageLogNode(fallbackOopsHTMLBox, "incoming");
+        return;
+    }
+
+    if (matchedIntentA) {
         appendMessageLogNode("🤖 Project Directory Access Granted. Please select an option below:", "incoming");
         createInteractiveDirectoryMenu([
             { label: "1. Two Way Communication System for Deaf People", query: "deaf project deepdive" },
@@ -384,7 +448,7 @@ function routeQueryToIntentEngine(processedInput) {
         return;
     }
     
-    if (processedInput.includes("experience") || processedInput.includes("work") || processedInput.includes("history") || processedInput.includes("job")) {
+    if (matchedIntentB) {
         appendMessageLogNode("🤖 Experience Records Hub. Select a tenure layer to fetch metrics:", "incoming");
         createInteractiveDirectoryMenu([
             { label: "1. Chromosis Technologies (Internship)", query: "chromosis tenure overview" },
@@ -394,7 +458,7 @@ function routeQueryToIntentEngine(processedInput) {
         return;
     }
 
-    if (processedInput.includes("skill") || processedInput.includes("tech") || processedInput.includes("matrix") || processedInput.includes("code")) {
+    if (matchedIntentC) {
         appendMessageLogNode("🤖 Select a technical domain matrix category:", "incoming");
         createInteractiveDirectoryMenu([
             { label: "1. Frontend Frameworks & UI Systems", query: "frontend tech stack query" },
@@ -404,26 +468,38 @@ function routeQueryToIntentEngine(processedInput) {
         return;
     }
 
-    if (processedInput.includes("deaf project")) {
+    if (matchedIntentD) {
+        appendMessageLogNode("🎓 Fetching Academic Records Ledger:", "incoming");
+        createInteractiveDirectoryMenu([
+            { label: "1. NIE Institute of Technology (B.E.)", query: "nie campus metrics" },
+            { label: "2. VVS Golden Jubilee College (PUC)", query: "vvs college metrics" }
+        ]);
+        return;
+    }
+
+    // Leaf nodes handler answers
+    if (processedInput.includes("nie campus")) {
+        appendMessageLogNode("🎓 NIE Institute of Technology: Completing Bachelor of Engineering in Computer Science (2021-2025) with a tracking benchmark score of 8.45 CGPA.", "incoming");
+    } else if (processedInput.includes("vvs college")) {
+        appendMessageLogNode("📜 VVS Golden Jubilee PU College: Completed Pre-University validation parameters scoring an aggregate performance rating of 88.5%.", "incoming");
+    } else if (processedInput.includes("deaf project")) {
         appendMessageLogNode("🔊 Deaf Communication Project: High-speed gesture mapping calculation framework designed to parse structural actions cleanly into readouts.", "incoming");
     } else if (processedInput.includes("car rental")) {
         appendMessageLogNode("🚗 Car Rental System: Enterprise asset coordination engine built to safeguard concurrency pipelines and resolve database lock contentions.", "incoming");
     } else if (processedInput.includes("chromosis")) {
-        appendMessageLogNode("🏢 Chromosis Technologies: Serving as a Creative Design and Software Engineering Intern in Hubli, mapping custom layout protocols since May 2026.", "incoming");
+        appendMessageLogNode("🏢 Chromosis Technologies: Served as a Creative Design and Software Engineering Intern in Hubli, mapping layout blueprints and asset variables.", "incoming");
     } else if (processedInput.includes("hpe")) {
-        appendMessageLogNode("💻 HPE Solutions: Served 4 months as a Technical Solutions Specialist in Bengaluru managing cloud operations matrices.", "incoming");
+        appendMessageLogNode("💻 HPE Solutions: Served 4 months as a Technical Solutions Specialist in Bengaluru managing cloud operations and monitoring logs.", "incoming");
     } else if (processedInput.includes("phonemax")) {
-        appendMessageLogNode("📈 PhoneMax Operations: 6 months tenure handling digital marketing infrastructure campaigns. Expanded visibility by 25%. Image gallery updated inside web workspace!", "incoming");
+        appendMessageLogNode("📈 PhoneMax Operations: 6 months tenure handling digital marketing infrastructure campaigns. Extended regional brand footprint and user metrics cleanly.", "incoming");
     } else if (processedInput.includes("frontend")) {
-        appendMessageLogNode("✨ Frontend Stack: Expert across HTML5, CSS3, JavaScript (ES6+), React.js layout architectures, and fluent responsive system patterns.", "incoming");
+        appendMessageLogNode("✨ Frontend Stack: Expert across HTML5, CSS3, JavaScript (ES6+), React.js layouts, and fluid responsive design methodologies.", "incoming");
     } else if (processedInput.includes("backend")) {
-        appendMessageLogNode("⚙️ Backend Core: Specialized in Node.js, Express Frameworks, Python scripting infrastructure, and production SQL database routines.", "incoming");
+        appendMessageLogNode("⚙️ Backend Core: Specialized in Node.js, Express structures, database schema operations, and writing atomic queries.", "incoming");
     } else if (processedInput.includes("analytics")) {
-        appendMessageLogNode("📊 Analytics Hub: Trained in Azure AI Framework loops, signal matrix validation blocks, and statistical forecasting tracks.", "incoming");
-    } else if (processedInput.includes("back") || processedInput.includes("exit") || processedInput.includes("quit") || processedInput.includes("thank")) {
+        appendMessageLogNode("📊 Analytics Hub: Competent in managing Microsoft Azure cloud setups, analytical model scoring, and telemetry tracking arrays.", "incoming");
+    } else if (processedInput.includes("back") || processedInput.includes("exit")) {
         toggleChatbotState();
-    } else {
-        appendMessageLogNode("🤖 Parameter parsed successfully. For streamlined directory lookups, try prompting me with keywords like 'Projects', 'Experience', or 'Skills' directly.", "incoming");
     }
 }
 
