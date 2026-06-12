@@ -101,7 +101,7 @@
                     <div class="card-meta-line-front">
                         <span class="org-name">Chromosis Technologies Pvt Ltd</span>
                         <span class="org-location"><i class="fa-solid fa-location-dot"></i> Hubli , Karnataka</span>
-                         <span class="job-date">May 2026 ( Present )</span>
+                        <span class="job-date">May 2026 ( Present )</span>
                     </div>
                     <h3 class="org-role">Creative Design & Software Engineering Intern</h3>
                     <span class="org-timeline"><i class="fa-solid fa-calendar-days"></i> Internship Phase</span>
@@ -113,7 +113,7 @@
                     <div class="card-meta-line-front">
                         <span class="org-name">Hewlett Packard Enterprise (HPE)</span>
                         <span class="org-location"><i class="fa-solid fa-location-dot"></i> Bengaluru,Karnataka</span>
-                         <span class="job-date">Feb - May (4 months)</span>
+                        <span class="job-date">Feb - May (4 months)</span>
                     </div>
                     <h3 class="org-role">Technical Solutions & Systems Specialist</h3>
                     <span class="org-timeline"><i class="fa-solid fa-calendar-days"></i> Core Technical Tenure</span>
@@ -121,21 +121,17 @@
                     <span class="deck-action-link">Launch Gallery & Memories <i class="fa-solid fa-arrow-right-long"></i></span>
                 </div>
 
-                <div class="job-entry" style="margin-bottom: 20px;">
-                    <div class="job-header" style="display: flex; justify-content: space-between; font-weight: bold;">
-                        <span class="job-title">Digital Marketing Executive</span>
-                        <span class="job-date">Oct - Feb (6 Months) </span> </div>
-                    <div class="job-sub" style="display: flex; justify-content: space-between; font-style: italic; color: #555;">
-                   <span class="company">PhoneMax</span>
-                   <span class="location">Mysore , Karnataka</span> </div>
-                     <span class="job-date">Oct 2025 - March 2026 (6 months)</span>
-                   <ul class="job-bullets" style="margin-top: 5px; padding-left: 20px;">
-                    <li> Spearheaded targeted regional marketing campaigns that drove a 25% increase in regional sales and expanded brand visibility.</li>
-                    <li>Analyzed audience engagement metrics and consumer data to iteratively optimize campaign performance and maximize ROI.</li>
-                    <li>Collaborated with cross-functional teams to align digital marketing initiatives with broader corporate sales objectives.</li>
-               </ul>
-            </div>
-                
+                <div class="deck-card" onclick="openGallery('phonemax')">
+                    <div class="card-meta-line-front">
+                        <span class="org-name">PhoneMax</span>
+                        <span class="org-location"><i class="fa-solid fa-location-dot"></i> Mysore , Karnataka</span>
+                        <span class="job-date">Oct 2025 - March 2026 (6 months)</span>
+                    </div>
+                    <h3 class="org-role">Digital Marketing Executive</h3>
+                    <span class="org-timeline"><i class="fa-solid fa-calendar-days"></i> Marketing Tenure</span>
+                    <p class="deck-teaser-hint">Click card to review full internal picture gallery and active campaign metrics.</p>
+                    <span class="deck-action-link">Launch Gallery & Memories <i class="fa-solid fa-arrow-right-long"></i></span>
+                </div>
 
             </div>
         </section>
@@ -271,7 +267,7 @@
         <div class="bot-system-parent">
             <div class="bot-window-frame" id="chatbot-frame">
                 <div class="bot-window-header">
-                    <div class="bot-avatar-wrapper">
+                    <div class="bot-avatar-wrapper" id="chatbot-robo-avatar">
                         <i class="fa-solid fa-robot"></i>
                         <span class="alive-indicator"></span>
                     </div>
@@ -279,7 +275,7 @@
                         <h4>AVP Virtual Engine</h4>
                         <span class="bot-sub">Automated System v2.6</span>
                     </div>
-                    <button class="bot-close-btn" onclick="toggleChatbotState()"><i class="fa-solid fa-square-xmark"></i></button>
+                    <button class="bot-close-btn" id="chatbot-close-trigger" onclick="toggleChatbotState()"><i class="fa-solid fa-square-xmark"></i></button>
                 </div>
                 <div class="bot-window-logs" id="chatbot-logs">
                     <div class="bot-bubble system">Agent compiled. Query me regarding Adarsh's tech stack, engineering experiences, or high-pressure athletic metrics.</div>
@@ -314,4 +310,4 @@
 
     <script src="script.js"></script>
 </body>
-                    </html>
+                                                                                                                 </html>
