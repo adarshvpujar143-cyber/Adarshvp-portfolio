@@ -1,218 +1,426 @@
-// --- 1. Comprehensive Theme Engine Matrix Implementation ---
-const themeMatrix = [
-    { bgPri: "#250e2c", bgSec: "#837ab6", fontPri: "#f7c2ca", fontSec: "#9d85b6", accent: "#cc8db3" }, // Salmverse
-    { bgPri: "#22251d", bgSec: "#796841", fontPri: "#e2b662", fontSec: "#a57928", accent: "#e1a327" }, // Carnation Yellow
-    { bgPri: "#2c1614", bgSec: "#4e0e12", fontPri: "#d0cece", fontSec: "#b1b2a6", accent: "#80101a" }, // Candles Maroon
-    { bgPri: "#DADEE1", bgSec: "#B9D8E1", fontPri: "#0D1A2F", fontSec: "#447F98", accent: "#629BB5" }, // Blue Cream
-    { bgPri: "#050F2A", bgSec: "#B8A9FF", fontPri: "#F2FDFF", fontSec: "#7BBBFF", accent: "#B8A9FF" }, // Clash Display
-    { bgPri: "#d5faf9", bgSec: "#96d2c2", fontPri: "#4fc7a7", fontSec: "#6dd0b7", accent: "#7fe3d7" }, // Minty Greens
-    { bgPri: "#0D1A2F", bgSec: "#17364F", fontPri: "#09D8C7", fontSec: "#411E3A", accent: "#BD0927" }  // Teal & Red
+/* --- 1. Global Core Application Memory Pools & Datasets --- */
+const GLOBAL_PALETTES = [
+    { primary: "#250e2c", secondary: "#837ab6", fontPri: "#f7c2ca", fontSec: "#9d85b6", accent: "#cc8db3" },
+    { primary: "#0b192c", secondary: "#1f3e5a", fontPri: "#e2e8f0", fontSec: "#94a3b8", accent: "#38bdf8" },
+    { primary: "#141e27", secondary: "#203239", fontPri: "#eeebdd", fontSec: "#e0d8b0", accent: "#f2a154" },
+    { primary: "#1a1a2e", secondary: "#16213e", fontPri: "#e94560", fontSec: "#0f3460", accent: "#e94560" }
 ];
 
-let currentThemePointer = 0;
+let activePaletteIndex = 0;
+let portfolioCarouselInterval = null;
+let profileTitleScrollInterval = null;
+let currentModalSlideshowIndex = 0;
+let currentSlideshowImageCollection = [];
 
-document.getElementById('theme-swapper').addEventListener('click', () => {
-    currentThemePointer = (currentThemePointer + 1) % themeMatrix.length;
-    const activeTheme = themeMatrix[currentThemePointer];
-    
-    const targetRoot = document.documentElement;
-    targetRoot.style.setProperty('--bg-primary', activeTheme.bgPri);
-    targetRoot.style.setProperty('--bg-secondary', activeTheme.bgSec);
-    targetRoot.style.setProperty('--font-primary', activeTheme.fontPri);
-    targetRoot.style.setProperty('--font-secondary', activeTheme.fontSec);
-    targetRoot.style.setProperty('--accent', activeTheme.accent);
-});
-
-// --- 2. Preloader & Navigation Monitor Systems ---
-window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        document.getElementById('loader-screen').classList.add('hidden-node');
-        document.getElementById('app-content').classList.remove('hidden-node');
-        initHeadlineRoller();
-    }, 900);
-});
-
-function initHeadlineRoller() {
-    const segments = document.querySelectorAll('.roll-node');
-    let idx = 0;
-    setInterval(() => {
-        let activeSeg = segments[idx];
-        let nextIdx = (idx + 1) % segments.length;
-        let nextSeg = segments[nextIdx];
-
-        activeSeg.classList.remove('active');
-        activeSeg.classList.add('exit');
-        nextSeg.classList.add('active');
-
-        setTimeout(() => { activeSeg.classList.remove('exit'); }, 500);
-        idx = nextIdx;
-    }, 3000);
-}
-
-// --- 3. Dynamic Deep-Exploratory Repository Dataset Matrix ---
-const portfolioDataset = {
+// Image database including PhoneMax Gallery Configuration
+const GALLERY_DATABASE = {
     chromosis: {
-        title: "Chromosis - Full Work Summary",
-        images: ["Chromosis.jpg", "Chromosis1.jpg", "Chromosis2.jpg", "Chromosis3.jpg", "Chromosis4.jpg", "Chromosis5.jpg", "Chromosis6.jpg", "Chromosis7.jpg", "Chromosis8.jpg"],
-        bullets: [
-            "Architected scalable interface design systems layout across dynamic corporate web platforms.",
-            "Built highly modular UI components maximizing cross-browser rendering efficiency.",
-            "Collaborated directly with product management teams to convert engineering wireframes into structured user journeys.",
-            "Optimized frontend media execution protocols, reducing interface frame drops by over 20%."
-        ],
-        paragraph: "My tenure at Chromosis focused on bridging aesthetic precision with modular, accessible code paradigms, ensuring robust layouts across desktop and mobile form-factors."
+        title: "Chromosis Technologies Pvt Ltd",
+        narrative: "An active chronicle detailing UI experimentation blueprints, cross-device verification phases, production layout parameters, and continuous collaboration sprint reviews conducted inside the engineering department.",
+        images: ["chromosis1.jpg", "chromosis2.jpg", "chromosis3.jpg", "chromosis4.jpg"]
     },
     hpe: {
-        title: "Hewlett Packard Enterprise (HPE) - Full Work Summary",
-        images: ["HPE.jpg", "HPE1.jpg", "HPE2.jpg", "HPE3.jpg", "HPE4.jpg", "HPE5.jpg", "HPE6.jpg", "HPE7.jpg", "HPE8.jpg", "HPE9.jpg", "HPE10.jpg", "HPE11.jpg", "HPE12.jpg", "HPE13.jpg", "HPE14.jpg", "HPE15.jpg", "HPE16.jpg", "HPE17.jpg", "HPE18.jpg", "HPE19.jpg"],
-        bullets: [
-            "Implemented data validation matrices and data tracking systems across back-end server arrays.",
-            "Constructed automated analytical parsing engines to review live system log data metrics.",
-            "Designed automated test routines to proactively catch runtime memory leakage exceptions.",
-            "Collaborated across global cloud teams to refactor internal API execution pathways."
-        ],
-        paragraph: "At HPE, I operated at scale, learning how to engineer performant logic loops and safeguard data pipeline workflows from failure conditions."
+        title: "Hewlett Packard Enterprise (HPE)",
+        narrative: "Corporate architecture parameters and technical systems monitoring log workflows. This deck represents active enterprise software engineering solutions and analytical tracking parameters deployed across production server lines.",
+        images: ["hpe1.jpg", "hpe2.jpg", "hpe3.jpg"]
+    },
+    phonemax: {
+        title: "PhoneMax Campaign Gallery",
+        narrative: "Comprehensive review of creative marketing collaterals, performance telemetry charts, audience interaction matrices, and corporate digital campaign designs crafted to boost regional brand positioning.",
+        images: [
+            "PhoneMax.jpg", "PhoneMax1.jpg", "PhoneMax2.jpg", "PhoneMax3.jpg", 
+            "PhoneMax4.jpg", "PhoneMax5.jpg", "PhoneMax6.jpg", "PhoneMax7.jpg", "PhoneMax8.jpg"
+        ]
     },
     nieit: {
-        title: "NIEIT - Engineering Academic Milestones",
-        images: ["nieit.jpg", "nieit1.jpg", "nieit2.jpg", "nieit3.jpg", "nieit4.jpg", "nieit5.jpg", "nieit6.jpg", "nieit7.jpg", "nieit8.jpg", "nieit9.jpg", "nieit10.jpg", "nieit11.jpg", "nieit12.jpg", "nieit13.jpg", "nieit14.jpg", "nieit15.jpg", "nieit16.jpg", "nieit17.jpg"],
-        bullets: [
-            "Bachelor of Engineering track focusing on Advanced Algorithms and Distributed Systems.",
-            "Maintained a verified cumulative score balance of 8.45 CGPA across semesters.",
-            "Headed multiple technical seminar platforms mapping out optimization strategies for modern full-stack web products."
-        ],
-        paragraph: "My education at NIEIT established the core mathematical foundation, systems logic training, and baseline computational patterns that fuel my development work today."
-    },
-    'deaf-comm': {
-        title: "Two Way Communication Systems for Deaf People",
-        desc: "An accessibility system designed to facilitate immediate digital interaction for the hearing impaired by mapping physical tracking signals accurately into readable language models.",
-        tech: ["Python Core", "Signal Processing Libraries", "Event Driven WebSockets", "Responsive HTML5/CSS3 Systems Framework"],
-        outcomes: [
-            "Achieved real-time conversational data transfer processing speeds under 160ms latency constraints.",
-            "Successfully deployed an adaptive, high-contrast structural interface for effortless client usage."
-        ],
-        learning: "Mastered building thread configurations for real-time applications and implementing accessibility best practices."
-    },
-    'car-rental': {
-        title: "Car Rental Management Systems Platform",
-        desc: "An enterprise web automation application constructed to coordinate client registrations, live vehicle availability indexing, transactional validation tracking, and operational analytics logging.",
-        tech: ["Node.js Environment", "Express Engine Integration", "Relational Database Engine (SQL Structure)", "Secure JSON Web Tokens Matrix"],
-        outcomes: [
-            "Built out a bulletproof concurrent reservation pipeline preventing double-booking scheduling conflicts completely.",
-            "Optimized asset queries with indexed data structures to keep payload fetches under 80ms bounds."
-        ],
-        learning: "Gained significant expertise in structural database engineering and data normalization procedures."
+        title: "NIE Institute Campus Memories",
+        narrative: "Academic research sessions, engineering project milestone presentations, cultural networking initiatives, and varsity leadership memory logs compiled throughout the computer science and systems training periods.",
+        images: ["nieit1.jpg", "nieit2.jpg", "nieit3.jpg"]
     }
 };
 
-// --- 4. Sub-Page Modals Router Execution Channels ---
-let slideshowTimerInstance = null;
+// Case Study Deep Dives
+const PROJECT_CASE_STUDIES = {
+    "deaf-comm": {
+        title: "Two Way Communication Systems for Deaf People",
+        bullets: [
+            "Engineered an automated mathematical processing matrix to translate hand gestures into natural language string readouts.",
+            "Utilized high-performance frame monitoring structures to capture spatial orientation data matrices asynchronously.",
+            "Integrated cross-platform presentation frameworks to output real-time text layouts to portable devices with minimal system delays."
+        ]
+    },
+    "car-rental": {
+        title: "Car Rental Management Systems",
+        bullets: [
+            "Architected an optimized transactional database system designed to resolve inventory concurrency faults and asset distribution requests.",
+            "Integrated atomic reservation engines containing localized checking workflows to shield table schemas against racial-condition overlaps.",
+            "Created responsive system analytics dashboards tracing rental revenue patterns, asset maintenance status logs, and customer returns."
+        ]
+    }
+};
 
-function openGallery(key) {
-    const nodeData = portfolioDataset[key];
-    if (!nodeData) return;
+/* --- 2. Initialization & Boot Sequence Event Handlers --- */
+document.addEventListener("DOMContentLoaded", () => {
+    // Phase 1: Boot Animation Sequencing
+    setTimeout(() => {
+        const loader = document.getElementById("loader-screen");
+        const mainContent = document.getElementById("app-content");
+        if (loader) loader.classList.add("hidden-node");
+        if (mainContent) mainContent.classList.remove("hidden-node");
+        
+        initializeHeroScrollingAnimations();
+        initializeSectionNavigationIntersectionObservers();
+    }, 1800);
 
-    let destination = document.getElementById('modal-injection-point');
+    // Phase 2: Core Event Bindings
+    const themeBtn = document.getElementById("theme-swapper");
+    if (themeBtn) {
+        themeBtn.addEventListener("click", cycleNextApplicationPalette);
+    }
+});
+
+/* --- 3. UI Presentation Mechanics & Theme Engines --- */
+function cycleNextApplicationPalette() {
+    activePaletteIndex = (activePaletteIndex + 1) % GLOBAL_PALETTES.length;
+    const selection = GLOBAL_PALETTES[activePaletteIndex];
+    const targetRoot = document.documentElement;
     
-    let trackHTML = nodeData.images.map((img, i) => `
-        <img src="${img}" class="picture-node ${i === 0 ? 'active-img' : ''}" data-index="${i}" alt="Memory Matrix Asset">
-    `).join('');
+    targetRoot.style.setProperty("--bg-primary", selection.primary);
+    targetRoot.style.setProperty("--bg-secondary", selection.secondary);
+    targetRoot.style.setProperty("--font-primary", selection.fontPri);
+    targetRoot.style.setProperty("--font-secondary", selection.fontSec);
+    targetRoot.style.setProperty("--accent", selection.accent);
+}
 
-    let indicatorHTML = nodeData.images.map((img, i) => `
-        <img src="${img}" class="thumb-node ${i === 0 ? 'active-thumb' : ''}" data-index="${i}" onclick="jumpToSlide(${i})" alt="Thumbnail Link">
-    `).join('');
+function initializeHeroScrollingAnimations() {
+    let activeIndex = 0;
+    const rolls = document.querySelectorAll(".roll-node");
+    
+    profileTitleScrollInterval = setInterval(() => {
+        if (rolls.length === 0) return;
+        rolls[activeIndex].classList.remove("active");
+        rolls[activeIndex].classList.add("exit");
+        
+        let previousIndex = activeIndex;
+        activeIndex = (activeIndex + 1) % rolls.length;
+        
+        rolls[activeIndex].classList.remove("exit");
+        rolls[activeIndex].classList.add("active");
+        
+        setTimeout(() => {
+            rolls[previousIndex].classList.remove("exit");
+        }, 500);
+    }, 3000);
+}
 
-    let listHTML = nodeData.bullets.map(b => `<li>${b}</li>`).join('');
+function initializeSectionNavigationIntersectionObservers() {
+    const targets = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll(".nav-item");
+    
+    const config = { root: null, rootMargin: "-30% 0px -60% 0px", threshold: 0 };
+    
+    const navWatcher = new IntersectionObserver((items) => {
+        items.forEach(node => {
+            if (node.isIntersecting) {
+                const sectionId = node.target.getAttribute("id");
+                navItems.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href") === `#${sectionId}`) {
+                        link.classList.add("active");
+                    }
+                });
+            }
+        });
+    }, config);
+    
+    targets.forEach(section => navWatcher.observe(section));
+}
 
-    destination.innerHTML = `
-        <div class="gallery-root">
-            <h2 style="margin-bottom:12px; font-weight:800;">${nodeData.title}</h2>
-            <div class="slideshow-box">
-                ${trackHTML}
-                <div class="slideshow-nav-row">
-                    <button class="nav-btn" onclick="shiftSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-                    <button class="nav-btn" onclick="shiftSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
-                </div>
-            </div>
-            <div class="thumbs-row-container">${indicatorHTML}</div>
-            <h3 style="margin:16px 0 8px; font-weight:700;">Key Technical Engagements:</h3>
-            <ul class="modal-list-node">${listHTML}</ul>
-            <p class="modal-narrative-p">${nodeData.paragraph}</p>
-        </div>
+/* --- 4. Interactive Modal Subsystem Controls --- */
+function openGallery(key) {
+    const source = GALLERY_DATABASE[key];
+    if (!source) return;
+    
+    currentModalSlideshowIndex = 0;
+    currentSlideshowImageCollection = source.images;
+    
+    let slideshowMarkup = `
+        <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 12px; color: #111;">${source.title}</h2>
+        <div class="slideshow-box">
     `;
-
-    document.getElementById('universal-modal').classList.add('active-state');
-    startSlideshowAutoplay();
+    
+    source.images.forEach((imgName, index) => {
+        slideshowMarkup += `
+            <img src="${imgName}" class="picture-node ${index === 0 ? 'active-img' : ''}" data-slide-idx="${index}" alt="Gallery Element">
+        `;
+    });
+    
+    slideshowMarkup += `
+            <div class="slideshow-nav-row">
+                <button class="nav-btn" onclick="shiftSlideshowViewport(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="nav-btn" onclick="shiftSlideshowViewport(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="thumbs-row-container">
+    `;
+    
+    source.images.forEach((imgName, index) => {
+        slideshowMarkup += `
+            <img src="${imgName}" class="thumb-node ${index === 0 ? 'active-thumb' : ''}" data-thumb-idx="${index}" onclick="jumpToSpecificSlide(${index})" alt="Thumbnail">
+        `;
+    });
+    
+    slideshowMarkup += `
+        </div>
+        <p class="modal-narrative-p">${source.narrative}</p>
+    `;
+    
+    renderModalContentWrapper(slideshowMarkup);
 }
 
 function openProject(key) {
-    const proj = portfolioDataset[key];
-    let destination = document.getElementById('modal-injection-point');
+    const caseData = PROJECT_CASE_STUDIES[key];
+    if (!caseData) return;
     
-    let techHTML = proj.tech.map(t => `<span class="metric-pill" style="background:#eef2f3; color:#111; margin-right:6px; font-size:0.8rem;">${t}</span>`).join('');
-    let outcomesHTML = proj.outcomes.map(o => `<li>${o}</li>`).join('');
+    let projectMarkup = `
+        <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; color: #111;"><i class="fa-solid fa-laptop-code"></i> ${caseData.title}</h2>
+        <h4 style="text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; color: #666; margin-bottom: 14px;">Technical Engineering Core Implementation Specs</h4>
+        <ul class="modal-list-node">
+    `;
+    
+    caseData.bullets.forEach(sentence => {
+        projectMarkup += `<li>${sentence}</li>`;
+    });
+    
+    projectMarkup += `
+        </ul>
+        <p class="modal-narrative-p">This case study demonstrates robust compliance standards, relational transactional consistency, and production architecture rules designed under strict operational constraints.</p>
+    `;
+    
+    renderModalContentWrapper(projectMarkup);
+}
 
-    destination.innerHTML = `
-        <div class="project-modal-view">
-            <h2 style="font-weight:800; margin-bottom:8px;">${proj.title}</h2>
-            <p style="margin-bottom:16px; font-style:italic; color:#555;">${proj.desc}</p>
-            <h4 style="margin-bottom:8px;">Technologies Utilized In Production:</h4>
-            <div style="margin-bottom:16px; display:flex; flex-wrap:wrap; gap:6px;">${techHTML}</div>
-            <h4 style="margin-bottom:6px;">Performance Outcomes & Benchmarks:</h4>
-            <ul class="modal-list-node">${outcomesHTML}</ul>
-            <h4 style="margin-bottom:6px;">Engineering Learning Curve:</h4>
-            <p class="modal-narrative-p" style="background:#f9f9f9;">${proj.learning}</p>
+function openSingleDocument(docPath) {
+    const structuralMarkup = `
+        <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 14px; color: #111;"><i class="fa-solid fa-file-invoice"></i> Verified Academic Document</h2>
+        <div style="width: 100%; border-radius: 6px; overflow: hidden; background: #222; text-align: center;">
+            <img src="${docPath}" style="max-width: 100%; max-height: 65vh; object-fit: contain; display: block; margin: 0 auto;" alt="Academic Verification Ledger">
         </div>
     `;
-    document.getElementById('universal-modal').classList.add('active-state');
+    renderModalContentWrapper(structuralMarkup);
 }
 
 function openAchievementDeepDive() {
-    let destination = document.getElementById('modal-injection-point');
-    destination.innerHTML = `
-        <div class="achievement-modal-root">
-            <span class="gold-badge-node"><i class="fa-solid fa-trophy"></i> Elite Athlete Log</span>
-            <h2 style="margin:12px 0 6px;">VTU State Tournament Analytics</h2>
-            <p style="color:#666; font-size:0.9rem; margin-bottom:16px;"><i class="fa-solid fa-circle-nodes"></i> Match Stage: Semi-Finals vs VidyaVikas Institute of Technology</p>
-            <div style="display:flex; gap:12px; margin-bottom:16px;">
-                <img src="nieit15.jpg" style="width:50%; height:180px; object-fit:cover; border-radius:6px;" alt="Innings Action">
-                <img src="nieit16.jpg" style="width:50%; height:180px; object-fit:cover; border-radius:6px;" alt="Post-Game Celebration">
-            </div>
-            <p class="modal-narrative-p">
-                <strong>High-Pressure Execution:</strong> Under immense pressure during a vital, must-win match elimination stage, spearheaded a rapid counter-attack innings, scoring <strong>71* runs off just 35 deliveries</strong> to secure our slot in the state championship finals.
-                <br><br>
-                <strong>Corporate Application Mapping:</strong> This serves as clear validation of my leadership capacities. It directly mirrors a developer's capacity to maintain focus during sudden service degradation events, coordinate teams during intense release schedules, and deliver reliable solutions under tight timelines.
-            </p>
-        </div>
+    const achievementMarkup = `
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; color: #111;"><i class="fa-solid fa-trophy"></i> VTU Championship Operational Review</h2>
+        <p class="modal-narrative-p" style="margin-bottom: 14px;">Evaluating athletic performance variables through high-stress crisis management matrices.</p>
+        <ul class="modal-list-node">
+            <li><strong>Dynamic Variable Calibration:</strong> Handled a high-pressure collapse situation, altering hitting strategies instantly according to ball delivery analytics.</li>
+            <li><strong>Strategic Pacing Matrix:</strong> Scored an unbeaten 71* off 35 deliveries, engineering risk paths to clear target numbers efficiently.</li>
+            <li><strong>Team Execution Control:</strong> Coordinated base runners during critical phases, leading the university squad safely across qualification milestones.</li>
+        </ul>
     `;
-    document.getElementById('universal-modal').classList.add('active-state');
+    renderModalContentWrapper(achievementMarkup);
 }
 
 function openCertificationDocument() {
-    let destination = document.getElementById('modal-injection-point');
-    destination.innerHTML = `
-        <div style="text-align:center;">
-            <h2 style="margin-bottom:12px; font-weight:800;">Microsoft Cloud Competency Verification</h2>
-            <img src="AI Azure.jpg" style="max-width:100%; max-height:340px; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,0.1);" alt="Microsoft Azure AI Fundamentals Certificate">
-            <h4 style="text-align:left; margin:16px 0 6px;">Course Mastery & Curricular Focus:</h4>
-            <p class="modal-narrative-p" style="text-align:left;">
-                This formal certification establishes verified expertise across fundamental cloud cognitive architectures on Microsoft Azure. Key subject evaluations include operational machine learning workflow management, computerized anomaly classification engines, automated visual sorting layers, and structural natural language model processing implementations.
-            </p>
+    const certMarkup = `
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; color: #111;"><i class="fa-solid fa-certificate"></i> Enterprise Credentials Ledger</h2>
+        <div style="background: #f4f6f8; padding: 20px; border-radius: 8px; border: 1px dashed #ccc; text-align: center; margin-bottom: 14px;">
+            <i class="fa-brands fa-microsoft" style="font-size: 3.5rem; color: #00a4ef; margin-bottom: 10px;"></i>
+            <h3 style="font-size: 1.2rem; color: #222; font-weight: 700;">Microsoft Certified: Azure AI Fundamentals</h3>
+            <p style="font-size: 0.88rem; color: #555; margin-top: 4px;">Credential Scope: Machine Learning Models, Cognitive Service Integrations, Neural Computations, & Automated Pipeline Controls.</p>
         </div>
+        <p class="modal-narrative-p">This credential verifies core competence in architecting production pipelines and mapping mathematical processes using Microsoft Azure enterprise cloud solutions.</p>
     `;
-    document.getElementById('universal-modal').classList.add('active-state');
+    renderModalContentWrapper(certMarkup);
 }
 
-function openSingleDocument(src) {
-    let destination = document.getElementById('modal-injection-point');
-    destination.innerHTML = `<img src="${src}" style="width:100%; border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" alt="Academic Ledger Verification">`;
-    document.getElementById('universal-modal').classList.add('active-state');
+function renderModalContentWrapper(innerHtmlSnippet) {
+    const injector = document.getElementById("modal-injection-point");
+    const container = document.getElementById("universal-modal");
+    if (injector && container) {
+        injector.innerHTML = innerHtmlSnippet;
+        container.classList.add("active-state");
+    }
 }
 
 function closeActiveModalWindow() {
-    document.getElementById('universal-modal').classList.remove('active-state');
-    clearInterval(slideshowTimerInstance);
+    const container = document.getElementById("universal-modal");
+    if (container) container.classList.remove("active-state");
 }
+
+function shiftSlideshowViewport(direction) {
+    if (currentSlideshowImageCollection.length === 0) return;
+    let newIndex = currentModalSlideshowIndex + direction;
+    if (newIndex >= currentSlideshowImageCollection.length) newIndex = 0;
+    if (newIndex < 0) newIndex = currentSlideshowImageCollection.length - 1;
+    jumpToSpecificSlide(newIndex);
+}
+
+function jumpToSpecificSlide(targetIndex) {
+    currentModalSlideshowIndex = targetIndex;
+    
+    const views = document.querySelectorAll(".picture-node");
+    const thumbs = document.querySelectorAll(".thumb-node");
+    
+    views.forEach(node => {
+        node.classList.remove("active-img");
+        if (parseInt(node.getAttribute("data-slide-idx")) === targetIndex) {
+            node.classList.add("active-img");
+        }
+    });
+    
+    thumbs.forEach(thumb => {
+        thumb.classList.remove("active-thumb");
+        if (parseInt(thumb.getAttribute("data-thumb-idx")) === targetIndex) {
+            thumb.classList.add("active-thumb");
+        }
+    });
+}
+
+/* --- 5. Virtual AI Chatbot Engine Framework --- */
+function toggleChatbotState() {
+    const frame = document.getElementById("chatbot-frame");
+    if (!frame) return;
+    
+    const isCurrentlyActive = frame.classList.contains("active-chat");
+    
+    if (isCurrentlyActive) {
+        // Trigger exit sequence: Apply robot animation and say thank you before closing
+        const robotAvatar = document.getElementById("chatbot-trigger");
+        if (robotAvatar) {
+            robotAvatar.classList.add("animate-robo-thanks");
+            setTimeout(() => {
+                robotAvatar.classList.remove("animate-robo-thanks");
+            }, 1200);
+        }
+        
+        appendMessageLogNode("🤖 Thank you for chatting with AVP engine! Have an amazing day! ✨👋", "incoming");
+        
+        // Let user see the thank you message briefly, then collapse window
+        setTimeout(() => {
+            frame.classList.remove("active-chat");
+        }, 1000);
+    } else {
+        frame.classList.add("active-chat");
+    }
+}
+
+function handleChatbotKeyPress(event) {
+    if (event.key === "Enter") {
+        executeChatbotQuery();
+    }
+}
+
+function executeChatbotQuery(forcedValue = null) {
+    const field = document.getElementById("chatbot-input-field");
+    if (!field) return;
+    
+    const inputString = forcedValue ? forcedValue.trim() : field.value.trim();
+    if (!inputString) return;
+    
+    // Append human question bubble
+    appendMessageLogNode(inputString, "outgoing");
+    if (!forcedValue) field.value = "";
+    
+    // Display flowing animated dot typing ripple
+    const rippleElement = displayBotTypingRipple();
+    
+    // Process input text and select routing path after a tiny processing layout delay
+    setTimeout(() => {
+        removeBotTypingRipple(rippleElement);
+        routeQueryToIntentEngine(inputString.toLowerCase());
+    }, 900);
+}
+
+function displayBotTypingRipple() {
+    const logs = document.getElementById("chatbot-logs");
+    if (!logs) return null;
+    
+    const rippleChassis = document.createElement("div");
+    rippleChassis.className = "typing-ripple-wrapper";
+    rippleChassis.id = "active-engine-typing-ripple";
+    
+    rippleChassis.innerHTML = `
+        <span class="ripple-dot"></span>
+        <span class="ripple-dot"></span>
+        <span class="ripple-dot"></span>
+    `;
+    
+    logs.appendChild(rippleChassis);
+    logs.scrollTop = logs.scrollHeight;
+    return rippleChassis;
+}
+
+function removeBotTypingRipple(element) {
+    if (element && element.parentNode) {
+        element.parentNode.removeChild(element);
+    }
+}
+
+function appendMessageLogNode(textText, targetClass) {
+    const logs = document.getElementById("chatbot-logs");
+    if (!logs) return;
+    
+    const bubble = document.createElement("div");
+    bubble.className = `bot-bubble ${targetClass}`;
+    bubble.innerText = textText;
+    
+    logs.appendChild(bubble);
+    logs.scrollTop = logs.scrollHeight;
+}
+
+/* --- NEW: Interactive Directory Menu & Routing Engines --- */
+function routeQueryToIntentEngine(processedInput) {
+    // Intent Path A: Projects Selection Menu requested
+    if (processedInput.includes("project") || processedInput.includes("case study") || processedInput.includes("portfolio")) {
+        appendMessageLogNode("🤖 Project Directory Access Granted. Please select an option below:", "incoming");
+        createInteractiveDirectoryMenu([
+            { label: "1. Two Way Communication System for Deaf People", query: "deaf project deepdive" },
+            { label: "2. Car Rental Management Platform", query: "car rental project deepdive" }
+        ]);
+        return;
+    }
+    
+    // Intent Path B: Work Experience Selection Menu requested
+    if (processedInput.includes("experience") || processedInput.includes("work") || processedInput.includes("history") || processedInput.includes("job")) {
+        appendMessageLogNode("🤖 Experience Records Hub. Select a tenure layer to fetch metrics:", "incoming");
+        createInteractiveDirectoryMenu([
+            { label: "1. Chromosis Technologies (Internship)", query: "chromosis tenure overview" },
+            { label: "2. Hewlett Packard Enterprise (HPE Specialist)", query: "hpe tenure overview" },
+            { label: "3. PhoneMax (Digital Campaign Executive - Gallery Added!)", query: "phonemax tenure overview" }
+        ]);
+        return;
+    }
+
+    // Intent Path C: Technical Skill Sets Index Menu requested
+    if (processedInput.includes("skill") || processedInput.includes("tech") || processedInput.includes("matrix") || processedInput.includes("code")) {
+        appendMessageLogNode("🤖 Select a technical domain matrix category:", "incoming");
+        createInteractiveDirectoryMenu([
+            { label: "1. Frontend Frameworks & UI UI/UX Systems", query: "frontend tech stack query" },
+            { label: "2. Backend & Relational Database Environments", query: "backend tech stack query" },
+            { label: "3. Analytics & Specialized Data Engineering", query: "analytics tech stack query" }
+        ]);
+        return;
+    }
+
+    // Secondary Leaf Nodes Router Fallbacks
+    if (processedInput.includes("deaf project")) {
+        appendMessageLogNode("🔊 Deaf Communication Project: High-speed gesture mapping calculation framework designed to parse structural actions cleanly into readouts.", "incoming");
+    } else if (processedInput.includes("car rental")) {
+        appendMessageLogNode("🚗 Car Rental System: Enterprise asset coordination engine built to safeguard concurrency pipelines and resolve database lock contentions.", "incoming");
+    } else if (processedInput.includes("chromosis")) {
+        appendMessageLogNode("🏢 Chromosis Technologies: Serving as a Creative Design and Software Engineering Intern in Hubli, mapping custom layout protocols since May 2026.", "incoming");
+    } else if (processedInput.includes("hpe")) {
+        appendMessageLogNode("💻 HPE Solutions: Served 4 months as a Technical Solutions Specialist in Bengaluru managing cloud operations matrices.", "incoming");
+    } else if (processedInput.includes("phonemax")) {
+        appendMessageLogNode("📈 PhoneMax Operations: 6 months tenure handling digital marketing infrastructure campaigns. Expanded visibility by 25%. Image gallery updated inside web workspace!", "incoming");
+    } else if (processedInput.includes("frontend")) {
+        appendMessageLogNode("✨ Frontend Stack: Expert across HTML5, CSS3, JavaScript (ES6+), React.js layout architectures, and fluent responsive system patterns.", "incoming");
+    } else if (processedInput.includes("backend")) {
+        appendMessageLogNode("⚙️ Backend Core: Specialized in Node.js, Express Frameworks, Python scripting infrastructure, and production SQL database routines.", "incoming");
+    } else if (proc
 
 // --- 5. Slideshow Transition Logic Subroutines ---
 function jumpToSlide(idx) {
